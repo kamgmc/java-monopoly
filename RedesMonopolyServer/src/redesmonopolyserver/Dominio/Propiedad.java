@@ -20,4 +20,8 @@ public class Propiedad {
     private int dosCasas;
     private int tresCasas;
     private int cuatroCasas;
+    private int posCasasX;
+    private int posCasasY;
+    private int posJugadorX;
+    private int posJUgadorY;
 }
