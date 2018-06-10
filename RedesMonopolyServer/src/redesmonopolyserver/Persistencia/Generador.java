@@ -2,18 +2,8 @@ package redesmonopolyserver.Persistencia;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import redesmonopolyserver.Dominio.Carta;
-import redesmonopolyserver.Dominio.CartaAvanzar;
-import redesmonopolyserver.Dominio.CartaCobrar;
-import redesmonopolyserver.Dominio.CartaCobrarJugadores;
-import redesmonopolyserver.Dominio.CartaPagar;
-import redesmonopolyserver.Dominio.CartaPagarJugadores;
-import redesmonopolyserver.Dominio.CartaPagarPropiedades;
-import redesmonopolyserver.Dominio.CartaSalirCarcel;
-import redesmonopolyserver.Dominio.Ferrocarril;
-import redesmonopolyserver.Dominio.Propiedad;
+import redesmonopolyserver.Dominio.*;
 import redesmonopolyserver.Dominio.Propiedad.Color;
-import redesmonopolyserver.Dominio.Servicio;
 
 /**
  *
@@ -46,7 +36,7 @@ public class Generador {
         Propiedad muelle = new Propiedad("El Muelle", Color.AZUL, 50, 400, 200, 200, 200, 200, 600, 1400, 1700, 2000, 0, 0, 0, 0);
         
         //FERROCARRILES
-        Ferrocarril reading = new Ferrocarril("\"Reading\"", 25, 50, 100, 200, 100);
+        Ferrocarril reading = new Ferrocarril("Reading Railroad", 25, 50, 100, 200, 100);
         Ferrocarril fPennsylvania = new Ferrocarril("Pennsylvania", 25, 50, 100, 200, 100);
         Ferrocarril bo = new Ferrocarril("B. & O.", 25, 50, 100, 200, 100);
         Ferrocarril viaRapida = new Ferrocarril("Via Rapida", 25, 50, 100, 200, 100);
@@ -110,5 +100,55 @@ public class Generador {
         arca.add(new CartaPagarPropiedades("A pagar impuestos por la reparacion de las calles: $40 por cada casa, $115 por cada hotel.", 40, 115));
         //Barajar Cartas
         Collections.shuffle(arca);
+    }
+    
+    public static void GenerarCasillas(Tablero t){
+        int x;
+        int y;
+        int vx;
+        int vy;
+        CGo cg;
+        CPropiedad cp;
+        CCarta cc;
+        CImpuesto ci;
+        CFerrocarril cf;
+        
+        // Casilla de Go
+        x=647;
+        y=656;
+        vx=-57;
+        cg = new CGo("Go",x,y); 
+        t.getCasillas().add(cg);
+        // Primera fila de casillas
+        x=567;
+        cp = new CPropiedad("Avenida Mediterraneo",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cc = new CCarta("Arca","Arca Comunal 1",x,y);
+        t.getCasillas().add(cc);
+        x+=vx;
+        cp = new CPropiedad("Avenida Baltica",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        ci = new CImpuesto(200,"Tax Income",x,y);
+        t.getCasillas().add(ci);
+        x+=vx;
+        cf = new CFerrocarril(-1,"Reading Railroad",x,y);
+        t.getCasillas().add(cf);
+        x+=vx;
+        cp = new CPropiedad("Avenida Oriental",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cc = new CCarta("Fortuna","FOrtuna 1",x,y);
+        t.getCasillas().add(cc);
+        x+=vx;
+        cp = new CPropiedad("Avenida Vermont",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cp = new CPropiedad("Avenida Connecticut",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        
+        
     }
 }

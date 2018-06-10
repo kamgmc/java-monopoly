@@ -28,8 +28,7 @@ public class RedesMonopolyServer {
             }
         }
         else {
-            Cliente c = new Cliente("ksajdlk");
-            c.start();
+            
         }
     }
     

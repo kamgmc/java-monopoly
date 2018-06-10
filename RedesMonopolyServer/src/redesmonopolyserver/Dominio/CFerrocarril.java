@@ -12,10 +12,12 @@ package redesmonopolyserver.Dominio;
 public class CFerrocarril extends Casilla {
     private int propietario;
 
-    public CFerrocarril(String nombre,int propietario) {
-        super(nombre);
+    public CFerrocarril(int propietario, String nombre, int posJugadorX, int posJUgadorY) {
+        super(nombre, posJugadorX, posJUgadorY);
         this.propietario = propietario;
     }
+
+    
 
     @Override
     public void alSalir() {

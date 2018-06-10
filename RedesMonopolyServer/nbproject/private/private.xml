@@ -5,13 +5,8 @@
         <group>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Jugador.java</file>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/ServidorHilo.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/RedesMonopolyServer.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Servidor.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Mensaje.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Propiedad.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Cliente.java</file>
+            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Pantallas/PantallaJugadorPrincipal.java</file>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Tablero.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/ControladorJugadores.java</file>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Persistencia/Generador.java</file>
         </group>
     </open-files>

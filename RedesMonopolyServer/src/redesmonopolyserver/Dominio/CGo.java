@@ -10,10 +10,9 @@ package redesmonopolyserver.Dominio;
  * @author kamgm
  */
 public class CGo extends Casilla {
-    
 
-    public CGo(String nombre) {
-        super(nombre);
+    public CGo(String nombre, int posJugadorX, int posJUgadorY) {
+        super(nombre, posJugadorX, posJUgadorY);
     }
 
     @Override

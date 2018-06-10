@@ -7,13 +7,19 @@ public class CPropiedad extends Casilla{
     private int numeroCasas;
     private int numeroHoteles;
     private int propietario;
+    private int posCasasX;
+    private int posCasasY;
 
-    public CPropiedad(String nombre, int numeroCasas, int numeroHoteles, int propietario) {
-        super(nombre);
-        this.numeroCasas = numeroCasas;
-        this.numeroHoteles = numeroHoteles;
-        this.propietario = propietario;
+    public CPropiedad(String nombre, int posJugadorX, int posJUgadorY) {
+        super(nombre, posJugadorX, posJUgadorY);
+        this.numeroCasas = 0;
+        this.numeroHoteles = 0;
+        this.propietario = -1;
+        this.posCasasX = posJugadorX-9;
+        this.posCasasY = posJUgadorY-40;
     }
+
+    
 
     @Override
     public void alSalir() {

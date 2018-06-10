@@ -11,8 +11,8 @@ package redesmonopolyserver.Dominio;
  */
 public class CVeACarcel extends Casilla {
 
-    public CVeACarcel(String nombre) {
-        super(nombre);
+    public CVeACarcel(String nombre, int posJugadorX, int posJUgadorY) {
+        super(nombre, posJugadorX, posJUgadorY);
     }
 
     @Override

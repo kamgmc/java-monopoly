@@ -2,13 +2,14 @@ package redesmonopolyserver.Dominio;
 
 public class Jugador {
 
-    public Jugador(int codigo, String nombre, String icono, String ip) {
+    public Jugador(int codigo, String nombre, String icono, String ip, Casilla posicion) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.dinero = 0;
         this.carcelLibre = 0;
         this.icono = icono;
         this.ip = ip;
+        this.posicion = posicion;
         
     }
 
@@ -59,6 +60,16 @@ public class Jugador {
     public void setIp(String ip) {
         this.ip = ip;
     }
+
+    public Casilla getPosicion() {
+        return posicion;
+    }
+
+    public void setPosicion(Casilla posicion) {
+        this.posicion = posicion;
+    }
+    
+    
     
     
     
@@ -68,4 +79,5 @@ public class Jugador {
     private int carcelLibre;
     private String icono;
     private String ip;
+    private Casilla posicion;
 }

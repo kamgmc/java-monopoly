@@ -11,9 +11,11 @@ package redesmonopolyserver.Dominio;
  */
 public class CCarcel extends Casilla {
 
-    public CCarcel(String nombre) {
-        super(nombre);
+    public CCarcel(String nombre, int posJugadorX, int posJUgadorY) {
+        super(nombre, posJugadorX, posJUgadorY);
     }
+    
+    
 
     @Override
     public void alSalir() {

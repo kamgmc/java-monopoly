@@ -37,5 +37,13 @@ public class Tablero {
         this.montoImpuestos = montoImpuestos;
     }
     
+    public int obtenerPosicion(Casilla casilla){
+        int i = 0;
+        for(Casilla c: Casillas){
+            if(c.equals(casilla)) return i;
+            i++;
+        }
+        return -1;
+    }
     
 }
