@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import redesmonopolyserver.Comunicacion.Cliente;
+import redesmonopolyserver.Dominio.CPropiedad;
 import redesmonopolyserver.Dominio.Casilla;
 import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
@@ -70,12 +71,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(1010, 710));
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tableroYFondo.setBackground(new java.awt.Color(205, 230, 208));
         tableroYFondo.setMaximumSize(new java.awt.Dimension(1010, 710));
         tableroYFondo.setMinimumSize(new java.awt.Dimension(1010, 710));
         tableroYFondo.setName(""); // NOI18N
+        tableroYFondo.setOpaque(false);
         tableroYFondo.setPreferredSize(new java.awt.Dimension(1010, 710));
         tableroYFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,16 +138,16 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DedalP.png"))); // NOI18N
         tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, -1, -1));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Tablero.png"))); // NOI18N
-        tableroYFondo.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 710));
+        getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(tableroYFondo);
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Tablero.png"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 710));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        lanzarDado();
+
         Jugador j = tablero.getJugadores().get(0);
         Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
         j.setPosicion(c);
@@ -153,7 +155,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        lanzarDado();
+
         Jugador j = tablero.getJugadores().get(1);
         Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
         j.setPosicion(c);
@@ -161,7 +163,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        lanzarDado();
+
         Jugador j = tablero.getJugadores().get(2);
         Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
         j.setPosicion(c);
@@ -169,7 +171,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        lanzarDado();
+
         Jugador j = tablero.getJugadores().get(3);
         Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
         j.setPosicion(c);
@@ -183,7 +185,21 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador2.setLocation(tablero.getJugadores().get(1).getPosicion().getPosJugadorX(),tablero.getJugadores().get(1).getPosicion().getPosJUgadorY());
         piezaJugador3.setLocation(tablero.getJugadores().get(2).getPosicion().getPosJugadorX(),tablero.getJugadores().get(2).getPosicion().getPosJUgadorY());
         piezaJugador4.setLocation(tablero.getJugadores().get(3).getPosicion().getPosJugadorX(),tablero.getJugadores().get(3).getPosicion().getPosJUgadorY());
-
+        /*Prueba de casas
+        if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
+            JLabel casa = new JLabel("");
+            tableroYFondo.add(casa);
+            CPropiedad casilla = (CPropiedad) tablero.getJugadores().get(0).getPosicion();
+            casa.setSize(16, 16);
+            System.out.println(casilla.getPosCasasX());
+            System.out.println(casilla.getPosJugadorX());
+            casa.setLocation( casilla.getPosCasasX(),casilla.getPosCasasY());
+            casa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Casa.png")));
+            this.revalidate();
+            this.validate();
+            this.repaint();
+        }
+        */
     }
     
     public void iniciarJuego(){
@@ -201,10 +217,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         
     }
     
-    public void lanzarDado(){
-        new Thread( new Lanzador(this)).run();
-
-    }
     
     public void mostrarDado(JLabel dado, int num){
         if(num==1)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D1.png")));
@@ -216,30 +228,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         pack();
     }
     
-    private class Lanzador extends Thread{
-        PantallaJugadorPrincipal p;
-
-        public Lanzador(PantallaJugadorPrincipal p) {
-            this.p=p;
-            
-        }
-        @Override
-    public void run() {
-        for(int i=0;i<30;i++){
-            int n1 = (int)(1+Math.random()*6);
-            this.p.mostrarDado(this.p.dado1, n1);
-            int n2 = (int)(1+Math.random()*6);
-            this.p.mostrarDado(this.p.dado2, n2);
-            try {
-                sleep(100);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(PantallaJugadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
-        }
     
-    }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaJugador;

@@ -36,7 +36,7 @@ public class Generador {
         Propiedad muelle = new Propiedad("El Muelle", Color.AZUL, 50, 400, 200, 200, 200, 200, 600, 1400, 1700, 2000, 0, 0, 0, 0);
         
         //FERROCARRILES
-        Ferrocarril reading = new Ferrocarril("Reading Railroad", 25, 50, 100, 200, 100);
+        Ferrocarril reading = new Ferrocarril("Lectura", 25, 50, 100, 200, 100);
         Ferrocarril fPennsylvania = new Ferrocarril("Pennsylvania", 25, 50, 100, 200, 100);
         Ferrocarril bo = new Ferrocarril("B. & O.", 25, 50, 100, 200, 100);
         Ferrocarril viaRapida = new Ferrocarril("Via Rapida", 25, 50, 100, 200, 100);
@@ -107,48 +107,178 @@ public class Generador {
         int y;
         int vx;
         int vy;
+        int cx;
+        int cy;
         CGo cg;
         CPropiedad cp;
         CCarta cc;
         CImpuesto ci;
         CFerrocarril cf;
+        CCarcel cca;
+        CServicios cs;
+        CLibre cl;
+        CVeACarcel cv;
+        
         
         // Casilla de Go
-        x=647;
-        y=656;
+        x=644;
+        y=644;
         vx=-57;
         cg = new CGo("Go",x,y); 
         t.getCasillas().add(cg);
+        
         // Primera fila de casillas
         x=567;
-        cp = new CPropiedad("Avenida Mediterraneo",x,y);
+        y=656;
+        cx=-9;
+        cy=-40;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Mediterraneo",x,y);
         t.getCasillas().add(cp);
         x+=vx;
         cc = new CCarta("Arca","Arca Comunal 1",x,y);
         t.getCasillas().add(cc);
         x+=vx;
-        cp = new CPropiedad("Avenida Baltica",x,y);
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Baltica",x,y);
         t.getCasillas().add(cp);
         x+=vx;
         ci = new CImpuesto(200,"Tax Income",x,y);
         t.getCasillas().add(ci);
         x+=vx;
-        cf = new CFerrocarril(-1,"Reading Railroad",x,y);
+        cf = new CFerrocarril(-1,"Lectura",x,y);
         t.getCasillas().add(cf);
         x+=vx;
-        cp = new CPropiedad("Avenida Oriental",x,y);
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Oriental",x,y);
         t.getCasillas().add(cp);
         x+=vx;
-        cc = new CCarta("Fortuna","FOrtuna 1",x,y);
+        cc = new CCarta("Fortuna","Fortuna 1",x,y);
         t.getCasillas().add(cc);
         x+=vx;
-        cp = new CPropiedad("Avenida Vermont",x,y);
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Vermont",x,y);
         t.getCasillas().add(cp);
         x+=vx;
-        cp = new CPropiedad("Avenida Connecticut",x,y);
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Connecticut",x,y);
         t.getCasillas().add(cp);
         x+=vx;
         
+        //Casilla de carcel
+        x=5;
+        y=671;
+        cca = new CCarcel("Carcel",x,y);
+        t.getCasillas().add(cca);
+        
+        //Casillas Segunda FIla
+        x=19;
+        y=568;
+        vx=-57;
+        cx=58;
+        cy=-9;
+        cp = new CPropiedad(x+cx,y+cy,"Plaza San Carlos",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cs=new CServicios(-1,"Compañia de Electricidad",x,y);
+        t.getCasillas().add(cs);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Status",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Virginia",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cf = new CFerrocarril(-1,"Pennsylvania",x,y);
+        t.getCasillas().add(cf);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Plaza St. James",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cc = new CCarta("Arca","Arca Comunal 2",x,y);
+        t.getCasillas().add(cc);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Tennessee",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Nueva York",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        
+        //Casilla Libre
+        x=34;
+        y=34;
+        cl = new CLibre("Puesto Libre",x,y);
+        t.getCasillas().add(cl);
+        
+        //Fila 3
+        x=110;
+        y=19;
+        vx=57;
+        cx=-10;
+        cy=58;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Kentucky",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cc = new CCarta("Fortuna","Fortuna 2",x,y);
+        t.getCasillas().add(cc);
+        x+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Indiana",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Illinois",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cf = new CFerrocarril(-1,"B. & O.",x,y);
+        t.getCasillas().add(cf);
+        x+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Atlantico",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Ventnor",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        cs=new CServicios(-1,"Compañia de Agua",x,y);
+        t.getCasillas().add(cs);
+        x+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Jardines Marvin",x,y);
+        t.getCasillas().add(cp);
+        x+=vx;
+        
+        //Casilla ve a la Carcel
+        x=644;
+        y=34;
+        cv = new CVeACarcel("Ve a la Carcel",x,y);
+        t.getCasillas().add(cv);
+        
+        //Casillas fila 4
+        x=657;
+        y=109;
+        vx=57;
+        cx=-42;
+        cy=-9;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Pacifico",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Carolina del Norte",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cc = new CCarta("Arca","Arca Comunal 3",x,y);
+        t.getCasillas().add(cc);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Avenida Pennsylvania",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        cf = new CFerrocarril(-1,"Via Rapida",x,y);
+        t.getCasillas().add(cf);
+        y+=vx;
+        cc = new CCarta("Fortuna","Fortuna 3",x,y);
+        t.getCasillas().add(cc);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"Plaza Park",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
+        ci = new CImpuesto(200,"Luxury Tax",x,y);
+        t.getCasillas().add(ci);
+        y+=vx;
+        cp = new CPropiedad(x+cx,y+cy,"El Muelle",x,y);
+        t.getCasillas().add(cp);
+        y+=vx;
         
     }
 }
