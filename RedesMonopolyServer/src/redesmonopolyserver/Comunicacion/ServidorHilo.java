@@ -39,7 +39,7 @@ public class ServidorHilo extends Thread {
                 m = (Mensaje) dis.readObject();
                 if(m.tipo==1){
                     System.out.println("El cliente con idSesion "+this.idSessio+" saluda");
-                    dos.writeObject(new Mensaje(2,"adios"));
+                    //dos.writeObject(new Mensaje(2,"adios"));
                 }
             } catch (IOException ex) {
                 Logger.getLogger(ServidorHilo.class.getName()).log(Level.SEVERE, null, ex);
@@ -51,4 +51,25 @@ public class ServidorHilo extends Thread {
         };
         desconnectar();
     }
+    
+    public void esperarSolicitud(){
+        while (true){
+            Solicitud s;
+            try {
+                s = (Solicitud) dis.readObject();
+            } catch (IOException ex) {
+                Logger.getLogger(ServidorHilo.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(ServidorHilo.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
+    }
+    
+    public void procesarSolicitud(Mensaje m){
+        
+        
+    }
+    
 }

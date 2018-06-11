@@ -18,9 +18,10 @@ public class Mensaje implements Serializable{
     String mensaje;
     String jugador;
 
-    public Mensaje(int tipo, String mensaje) {
+    public Mensaje(int tipo, String mensaje, Tablero tablero) {
         this.tipo = tipo;
         this.mensaje = mensaje;
+        this.tablero = tablero;
     }
     
     

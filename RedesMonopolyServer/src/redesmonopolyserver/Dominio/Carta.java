@@ -1,6 +1,8 @@
 package redesmonopolyserver.Dominio;
 
-public abstract class Carta {
+import java.io.Serializable;
+
+public abstract class Carta implements Serializable{
     private String texto;
 
     public String getTexto() {

@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class CFerrocarril extends Casilla {
+public class CFerrocarril extends Casilla implements Serializable{
     private int propietario;
 
     public CFerrocarril(int propietario, String nombre, int posJugadorX, int posJUgadorY) {

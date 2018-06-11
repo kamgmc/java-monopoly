@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author alexd
  */
-public class CLibre extends Casilla{
+public class CLibre extends Casilla implements Serializable{
 
     public CLibre(String nombre, int posJugadorX, int posJUgadorY) {
         super(nombre, posJugadorX, posJUgadorY);

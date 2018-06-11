@@ -1,6 +1,8 @@
 package redesmonopolyserver.Dominio;
 
-public class CCarta extends Casilla{
+import java.io.Serializable;
+
+public class CCarta extends Casilla implements Serializable{
     private String tipo;
 
     public CCarta(String tipo, String nombre, int posJugadorX, int posJUgadorY) {

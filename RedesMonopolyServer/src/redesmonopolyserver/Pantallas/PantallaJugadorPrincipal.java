@@ -31,11 +31,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     public PantallaJugadorPrincipal() {
         initComponents();
         
+        
     }
     
     public PantallaJugadorPrincipal(Cliente cliente) {
         initComponents();
         this.cliente=cliente;
+        cliente.setPantalla(this);
         setLocationRelativeTo(null);
         tablero = new Tablero();
         iniciarJuego();
@@ -181,10 +183,10 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     
     public void actualizarTablero(){
         tableroYFondo.setLayout(null);
-        piezaJugador1.setLocation(tablero.getJugadores().get(0).getPosicion().getPosJugadorX(),tablero.getJugadores().get(0).getPosicion().getPosJUgadorY());
-        piezaJugador2.setLocation(tablero.getJugadores().get(1).getPosicion().getPosJugadorX(),tablero.getJugadores().get(1).getPosicion().getPosJUgadorY());
-        piezaJugador3.setLocation(tablero.getJugadores().get(2).getPosicion().getPosJugadorX(),tablero.getJugadores().get(2).getPosicion().getPosJUgadorY());
-        piezaJugador4.setLocation(tablero.getJugadores().get(3).getPosicion().getPosJugadorX(),tablero.getJugadores().get(3).getPosicion().getPosJUgadorY());
+        if(tablero.getJugadores().size()>=1)piezaJugador1.setLocation(tablero.getJugadores().get(0).getPosicion().getPosJugadorX(),tablero.getJugadores().get(0).getPosicion().getPosJUgadorY());
+        if(tablero.getJugadores().size()>=2)piezaJugador2.setLocation(tablero.getJugadores().get(1).getPosicion().getPosJugadorX(),tablero.getJugadores().get(1).getPosicion().getPosJUgadorY());
+        if(tablero.getJugadores().size()>=3)piezaJugador3.setLocation(tablero.getJugadores().get(2).getPosicion().getPosJugadorX(),tablero.getJugadores().get(2).getPosicion().getPosJUgadorY());
+        if(tablero.getJugadores().size()>=4)piezaJugador4.setLocation(tablero.getJugadores().get(3).getPosicion().getPosJugadorX(),tablero.getJugadores().get(3).getPosicion().getPosJUgadorY());
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
             JLabel casa = new JLabel("");
@@ -204,6 +206,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     
     public void iniciarJuego(){
         Generador.GenerarCasillas(tablero);
+        /*
         Jugador j1 = new Jugador(0,"Alex","no","localhost",tablero.getCasillas().get(0));
         tablero.getJugadores().add(j1);
         Jugador j2 = new Jugador(1,"Vero","no","localhost",tablero.getCasillas().get(0));
@@ -212,7 +215,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         tablero.getJugadores().add(j3);
         Jugador j4 = new Jugador(3,"Kevin","no","localhost",tablero.getCasillas().get(0));
         tablero.getJugadores().add(j4);
-        
+        */
         actualizarTablero();
         
     }
@@ -227,6 +230,16 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         else if(num==6)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D6.png")));
         pack();
     }
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+    
+    
     
     
 

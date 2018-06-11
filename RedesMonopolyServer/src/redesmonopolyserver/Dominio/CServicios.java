@@ -1,7 +1,9 @@
 
 package redesmonopolyserver.Dominio;
 
-public class CServicios extends Casilla{
+import java.io.Serializable;
+
+public class CServicios extends Casilla implements Serializable{
     private int propietario;
 
     public CServicios(int propietario, String nombre, int posJugadorX, int posJUgadorY) {

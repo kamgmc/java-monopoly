@@ -1,7 +1,9 @@
 
 package redesmonopolyserver.Dominio;
 
-public class Servicio {
+import java.io.Serializable;
+
+public class Servicio implements Serializable{
     private String nombre;
     private int unServicio;
     private int dosServicios;

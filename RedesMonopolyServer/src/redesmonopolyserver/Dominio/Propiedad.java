@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class Propiedad {
+public class Propiedad implements Serializable{
     private String nombre;
     private Color color;
     private int alquiler;

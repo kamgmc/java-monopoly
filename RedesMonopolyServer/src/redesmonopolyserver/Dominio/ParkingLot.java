@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class ParkingLot extends Casilla{
+public class ParkingLot extends Casilla implements Serializable{
 
     public ParkingLot(String nombre) {
         super(nombre);

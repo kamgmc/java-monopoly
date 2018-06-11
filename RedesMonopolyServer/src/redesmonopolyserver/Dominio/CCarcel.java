@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class CCarcel extends Casilla {
+public class CCarcel extends Casilla implements Serializable{
 
     public CCarcel(String nombre, int posJugadorX, int posJUgadorY) {
         super(nombre, posJugadorX, posJUgadorY);

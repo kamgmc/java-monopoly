@@ -1,17 +1,19 @@
 package redesmonopolyserver.Dominio;
 
-public class Jugador {
+import java.io.Serializable;
 
-    public Jugador(int codigo, String nombre, String icono, String ip, Casilla posicion) {
-        this.codigo = codigo;
+public class Jugador implements Serializable{
+
+    public Jugador(String nombre, String ip, Casilla posicion) {
         this.nombre = nombre;
         this.dinero = 0;
         this.carcelLibre = 0;
-        this.icono = icono;
         this.ip = ip;
         this.posicion = posicion;
         
     }
+ 
+    
 
     public int getCodigo() {
         return codigo;

@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class CVeACarcel extends Casilla {
+public class CVeACarcel extends Casilla implements Serializable{
 
     public CVeACarcel(String nombre, int posJugadorX, int posJUgadorY) {
         super(nombre, posJugadorX, posJUgadorY);

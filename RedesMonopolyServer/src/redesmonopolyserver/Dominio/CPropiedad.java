@@ -1,9 +1,12 @@
 package redesmonopolyserver.Dominio;
+
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class CPropiedad extends Casilla{
+public class CPropiedad extends Casilla implements Serializable{
     private int numeroCasas;
     private int numeroHoteles;
     private int propietario;

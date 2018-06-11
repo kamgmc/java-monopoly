@@ -1,16 +1,18 @@
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tablero {
+public class Tablero implements Serializable{
     private ArrayList<Casilla> Casillas;
     private ArrayList<Jugador> Jugadores;
-    private int montoImpuestos;
+    private int dado1;
+    private int dado2;
+    private boolean turno;
 
     public Tablero() {
         this.Casillas = new ArrayList<Casilla>();
         this.Jugadores = new ArrayList<Jugador>();
-        this.montoImpuestos = 0;
     }
     
     public ArrayList<Casilla> getCasillas() {
@@ -27,14 +29,6 @@ public class Tablero {
 
     public void setJugadores(ArrayList<Jugador> Jugadores) {
         this.Jugadores = Jugadores;
-    }
-
-    public int getMontoImpuestos() {
-        return montoImpuestos;
-    }
-
-    public void setMontoImpuestos(int montoImpuestos) {
-        this.montoImpuestos = montoImpuestos;
     }
     
     public int obtenerPosicion(Casilla casilla){

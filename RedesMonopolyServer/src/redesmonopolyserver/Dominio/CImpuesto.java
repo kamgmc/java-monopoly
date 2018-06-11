@@ -1,6 +1,8 @@
 package redesmonopolyserver.Dominio;
 
-public class CImpuesto extends Casilla{
+import java.io.Serializable;
+
+public class CImpuesto extends Casilla implements Serializable{
     private int monto;
 
     public CImpuesto(int monto, String nombre, int posJugadorX, int posJUgadorY) {

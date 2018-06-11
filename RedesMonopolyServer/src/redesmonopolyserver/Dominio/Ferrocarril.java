@@ -5,11 +5,13 @@
  */
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class Ferrocarril {
+public class Ferrocarril implements Serializable{
     private String nombre;
     private int unFerrocarril;
     private int dosFerrocarril;

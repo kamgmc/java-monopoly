@@ -1,9 +1,12 @@
 package redesmonopolyserver.Dominio;
+
+import java.io.Serializable;
+
 /**
  *
  * @author kamgm
  */
-public class CartaCobrar extends Carta{
+public class CartaCobrar extends Carta implements Serializable{
     
     private int monto;
     

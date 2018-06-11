@@ -1,5 +1,6 @@
 package redesmonopolyserver.Dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -7,7 +8,7 @@ import java.util.ArrayList;
  *
  * @author kamgm
  */
-public abstract class Casilla {
+public abstract class Casilla implements Serializable{
     
     private String nombre;
     private int posJugadorX;
