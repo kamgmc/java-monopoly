@@ -34,7 +34,7 @@ public class Servidor {
         Generador.generarTarjetas(fortuna, arca);
         ss = new ServerSocket(10578);
         System.out.println("\tConexion realizada");
-        while (conexiones.size()<2) {
+        while (conexiones.size()<4) {
             socket = ss.accept();
             ConexionUsuario c = new ConexionUsuario(socket);
             System.out.println("Se ha conectado un usuario: "+socket);
@@ -44,13 +44,14 @@ public class Servidor {
         System.out.println("Se crearon todos los usuarios");
 
             try {
-                //long seed = System.nanoTime();
-                //Collections.shuffle(conexiones,new Random(seed));
-                //Collections.shuffle(tablero.getJugadores(),new Random(seed));
-                TimeUnit.SECONDS.sleep(2);
+                
+                TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
             }
+        long seed = System.nanoTime();
+        Collections.shuffle(conexiones,new Random(seed));
+        Collections.shuffle(tablero.getJugadores(),new Random(seed));
         mandarTablero(0);
 
     }
