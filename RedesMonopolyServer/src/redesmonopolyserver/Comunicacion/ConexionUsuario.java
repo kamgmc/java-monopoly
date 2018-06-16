@@ -21,8 +21,7 @@ public class ConexionUsuario {
     private ObjectOutputStream dos;
     private ObjectInputStream dis;
 
-    public ConexionUsuario(Socket socket) {
-        this.socket = socket;
+    public ConexionUsuario(Socket socket){
         this.socket = socket;
         try {
             dos = new ObjectOutputStream(socket.getOutputStream());
@@ -54,8 +53,6 @@ public class ConexionUsuario {
 
     public void setDis(ObjectInputStream dis) {
         this.dis = dis;
-    }
-    
-    
+    }   
     
 }

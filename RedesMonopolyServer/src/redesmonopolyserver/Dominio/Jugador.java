@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Jugador implements Serializable{
 
-    public Jugador(String nombre, String ip, Casilla posicion) {
+    public Jugador(String nombre, String ip, int posicion) {
         this.nombre = nombre;
         this.dinero = 0;
         this.carcelLibre = 0;
@@ -63,14 +63,15 @@ public class Jugador implements Serializable{
         this.ip = ip;
     }
 
-    public Casilla getPosicion() {
+    public int getPosicion() {
         return posicion;
     }
 
-    public void setPosicion(Casilla posicion) {
+    public void setPosicion(int posicion) {
         this.posicion = posicion;
     }
-    
+
+  
     
     
     
@@ -81,5 +82,5 @@ public class Jugador implements Serializable{
     private int carcelLibre;
     private String icono;
     private String ip;
-    private Casilla posicion;
+    private int posicion;
 }

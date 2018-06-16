@@ -11,36 +11,36 @@ import java.util.*;
 import java.util.logging.*;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Pantallas.PantallaJugadorPrincipal;
+import redesmonopolyserver.Persistencia.Generador;
 
-public class Cliente extends Thread {
+public class Cliente{
     protected Socket sk;
     protected ObjectOutputStream dos;
     protected ObjectInputStream dis;
     private String ip;
     private String nombre;
     private PantallaJugadorPrincipal pantalla;
-    public Cliente(String ip,String nombre) {
+    private Tablero tablero;
+    public boolean enUso=false;
+    
+    public Cliente(String ip,String nombre,String server, int puerto) {
         this.ip=ip;
         this.nombre = nombre;
+        tablero = new Tablero();
+        Generador.GenerarCasillas(tablero);
         try {
-        sk = new Socket("127.0.0.1", 10578);
+        sk = new Socket(server, puerto);
         dos = new ObjectOutputStream(sk.getOutputStream());
         dis = new ObjectInputStream(sk.getInputStream());
+        new Thread(new Listener(this)).start();
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
-    @Override
-    public void run() {
+    
+    public void conectarse() {
+        System.out.println("Hola soy "+nombre);
         enviarJugador(nombre);
-        try {
-            Mensaje m = (Mensaje) dis.readObject();
-            procesarRespuesta(m);
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     public void cerrarConexion(){
@@ -53,44 +53,45 @@ public class Cliente extends Thread {
         }   
     }
     
-    public void enviarMensaje(Mensaje m){
-        try {
-            System.out.println(ip + " envía saludo");
-            dos.writeObject(m);
-            Mensaje respuesta;
-            respuesta = (Mensaje) dis.readObject();
-            System.out.println(ip + " Servidor devuelve saludo: " + respuesta.mensaje);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
     public void enviarJugador(String nombre){
         Solicitud s = new Solicitud(nombre,0);
         try {
+            dos.flush();
             dos.writeObject(s);
-            Mensaje respuesta;
-            respuesta = (Mensaje) dis.readObject();
-            procesarRespuesta(respuesta);
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-    
     }
     
+    public void solicitarMoverse(){
+        Solicitud s = new Solicitud(nombre,1);
+        try {
+            dos.flush();
+            dos.writeObject(s);
+            System.out.println("Haz solicitado moverte");
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
     
+    public void solicitarTablero(){
+        Solicitud s = new Solicitud(nombre,2);
+        try {
+            dos.flush();
+            dos.writeObject(s);
+            System.out.println("Haz solicitado el tablero");
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }
+       
     public void procesarRespuesta(Mensaje m){
-        System.out.print("Algo me mandaron");
-        pantalla.setTablero(m.tablero);
-        pantalla.actualizarTablero();
-        
-    
+            System.out.println("Procesando Respuesta");
+            tablero.actualizar(m.tablero);
+            tablero.actualizarUsuarios(m.pos1, m.pos2, m.pos3, m.pos4);
+            if(pantalla!=null) pantalla.actualizarTablero(tablero);
     }
-
+            
     public PantallaJugadorPrincipal getPantalla() {
         return pantalla;
     }
@@ -99,5 +100,35 @@ public class Cliente extends Thread {
         this.pantalla = pantalla;
     }
     
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
     
+    public class Listener implements Runnable{
+        private Cliente c;
+
+        public Listener(Cliente c) {
+            this.c = c;
+        }
+        @Override
+        public void run() {
+            while(true){
+                try {
+                    System.out.println("Esperando el Tablero");
+                    Mensaje m = (Mensaje) c.dis.readObject();
+                    m.tablero.imprimirTablero();
+                    c.procesarRespuesta(m);
+                    System.out.println("Tablero Recibido");
+                } catch (IOException ex) {
+                    Logger.getLogger(ConexionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ConexionUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
 }

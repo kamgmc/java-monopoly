@@ -97,9 +97,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
-        Cliente c = new Cliente("ksajdlk","Juan");
-        c.start();
-        PantallaJugadorPrincipal pantallaNueva = new PantallaJugadorPrincipal(c);
+        PantallaConfiguracionCliente pantallaNueva = new PantallaConfiguracionCliente();
         this.dispose();
         pantallaNueva.setVisible(true);
     }//GEN-LAST:event_botonClienteActionPerformed

@@ -23,7 +23,6 @@ import redesmonopolyserver.Persistencia.Generador;
  */
 public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     Cliente cliente;
-    Tablero tablero;
 
     /**
      * Creates new form PantallaJugadorPrincipal
@@ -38,9 +37,10 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         initComponents();
         this.cliente=cliente;
         cliente.setPantalla(this);
+        actualizarTablero(cliente.getTablero());
         setLocationRelativeTo(null);
-        tablero = new Tablero();
-        iniciarJuego();
+        //cliente.solicitarTablero();
+        
     }
 
     /**
@@ -56,7 +56,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        botonJugar = new javax.swing.JButton();
         dado1 = new javax.swing.JLabel();
         dado2 = new javax.swing.JLabel();
         areaJugador = new javax.swing.JPanel();
@@ -107,13 +107,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         });
         tableroYFondo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, -1, -1));
 
-        jButton4.setText("mover 1");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        botonJugar.setText("Jugar");
+        botonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                botonJugarActionPerformed(evt);
             }
         });
-        tableroYFondo.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 420, -1, -1));
+        tableroYFondo.add(botonJugar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, -1));
+        botonJugar.getAccessibleContext().setAccessibleName("botonJugar");
 
         dado1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D1.png"))); // NOI18N
         tableroYFondo.add(dado1, new org.netbeans.lib.awtextra.AbsoluteConstraints(292, 125, -1, -1));
@@ -150,43 +151,31 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        Jugador j = tablero.getJugadores().get(0);
-        Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
-        j.setPosicion(c);
-        actualizarTablero();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        Jugador j = tablero.getJugadores().get(1);
-        Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
-        j.setPosicion(c);
-        actualizarTablero();
-    }//GEN-LAST:event_jButton2ActionPerformed
+        }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        Jugador j = tablero.getJugadores().get(2);
-        Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
-        j.setPosicion(c);
-        actualizarTablero();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        Jugador j = tablero.getJugadores().get(3);
-        Casilla c = tablero.getCasillas().get(tablero.obtenerPosicion(j.getPosicion())+1);
-        j.setPosicion(c);
-        actualizarTablero();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void botonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarActionPerformed
+        cliente.solicitarMoverse();
+    }//GEN-LAST:event_botonJugarActionPerformed
 
     
-    public void actualizarTablero(){
+    public void actualizarTablero(Tablero tablero){
+        tablero.imprimirTablero();
         tableroYFondo.setLayout(null);
-        if(tablero.getJugadores().size()>=1)piezaJugador1.setLocation(tablero.getJugadores().get(0).getPosicion().getPosJugadorX(),tablero.getJugadores().get(0).getPosicion().getPosJUgadorY());
-        if(tablero.getJugadores().size()>=2)piezaJugador2.setLocation(tablero.getJugadores().get(1).getPosicion().getPosJugadorX(),tablero.getJugadores().get(1).getPosicion().getPosJUgadorY());
-        if(tablero.getJugadores().size()>=3)piezaJugador3.setLocation(tablero.getJugadores().get(2).getPosicion().getPosJugadorX(),tablero.getJugadores().get(2).getPosicion().getPosJUgadorY());
-        if(tablero.getJugadores().size()>=4)piezaJugador4.setLocation(tablero.getJugadores().get(3).getPosicion().getPosJugadorX(),tablero.getJugadores().get(3).getPosicion().getPosJUgadorY());
+        if(tablero.getJugadores().size()>=1)piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
+        if(tablero.getJugadores().size()>=2)piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
+        if(tablero.getJugadores().size()>=3)piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
+        if(tablero.getJugadores().size()>=4)piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
+        mostrarDado(dado1,tablero.getDado1());
+        mostrarDado(dado2,tablero.getDado2());
+        botonJugar.setVisible(tablero.isTurno());
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
             JLabel casa = new JLabel("");
@@ -203,23 +192,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         }
         */
     }
-    
-    public void iniciarJuego(){
-        Generador.GenerarCasillas(tablero);
-        /*
-        Jugador j1 = new Jugador(0,"Alex","no","localhost",tablero.getCasillas().get(0));
-        tablero.getJugadores().add(j1);
-        Jugador j2 = new Jugador(1,"Vero","no","localhost",tablero.getCasillas().get(0));
-        tablero.getJugadores().add(j2);
-        Jugador j3 = new Jugador(2,"Marco","no","localhost",tablero.getCasillas().get(0));
-        tablero.getJugadores().add(j3);
-        Jugador j4 = new Jugador(3,"Kevin","no","localhost",tablero.getCasillas().get(0));
-        tablero.getJugadores().add(j4);
-        */
-        actualizarTablero();
         
-    }
-    
     
     public void mostrarDado(JLabel dado, int num){
         if(num==1)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D1.png")));
@@ -229,22 +202,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         else if(num==5)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D5.png")));
         else if(num==6)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D6.png")));
         pack();
-    }
-
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
-    
+    }   
     
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaJugador;
+    private javax.swing.JButton botonJugar;
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
     private javax.swing.JLabel fondo;
@@ -252,13 +217,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;
     private javax.swing.JLabel piezaJugador4;
     private javax.swing.JPanel tableroYFondo;
     // End of variables declaration//GEN-END:variables
+
 }
 
 
