@@ -14,10 +14,10 @@ public class CartaPagar extends Carta implements Serializable{
         this.setTexto(texto);
         this.monto = monto;
     }
-    
+
     @Override
-    public void Efecto() {
-        //Descontarle al usuario actual el monto
+    public void Efecto(Tablero tablero, Jugador jugador) {
+        jugador.setDinero(jugador.getDinero() - this.monto);
     }
     
 }

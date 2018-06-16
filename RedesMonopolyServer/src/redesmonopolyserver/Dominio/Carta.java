@@ -13,6 +13,6 @@ public abstract class Carta implements Serializable{
         this.texto = texto;
     }
     
-    public abstract void Efecto();
+    public abstract void Efecto(Tablero tablero, Jugador jugador);
     
 }

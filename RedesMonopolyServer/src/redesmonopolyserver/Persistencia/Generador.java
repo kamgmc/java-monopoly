@@ -49,17 +49,18 @@ public class Generador {
         //Mazo de Fortuna
         fortuna = new ArrayList();
         //Cartas de Movimiento
-        fortuna.add(new CartaAvanzar("Avanza a la \"Salida\" (Cobra $200)"));
-        fortuna.add(new CartaAvanzar("Avanza a Avenida Illinois, si pasas por la \"Salida\" Cobra $200."));
-        fortuna.add(new CartaAvanzar("Avanza al Servicio mas cercano."));
-        fortuna.add(new CartaAvanzar("Avanza al Ferrocarril mas cercano."));
-        fortuna.add(new CartaAvanzar("Avanza al Ferrocarril mas cercano."));
-        fortuna.add(new CartaAvanzar("Retrocede 3 espacios."));
-        fortuna.add(new CartaAvanzar("Haces un viaje a Ferrocarril \"Reading\" Si pasas por la \"Salida\" Cobra $200."));
-        fortuna.add(new CartaAvanzar("Avanza a Plaza St. James Si pasas por la \"Salida\" Cobra $200."));
-        fortuna.add(new CartaAvanzar("Avanza a El Muelle."));
+        fortuna.add(new CartaAvanzar("Avanza a la \"Salida\" (Cobra $200)", 0));
+        fortuna.add(new CartaAvanzar("Avanza a Avenida Illinois, si pasas por la \"Salida\" Cobra $200.", 24));
+        fortuna.add(new CartaAvanzar("Retrocede 3 espacios.", -3));
+        fortuna.add(new CartaAvanzar("Avanza a Plaza St. James Si pasas por la \"Salida\" Cobra $200.", 16));
+        fortuna.add(new CartaAvanzar("Avanza a El Muelle.", 39));
+        //Movimientos dinamicos
+        fortuna.add(new CartaAvanzar("Avanza al Servicio mas cercano.", 12, 28));
+        fortuna.add(new CartaAvanzar("Avanza al Ferrocarril mas cercano.", 5, 15, 25, 35));
+        fortuna.add(new CartaAvanzar("Avanza al Ferrocarril mas cercano.", 5, 15, 25, 35));
+        fortuna.add(new CartaAvanzar("Haces un viaje a Ferrocarril \"Reading\" Si pasas por la \"Salida\" Cobra $200.", 5, 15, 25, 35));
         //Carta ir a la carcel
-        fortuna.add(new CartaAvanzar("Vas a la Carcel."));
+        fortuna.add(new CartaAvanzar("Vas a la Carcel.", 10));
         //Carta de Pago
         fortuna.add(new CartaPagar("Paga multa por exceso de velocidad $15", 15));
         //Carta de Pago a jugadores
@@ -81,8 +82,8 @@ public class Generador {
         arca.add(new CartaPagar("Paga cuotas de escuela por $50", 50));
         arca.add(new CartaPagar("Cuotas de medicas paga $50", 50));
         //Cartas de Movimiento
-        arca.add(new CartaAvanzar("Vas a la Carcel"));
-        arca.add(new CartaAvanzar("Avanza a la \"Salida\" (Cobra $200)"));
+        arca.add(new CartaAvanzar("Vas a la Carcel", 10));
+        arca.add(new CartaAvanzar("Avanza a la \"Salida\" (Cobra $200)", 0));
         //Carta de Cobro por jugador
         arca.add(new CartaCobrarJugadores("Es tu cumpleanos cada jugador te da $10.", 10));
         //Cartas de Cobro

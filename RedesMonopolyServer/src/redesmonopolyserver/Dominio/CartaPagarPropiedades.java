@@ -15,10 +15,10 @@ public class CartaPagarPropiedades extends Carta implements Serializable{
         this.montoCasa = montoCasa;
         this.montoHotel = montoHotel;
     }
-    
+
     @Override
-    public void Efecto() {
-        //Contar Numero de casas y hoteles, pagar montos establecidos
+    public void Efecto(Tablero tablero, Jugador jugador) {
+        
     }
     
 }
