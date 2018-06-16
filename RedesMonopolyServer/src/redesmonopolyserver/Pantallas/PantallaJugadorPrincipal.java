@@ -54,14 +54,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         tableroYFondo = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         botonJugar = new javax.swing.JButton();
         dado1 = new javax.swing.JLabel();
         dado2 = new javax.swing.JLabel();
         areaJugador = new javax.swing.JPanel();
         imagenJugador = new javax.swing.JLabel();
+        dinero = new javax.swing.JLabel();
         piezaJugador1 = new javax.swing.JLabel();
         piezaJugador2 = new javax.swing.JLabel();
         piezaJugador3 = new javax.swing.JLabel();
@@ -84,30 +82,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         tableroYFondo.setPreferredSize(new java.awt.Dimension(1010, 710));
         tableroYFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("mover 3");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        tableroYFondo.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 480, -1, -1));
-
-        jButton2.setText("mover 2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        tableroYFondo.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 450, -1, -1));
-
-        jButton3.setText("mover 4");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        tableroYFondo.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 510, -1, -1));
-
         botonJugar.setText("Jugar");
         botonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,22 +99,53 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         areaJugador.setOpaque(false);
 
+        imagenJugador.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarroG.png"))); // NOI18N
-        areaJugador.add(imagenJugador);
+        imagenJugador.setText("Alex");
+        imagenJugador.setToolTipText("");
+        imagenJugador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        imagenJugador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        dinero.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        dinero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Dinero.png"))); // NOI18N
+        dinero.setText("0");
+
+        javax.swing.GroupLayout areaJugadorLayout = new javax.swing.GroupLayout(areaJugador);
+        areaJugador.setLayout(areaJugadorLayout);
+        areaJugadorLayout.setHorizontalGroup(
+            areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(areaJugadorLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addComponent(imagenJugador)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaJugadorLayout.createSequentialGroup()
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55))
+        );
+        areaJugadorLayout.setVerticalGroup(
+            areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(areaJugadorLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(imagenJugador)
+                .addGap(18, 18, 18)
+                .addComponent(dinero)
+                .addContainerGap())
+        );
 
         tableroYFondo.add(areaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 270, 330));
 
         piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PerroP.png"))); // NOI18N
-        tableroYFondo.add(piezaJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 570, -1, -1));
+        tableroYFondo.add(piezaJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, -1, -1));
 
         piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarroP.png"))); // NOI18N
-        tableroYFondo.add(piezaJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 430, -1, -1));
+        tableroYFondo.add(piezaJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 550, -1, -1));
 
         piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/SombreroP.png"))); // NOI18N
-        tableroYFondo.add(piezaJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 630, -1, -1));
+        tableroYFondo.add(piezaJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 550, -1, -1));
 
         piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DedalP.png"))); // NOI18N
-        tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 500, -1, -1));
+        tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, -1));
 
         getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -149,18 +154,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void botonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarActionPerformed
         enAnimacion=true;
@@ -171,10 +164,26 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     public void actualizarTablero(Tablero tablero){
         tablero.imprimirTablero();
         tableroYFondo.setLayout(null);
-        if(tablero.getJugadores().size()>=1)piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
-        if(tablero.getJugadores().size()>=2)piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
-        if(tablero.getJugadores().size()>=3)piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
-        if(tablero.getJugadores().size()>=4)piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
+        cliente.actualizarPosicion();
+        if(tablero.getJugadores().size()>=1)dinero.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getDinero()));
+        imagenJugador.setText(cliente.getNombre());
+        imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(cliente.getPosJugador(),3))));
+        if(tablero.getJugadores().size()>=1){
+            piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
+            piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(0,0))));
+        }
+        if(tablero.getJugadores().size()>=2){
+            piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
+            piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
+        }
+        if(tablero.getJugadores().size()>=3){
+            piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
+            piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
+        }
+        if(tablero.getJugadores().size()>=4){
+            piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
+            piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
+        }
         mostrarDado(dado1,tablero.getDado1());
         mostrarDado(dado2,tablero.getDado2());
         botonJugar.setVisible(tablero.isTurno());
@@ -236,6 +245,22 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         
     }
     
+    public String mostrarIcono(int icono, int tamaño){
+        if(tamaño==0){
+            if(icono==0) return "/Imagenes/CarroP.png";
+            if(icono==1) return "/Imagenes/DedalP.png";
+            if(icono==2) return "/Imagenes/PerroP.png";
+            if(icono==3) return "/Imagenes/SombreroP.png";
+        }
+        else if(tamaño==3){
+            if(icono==0) return "/Imagenes/CarroG.png";
+            if(icono==1) return "/Imagenes/DedalG.png";
+            if(icono==2) return "/Imagenes/PerroG.png";
+            if(icono==3) return "/Imagenes/SombreroG.png";
+        }
+        return "";
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -243,11 +268,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonJugar;
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
+    private javax.swing.JLabel dinero;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel imagenJugador;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;

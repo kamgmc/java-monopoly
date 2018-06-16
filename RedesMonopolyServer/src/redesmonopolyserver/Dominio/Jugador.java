@@ -47,11 +47,11 @@ public class Jugador implements Serializable{
         this.carcelLibre = carcelLibre;
     }
 
-    public String getIcono() {
+    public int getIcono() {
         return icono;
     }
 
-    public void setIcono(String icono) {
+    public void setIcono(int icono) {
         this.icono = icono;
     }
 
@@ -80,7 +80,7 @@ public class Jugador implements Serializable{
     private String nombre;
     private int dinero;
     private int carcelLibre;
-    private String icono;
+    private int icono;
     private String ip;
     private int posicion;
 }

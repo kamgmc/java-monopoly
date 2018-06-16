@@ -34,7 +34,7 @@ public class Servidor {
         Generador.generarTarjetas(fortuna, arca);
         ss = new ServerSocket(10578);
         System.out.println("\tConexion realizada");
-        while (conexiones.size()<4) {
+        while (conexiones.size()<2) {
             socket = ss.accept();
             ConexionUsuario c = new ConexionUsuario(socket);
             System.out.println("Se ha conectado un usuario: "+socket);
@@ -52,6 +52,7 @@ public class Servidor {
         long seed = System.nanoTime();
         Collections.shuffle(conexiones,new Random(seed));
         Collections.shuffle(tablero.getJugadores(),new Random(seed));
+        tablero.asignarUsuarios();
         mandarTablero(0);
 
     }

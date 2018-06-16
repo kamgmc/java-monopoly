@@ -67,7 +67,7 @@ public class Tablero implements Serializable{
         this.turno = turno;
     }
     
-    public void imprimirTablero(){
+    public void imprimirTablero(){        
         System.out.println("Estado del tablero:");
         for(Jugador j:Jugadores){
             System.out.println("Juagador: "+j.getNombre()+" en casilla: "+j.getPosicion());
@@ -89,6 +89,13 @@ public class Tablero implements Serializable{
         if(Jugadores.size()>=2) Jugadores.get(1).setPosicion(pos2);
         if(Jugadores.size()>=3) Jugadores.get(2).setPosicion(pos3);
         if(Jugadores.size()>=4) Jugadores.get(3).setPosicion(pos4);;
+    }
     
+    public void asignarUsuarios(){
+        int i=0;
+        for(Jugador j: Jugadores){
+            j.setIcono(i);
+            i++;
+        }
     }
 }

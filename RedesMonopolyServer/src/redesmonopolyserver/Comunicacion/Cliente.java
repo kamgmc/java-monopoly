@@ -9,6 +9,7 @@ import java.io.*;
 import java.net.Socket;
 import java.util.*;
 import java.util.logging.*;
+import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Pantallas.PantallaJugadorPrincipal;
 import redesmonopolyserver.Persistencia.Generador;
@@ -19,6 +20,7 @@ public class Cliente{
     protected ObjectInputStream dis;
     private String ip;
     private String nombre;
+    private int posJugador;
     private PantallaJugadorPrincipal pantalla;
     private Tablero tablero;
     public boolean enUso=false;
@@ -26,6 +28,7 @@ public class Cliente{
     public Cliente(String ip,String nombre,String server, int puerto) {
         this.ip=ip;
         this.nombre = nombre;
+        this.posJugador=0;
         tablero = new Tablero();
         Generador.GenerarCasillas(tablero);
         try {
@@ -106,6 +109,31 @@ public class Cliente{
 
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getPosJugador() {
+        return posJugador;
+    }
+
+    public void setPosJugador(int posJugador) {
+        this.posJugador = posJugador;
+    }
+    
+    public void actualizarPosicion(){
+        int i=0;
+        for(Jugador j: tablero.getJugadores()){ 
+            if(j.getNombre().equals(this.nombre)) this.posJugador=i;
+            i++;
+        }
+        
     }
     
     public class Listener implements Runnable{
