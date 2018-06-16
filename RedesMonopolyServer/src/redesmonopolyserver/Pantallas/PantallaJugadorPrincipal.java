@@ -23,6 +23,7 @@ import redesmonopolyserver.Persistencia.Generador;
  */
 public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     Cliente cliente;
+    boolean enAnimacion;
 
     /**
      * Creates new form PantallaJugadorPrincipal
@@ -162,7 +163,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void botonJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarActionPerformed
-        cliente.solicitarMoverse();
+        enAnimacion=true;
+        new Thread(new LanzadorDados(this)).start();
     }//GEN-LAST:event_botonJugarActionPerformed
 
     
@@ -204,6 +206,35 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         pack();
     }   
     
+    public class LanzadorDados implements Runnable{
+        PantallaJugadorPrincipal pantalla;
+
+        public LanzadorDados(PantallaJugadorPrincipal pantalla) {
+            this.pantalla = pantalla;
+        }
+        
+        
+        @Override
+        public void run() {
+            pantalla.botonJugar.setVisible(false);
+            int max =(int)(5+Math.random()*8);
+            for(int i=0;i<max;i++){
+                int d1 =(int)(1+Math.random()*6);
+                int d2 = (int)(1+Math.random()*6);
+                pantalla.mostrarDado(pantalla.dado1,d1);
+                pantalla.mostrarDado(pantalla.dado2,d2);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(100);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PantallaJugadorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }
+            pantalla.cliente.solicitarMoverse();
+            
+        }
+        
+    }
     
     
 

@@ -98,7 +98,15 @@ public class Servidor {
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
-            mover(j);
+            for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
+                mover(j);
+                mandarTablero(-1);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             tablero.imprimirTablero();
             mandarTablero(siguienteJugador(jugador));
         }
@@ -116,7 +124,7 @@ public class Servidor {
     }
     
     public void mover(Jugador j){
-        int nuevaPosicion=j.getPosicion()+tablero.getDado1()+tablero.getDado2();
+        int nuevaPosicion=j.getPosicion()+1;
         while(nuevaPosicion>=tablero.getCasillas().size()){
             nuevaPosicion= nuevaPosicion-tablero.getCasillas().size();
             j.setDinero(j.getDinero()+200);
