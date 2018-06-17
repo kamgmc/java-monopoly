@@ -13,6 +13,8 @@ public class Jugador implements Serializable{
         
     }
  
+    public Jugador(){
+    }
     
 
     public int getCodigo() {

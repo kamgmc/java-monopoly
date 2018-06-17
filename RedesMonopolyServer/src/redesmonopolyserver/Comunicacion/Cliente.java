@@ -90,8 +90,8 @@ public class Cliente{
        
     public void procesarRespuesta(Mensaje m){
             System.out.println("Procesando Respuesta");
-            tablero.actualizar(m.tablero);
-            tablero.actualizarUsuarios(m.pos1, m.pos2, m.pos3, m.pos4);
+            System.out.println("El tablero es: "+m.tablero.toString());
+            tablero.setJson(m.tablero.toString());
             if(pantalla!=null) pantalla.actualizarTablero(tablero);
     }
             
@@ -148,7 +148,6 @@ public class Cliente{
                 try {
                     System.out.println("Esperando el Tablero");
                     Mensaje m = (Mensaje) c.dis.readObject();
-                    m.tablero.imprimirTablero();
                     c.procesarRespuesta(m);
                     System.out.println("Tablero Recibido");
                 } catch (IOException ex) {

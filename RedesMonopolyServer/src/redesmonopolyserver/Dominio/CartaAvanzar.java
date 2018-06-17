@@ -10,16 +10,19 @@ public class CartaAvanzar extends Carta implements Serializable{
     private ArrayList<Integer> casillas;
 
     public CartaAvanzar(String texto, int casilla) {
+        casillas = new ArrayList<Integer>();
         this.setTexto(texto);
         casillas.add(casilla);
     }
     public CartaAvanzar(String texto, int servicio1, int servicio2) {
         this.setTexto(texto);
+        casillas = new ArrayList<Integer>();
         casillas.add(servicio1);
         casillas.add(servicio2);
     }
     public CartaAvanzar(String texto, int ferrocarril1, int ferrocarril2, int ferrocarril3, int ferrocarril4) {
         this.setTexto(texto);
+        casillas = new ArrayList<Integer>();
         casillas.add(ferrocarril1);
         casillas.add(ferrocarril2);
         casillas.add(ferrocarril3);
