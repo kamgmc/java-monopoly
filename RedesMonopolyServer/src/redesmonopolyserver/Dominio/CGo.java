@@ -22,8 +22,10 @@ public class CGo extends Casilla implements Serializable{
        }
 
     @Override
-    public void alLlegar() {
-        //Cobra 200$
-         }
+    public void alLlegar(Tablero tablero, Jugador jugador) {
+        
+        
+    }
+
     
 }

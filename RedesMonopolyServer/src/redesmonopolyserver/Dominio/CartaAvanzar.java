@@ -36,11 +36,12 @@ public class CartaAvanzar extends Carta implements Serializable{
                 jugador.setPosicion(jugador.getPosicion() + casillas.get(0));
             }
             else{
-                if(casillas.get(0) - jugador.getPosicion() < 0){
+                if(casillas.get(0) - jugador.getPosicion() < 0 && !jugador.isCarcel()){
                     jugador.setDinero(jugador.getDinero() + 200);
                 }
                 //Se establece la posicion asignada por la carta
                 jugador.setPosicion(casillas.get(0));
+                if(casillas.get(0)==10) jugador.setCarcel(true);
             }
         }
         else if(casillas.size() == 2){

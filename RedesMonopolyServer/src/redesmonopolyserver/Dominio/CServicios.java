@@ -16,6 +16,8 @@ public class CServicios extends Casilla implements Serializable{
        }
 
     @Override
-    public void alLlegar() {
-       }
+    public void alLlegar(Tablero tablero, Jugador jugador) {
+        
+    }
+
 }

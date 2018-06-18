@@ -15,8 +15,7 @@ public abstract class Casilla implements Serializable{
     private int posJUgadorY;
 
     public Casilla(String nombre) {
-        this.nombre = nombre;
-        
+        this.nombre = nombre;    
     }
 
     public Casilla(String nombre, int posJugadorX, int posJUgadorY) {
@@ -53,5 +52,5 @@ public abstract class Casilla implements Serializable{
     
     
     public abstract void alSalir();
-    public abstract void alLlegar();
+    public abstract void alLlegar(Tablero tablero, Jugador jugador);
 }

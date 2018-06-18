@@ -23,8 +23,10 @@ public class CVeACarcel extends Casilla implements Serializable{
     }
 
     @Override
-    public void alLlegar() {
-    //Mover jugador a CCarcel    
+    public void alLlegar(Tablero tablero, Jugador jugador) {
+        
+        
     }
+
     
 }

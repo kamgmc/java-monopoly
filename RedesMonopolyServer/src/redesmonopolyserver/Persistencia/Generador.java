@@ -47,7 +47,7 @@ public class Generador {
     }
     public static void generarTarjetas(ArrayList<Carta> fortuna, ArrayList<Carta> arca){
         //Mazo de Fortuna
-        fortuna = new ArrayList();
+        
         //Cartas de Movimiento
         fortuna.add(new CartaAvanzar("Avanza a la \"Salida\" (Cobra $200)", 0));
         fortuna.add(new CartaAvanzar("Avanza a Avenida Illinois, si pasas por la \"Salida\" Cobra $200.", 24));
@@ -76,7 +76,7 @@ public class Generador {
         Collections.shuffle(fortuna);
         
         //Mazo de Arca Comunal
-        arca = new ArrayList();
+        
         //Cartas de Pago
         arca.add(new CartaPagar("Paga cuotas de hospital por $100", 100));
         arca.add(new CartaPagar("Paga cuotas de escuela por $50", 50));

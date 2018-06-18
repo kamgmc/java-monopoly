@@ -22,8 +22,6 @@ public class Servidor {
         ServerSocket ss;
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
-        ArrayList<Carta> fortuna;
-        ArrayList<Carta> arca;
         Socket socket;
         
     public Servidor() throws IOException {
@@ -31,7 +29,6 @@ public class Servidor {
         System.out.print("Inicializando servidor... ");
         tablero = new Tablero();
         Generador.GenerarCasillas(tablero);
-        Generador.generarTarjetas(fortuna, arca);
         ss = new ServerSocket(10578);
         System.out.println("\tConexion realizada");
         while (conexiones.size()<2) {
@@ -90,18 +87,21 @@ public class Servidor {
         
     public void procesarSolicitud(Solicitud s){
         if(s.tipo==0){
+            // El jugador solicito unirse a la partida
             Jugador j = new Jugador(s.getJugador(),"localhost",0);
             tablero.getJugadores().add(j);
             System.out.println("Se creo el usuario: "+j.getNombre());
             }
         else if(s.tipo==1){
+            // El jugador solicito moverse
             int jugador = tablero.obtenerJugador(s.jugador);
             Jugador j = tablero.getJugadores().get(jugador);
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
+            int posFinal=0;
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
-                mover(j);
+                mover(j, posFinal);
                 mandarTablero(-1);
                 try {
                     TimeUnit.MILLISECONDS.sleep(500);
@@ -109,6 +109,10 @@ public class Servidor {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            tablero.getCasillas().get(posFinal).alLlegar(tablero, j);
+            //MandarACarcel
+            //j.setPosicion(10);
+            //j.setCarcel(true);
             tablero.imprimirTablero();
             mandarTablero(siguienteJugador(jugador));
         }
@@ -125,8 +129,8 @@ public class Servidor {
         return siguienteJugador;
     }
     
-    public void mover(Jugador j){
-        int nuevaPosicion=j.getPosicion()+1;
+    public void mover(Jugador j, int nuevaPosicion){
+        nuevaPosicion=j.getPosicion()+1;
         while(nuevaPosicion>=tablero.getCasillas().size()){
             nuevaPosicion= nuevaPosicion-tablero.getCasillas().size();
             j.setDinero(j.getDinero()+200);

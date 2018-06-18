@@ -27,8 +27,8 @@ public class CFerrocarril extends Casilla implements Serializable{
     }
 
     @Override
-    public void alLlegar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void alLlegar(Tablero tablero, Jugador jugador) {
+        
     }
     
 }

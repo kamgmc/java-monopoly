@@ -3,13 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Solicitud.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Jugador.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Servidor.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Mensaje.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Pantallas/PantallaJugadorPrincipal.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Tablero.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/ConexionUsuario.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Servidor.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaSalirCarcel.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaAvanzar.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Persistencia/Generador.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Carta.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaCobrarJugadores.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaPagar.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CCarta.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaPagarPropiedades.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaPagarJugadores.java</file>
+            <file>file:/C:/Users/kamgm/Documents/NetBeansProjects/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CartaCobrar.java</file>
         </group>
     </open-files>
 </project-private>

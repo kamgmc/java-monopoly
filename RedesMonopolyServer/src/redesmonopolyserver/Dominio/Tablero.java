@@ -5,10 +5,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.Serializable;
 import java.util.ArrayList;
+import redesmonopolyserver.Persistencia.Generador;
 
 public class Tablero implements Serializable{
     private ArrayList<Casilla> Casillas;
     private ArrayList<Jugador> Jugadores;
+    private ArrayList<Carta> fortuna;
+    private ArrayList<Carta> arca;
     private int dado1;
     private int dado2;
     private boolean turno;
@@ -16,9 +19,29 @@ public class Tablero implements Serializable{
     public Tablero() {
         this.Casillas = new ArrayList<Casilla>();
         this.Jugadores = new ArrayList<Jugador>();
+        fortuna = new ArrayList<Carta>();
+        arca = new ArrayList<Carta>();
+        Generador.generarTarjetas(fortuna, arca);
+        System.out.println("tamaó: "+ arca.size());
         turno = false;
         dado1 = 6;
         dado2 = 6;
+    }
+    
+    public ArrayList<Carta> getFortuna() {
+        return fortuna;
+    }
+
+    public void setFortuna(ArrayList<Carta> fortuna) {
+        this.fortuna = fortuna;
+    }
+
+    public ArrayList<Carta> getArca() {
+        return arca;
+    }
+
+    public void setArca(ArrayList<Carta> arca) {
+        this.arca = arca;
     }
     
     public ArrayList<Casilla> getCasillas() {

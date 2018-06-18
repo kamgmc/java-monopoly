@@ -22,8 +22,9 @@ public class ParkingLot extends Casilla implements Serializable{
        }
 
     @Override
-    public void alLlegar() {
-     //Recoger dinero
+    public void alLlegar(Tablero tablero, Jugador jugador) {
+        //No se hace nada
     }
+
     
 }

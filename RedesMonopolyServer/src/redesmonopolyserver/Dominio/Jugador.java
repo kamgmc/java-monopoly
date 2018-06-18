@@ -3,13 +3,24 @@ package redesmonopolyserver.Dominio;
 import java.io.Serializable;
 
 public class Jugador implements Serializable{
+    private int codigo;
+    private String nombre;
+    private int dinero;
+    private int carcelLibre;
+    private int icono;
+    private String ip;
+    private int posicion;
+    private boolean carcel;
+    private int casas;
+    private int hoteles;
 
     public Jugador(String nombre, String ip, int posicion) {
         this.nombre = nombre;
-        this.dinero = 0;
+        this.dinero = 1500;
         this.carcelLibre = 0;
         this.ip = ip;
         this.posicion = posicion;
+        this.carcel = false;
         
     }
  
@@ -73,16 +84,28 @@ public class Jugador implements Serializable{
         this.posicion = posicion;
     }
 
+    public boolean isCarcel() {
+        return carcel;
+    }
+
+    public void setCarcel(boolean carcel) {
+        this.carcel = carcel;
+    }
+
+    public int getCasas() {
+        return casas;
+    }
+
+    public void setCasas(int casas) {
+        this.casas = casas;
+    }
+
+    public int getHoteles() {
+        return hoteles;
+    }
+
+    public void setHoteles(int hoteles) {
+        this.hoteles = hoteles;
+    }
   
-    
-    
-    
-    
-    private int codigo;
-    private String nombre;
-    private int dinero;
-    private int carcelLibre;
-    private int icono;
-    private String ip;
-    private int posicion;
 }
