@@ -2,6 +2,7 @@ package redesmonopolyserver.Dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import redesmonopolyserver.Comunicacion.Servidor;
 
 
 /**
@@ -52,5 +53,5 @@ public abstract class Casilla implements Serializable{
     
     
     public abstract void alSalir();
-    public abstract void alLlegar(Tablero tablero, Jugador jugador);
+    public abstract void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor);
 }

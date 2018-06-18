@@ -22,7 +22,6 @@ public class Tablero implements Serializable{
         fortuna = new ArrayList<Carta>();
         arca = new ArrayList<Carta>();
         Generador.generarTarjetas(fortuna, arca);
-        System.out.println("tamaó: "+ arca.size());
         turno = false;
         dado1 = 6;
         dado2 = 6;
@@ -96,7 +95,7 @@ public class Tablero implements Serializable{
     public void imprimirTablero(){        
         System.out.println("Estado del tablero:");
         for(Jugador j:Jugadores){
-            System.out.println("Juagador: "+j.getNombre()+" en casilla: "+j.getPosicion());
+            System.out.println("\tJuagador: "+j.getNombre()+" en casilla: "+j.getPosicion());
             
         }
     }
@@ -138,6 +137,9 @@ public class Tablero implements Serializable{
             jugadorJson.addProperty("carcelLibre", jugadorClase.getCarcelLibre());
             jugadorJson.addProperty("ip", jugadorClase.getIp());
             jugadorJson.addProperty("posicion", jugadorClase.getPosicion());
+            jugadorJson.addProperty("carcel", jugadorClase.isCarcel());
+            jugadorJson.addProperty("casas", jugadorClase.getCasas());
+            jugadorJson.addProperty("hoteles", jugadorClase.getHoteles());
             jugadores.add(jugadorJson);
         }
         j.add("jugadores", jugadores);
@@ -160,7 +162,10 @@ public class Tablero implements Serializable{
             jClase.setNombre(jObject.get("nombre").getAsString());
             jClase.setCarcelLibre(jObject.get("carcelLibre").getAsInt());
             jClase.setIp(jObject.get("ip").getAsString());
-            jClase.setPosicion(jObject.get("posicion").getAsInt());     
+            jClase.setPosicion(jObject.get("posicion").getAsInt());    
+            jClase.setCarcel(jObject.get("carcel").getAsBoolean());
+            jClase.setCasas(jObject.get("casas").getAsInt());
+            jClase.setHoteles(jObject.get("hoteles").getAsInt());
             this.Jugadores.add(jClase);
             
         }

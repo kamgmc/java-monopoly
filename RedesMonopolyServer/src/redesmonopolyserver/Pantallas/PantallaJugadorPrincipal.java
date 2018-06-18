@@ -60,10 +60,16 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         areaJugador = new javax.swing.JPanel();
         imagenJugador = new javax.swing.JLabel();
         dinero = new javax.swing.JLabel();
+        hoteles = new javax.swing.JLabel();
+        casas = new javax.swing.JLabel();
+        imagenJugador2 = new javax.swing.JLabel();
+        imagenJugador3 = new javax.swing.JLabel();
+        imagenJugador4 = new javax.swing.JLabel();
         piezaJugador1 = new javax.swing.JLabel();
         piezaJugador2 = new javax.swing.JLabel();
         piezaJugador3 = new javax.swing.JLabel();
         piezaJugador4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,6 +116,36 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         dinero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Dinero.png"))); // NOI18N
         dinero.setText("0");
 
+        hoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HotelG.png"))); // NOI18N
+        hoteles.setText("0");
+
+        casas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CasaG.png"))); // NOI18N
+        casas.setText("0");
+
+        imagenJugador2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        imagenJugador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagenJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarroM.png"))); // NOI18N
+        imagenJugador2.setText("Alex");
+        imagenJugador2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        imagenJugador2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        imagenJugador2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        imagenJugador3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        imagenJugador3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagenJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarroM.png"))); // NOI18N
+        imagenJugador3.setText("Alex");
+        imagenJugador3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        imagenJugador3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        imagenJugador3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
+        imagenJugador4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        imagenJugador4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imagenJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CarroM.png"))); // NOI18N
+        imagenJugador4.setText("Alex");
+        imagenJugador4.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        imagenJugador4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        imagenJugador4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+
         javax.swing.GroupLayout areaJugadorLayout = new javax.swing.GroupLayout(areaJugador);
         areaJugador.setLayout(areaJugadorLayout);
         areaJugadorLayout.setHorizontalGroup(
@@ -119,21 +155,42 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
                 .addComponent(imagenJugador)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaJugadorLayout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(areaJugadorLayout.createSequentialGroup()
+                        .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(casas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(hoteles, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(areaJugadorLayout.createSequentialGroup()
+                        .addComponent(imagenJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(imagenJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(imagenJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(21, 21, 21))
         );
         areaJugadorLayout.setVerticalGroup(
             areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaJugadorLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(imagenJugador)
-                .addGap(18, 18, 18)
-                .addComponent(dinero)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(dinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(hoteles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(casas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(imagenJugador2)
+                    .addComponent(imagenJugador3)
+                    .addComponent(imagenJugador4))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        tableroYFondo.add(areaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 270, 330));
+        tableroYFondo.add(areaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 280, 320));
 
         piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/PerroP.png"))); // NOI18N
         tableroYFondo.add(piezaJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 550, -1, -1));
@@ -146,6 +203,10 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DedalP.png"))); // NOI18N
         tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jLabel1.setText("No posees ninguna Propiedad");
+        tableroYFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, -1, -1));
 
         getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -165,28 +226,19 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         tablero.imprimirTablero();
         tableroYFondo.setLayout(null);
         cliente.actualizarPosicion();
-        if(tablero.getJugadores().size()>=1)dinero.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getDinero()));
-        imagenJugador.setText(cliente.getNombre());
-        imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(cliente.getPosJugador(),3))));
         if(tablero.getJugadores().size()>=1){
-            piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
-            piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(0,0))));
+            dinero.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getDinero()));
+            imagenJugador.setText(cliente.getNombre());
+            imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(cliente.getPosJugador(),3))));
+            casas.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getCasas()));
+            hoteles.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getHoteles()));
+        
         }
-        if(tablero.getJugadores().size()>=2){
-            piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
-            piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
-        }
-        if(tablero.getJugadores().size()>=3){
-            piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
-            piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
-        }
-        if(tablero.getJugadores().size()>=4){
-            piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
-            piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
-        }
+        mostrarOtrosJugadores(tablero);
         mostrarDado(dado1,tablero.getDado1());
         mostrarDado(dado2,tablero.getDado2());
         botonJugar.setVisible(tablero.isTurno());
+        
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
             JLabel casa = new JLabel("");
@@ -214,6 +266,64 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         else if(num==6)dado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/D6.png")));
         pack();
     }   
+    
+    public void mostrarOtrosJugadores(Tablero tablero){
+        int jugadorActual = tablero.obtenerJugador(cliente.getNombre());
+        int contador = 1;
+        if(tablero.getJugadores().size()>=1){
+            piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
+            piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(0,0))));
+            if(jugadorActual!=0){
+                mostrarEnJugadores(contador,0,tablero.getJugadores().get(0));
+                contador++;
+            }
+        }
+        if(tablero.getJugadores().size()>=2){
+            piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
+            piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
+            if(jugadorActual!=1){
+                mostrarEnJugadores(contador,1,tablero.getJugadores().get(1));
+                contador++;
+            }
+        }
+        if(tablero.getJugadores().size()>=3){
+            piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
+            piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
+            if(jugadorActual!=2){
+                mostrarEnJugadores(contador,2,tablero.getJugadores().get(2));
+                contador++;
+            }
+        }
+        if(tablero.getJugadores().size()>=4){
+            piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
+            piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
+            if(jugadorActual!=3){
+                mostrarEnJugadores(contador,0,tablero.getJugadores().get(3));
+                contador++;
+            }
+        }
+        
+    } 
+    
+    public void mostrarEnJugadores(int pos, int posJugador,Jugador j){
+        if(pos==1){
+            imagenJugador2.setText(j.getNombre());
+            imagenJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(posJugador,2))));
+        }
+        else if(pos==2){
+            imagenJugador3.setText(j.getNombre());
+            imagenJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(posJugador,2))));
+        }
+        else if(pos==3){
+            imagenJugador4.setText(j.getNombre());
+            imagenJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(posJugador,2))));
+        }
+        
+    }
+    
+    public void mostrarNotificacion(String titulo, String mensaje){
+        
+    }
     
     public class LanzadorDados implements Runnable{
         PantallaJugadorPrincipal pantalla;
@@ -252,6 +362,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
             if(icono==2) return "/Imagenes/PerroP.png";
             if(icono==3) return "/Imagenes/SombreroP.png";
         }
+        else if(tamaño==2){
+            if(icono==0) return "/Imagenes/CarroM.png";
+            if(icono==1) return "/Imagenes/DedalM.png";
+            if(icono==2) return "/Imagenes/PerroM.png";
+            if(icono==3) return "/Imagenes/SombreroM.png";
+        }
         else if(tamaño==3){
             if(icono==0) return "/Imagenes/CarroG.png";
             if(icono==1) return "/Imagenes/DedalG.png";
@@ -266,11 +382,17 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel areaJugador;
     private javax.swing.JButton botonJugar;
+    private javax.swing.JLabel casas;
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
     private javax.swing.JLabel dinero;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel hoteles;
     private javax.swing.JLabel imagenJugador;
+    private javax.swing.JLabel imagenJugador2;
+    private javax.swing.JLabel imagenJugador3;
+    private javax.swing.JLabel imagenJugador4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;

@@ -56,6 +56,18 @@ public class Servidor {
 
     }
     
+    public void mandarNotificacion(Jugador j,String titulo, String mensaje){
+        int pos = tablero.obtenerJugador(j.getNombre());
+        ConexionUsuario c = this.conexiones.get(pos);
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(1,titulo,mensaje));
+            System.out.print("Se ha enviado la notificacion: "+titulo);
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void mandarTablero(int jugadorTurno){
         int cont=0;
         for(ConexionUsuario c:conexiones){
@@ -103,8 +115,10 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
+            tablero.setDado1(1);
+            tablero.setDado2(0);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
-                mover(j, posFinal);
+                posFinal = mover(j);
                 mandarTablero(-1);
                 try {
                     TimeUnit.MILLISECONDS.sleep(500);
@@ -112,7 +126,7 @@ public class Servidor {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            tablero.getCasillas().get(posFinal).alLlegar(tablero, j);
+            tablero.getCasillas().get(posFinal).alLlegar(tablero, j, this);
             if (tablero.getDado1() != tablero.getDado2()) {
                 mandarTablero(siguienteJugador(jugador));
                 contadorTurnos =0;
@@ -145,14 +159,14 @@ public class Servidor {
         return siguienteJugador;
     }
     
-    public void mover(Jugador j, int nuevaPosicion){
-        nuevaPosicion=j.getPosicion()+1;
+    public int mover(Jugador j){
+        int nuevaPosicion=j.getPosicion()+1;
         while(nuevaPosicion>=tablero.getCasillas().size()){
             nuevaPosicion= nuevaPosicion-tablero.getCasillas().size();
             j.setDinero(j.getDinero()+200);
         }
         j.setPosicion(nuevaPosicion);
-        
+        return nuevaPosicion;
     }
     
     

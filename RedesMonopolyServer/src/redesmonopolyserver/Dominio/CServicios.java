@@ -2,6 +2,7 @@
 package redesmonopolyserver.Dominio;
 
 import java.io.Serializable;
+import redesmonopolyserver.Comunicacion.Servidor;
 
 public class CServicios extends Casilla implements Serializable{
     private int propietario;
@@ -16,7 +17,7 @@ public class CServicios extends Casilla implements Serializable{
        }
 
     @Override
-    public void alLlegar(Tablero tablero, Jugador jugador) {
+    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         
     }
 

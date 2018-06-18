@@ -18,6 +18,7 @@ import redesmonopolyserver.Dominio.Tablero;
  */
 public class Mensaje implements Serializable{
     int tipo;
+    String titulo;
     String mensaje;
     String jugador;
     String tablero;
@@ -26,7 +27,12 @@ public class Mensaje implements Serializable{
         this.tipo = tipo;
         this.mensaje = mensaje; 
         this.tablero= tablero.getJSon();
-        System.out.println("El tablero es: "+tablero.toString());
+    }
+    
+    public Mensaje(int tipo, String titulo, String mensaje) {
+        this.tipo = tipo;
+        this.mensaje = mensaje; 
+        this.titulo = titulo;
     }
     
     

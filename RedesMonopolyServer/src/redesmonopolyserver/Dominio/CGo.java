@@ -6,6 +6,7 @@
 package redesmonopolyserver.Dominio;
 
 import java.io.Serializable;
+import redesmonopolyserver.Comunicacion.Servidor;
 
 /**
  *
@@ -22,7 +23,7 @@ public class CGo extends Casilla implements Serializable{
        }
 
     @Override
-    public void alLlegar(Tablero tablero, Jugador jugador) {
+    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         
         
     }

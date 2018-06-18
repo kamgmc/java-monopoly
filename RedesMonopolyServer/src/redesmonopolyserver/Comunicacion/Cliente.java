@@ -89,10 +89,16 @@ public class Cliente{
     }
        
     public void procesarRespuesta(Mensaje m){
-            System.out.println("Procesando Respuesta");
-            System.out.println("El tablero es: "+m.tablero.toString());
+        if(m.tipo==0){
+            //Se envio una actualizacion del tablero
             tablero.setJson(m.tablero.toString());
             if(pantalla!=null) pantalla.actualizarTablero(tablero);
+        }
+        if(m.tipo==1){
+            //Se envio un 
+            if(pantalla!=null) pantalla.mostrarNotificacion(m.titulo, m.mensaje);
+            System.out.print("El mensaje es: "+m.mensaje);
+        }
     }
             
     public PantallaJugadorPrincipal getPantalla() {

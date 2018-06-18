@@ -21,6 +21,8 @@ public class Jugador implements Serializable{
         this.ip = ip;
         this.posicion = posicion;
         this.carcel = false;
+        this.casas = 0;
+        this.hoteles = 0;
         
     }
  
