@@ -23,8 +23,10 @@ public class Servidor {
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
         Socket socket;
+    private int contadorTurnos;
         
     public Servidor() throws IOException {
+        contadorTurnos =0;
         conexiones = new ArrayList<ConexionUsuario>();
         System.out.print("Inicializando servidor... ");
         tablero = new Tablero();
@@ -93,13 +95,14 @@ public class Servidor {
             System.out.println("Se creo el usuario: "+j.getNombre());
             }
         else if(s.tipo==1){
-            // El jugador solicito moverse
+        // El jugador solicito moverse
             int jugador = tablero.obtenerJugador(s.jugador);
             Jugador j = tablero.getJugadores().get(jugador);
-            tablero.setDado1((int)(1+Math.random()*6));
-            tablero.setDado2((int)(1+Math.random()*6));
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
             int posFinal=0;
+            contadorTurnos +=1;
+            tablero.setDado1((int)(1+Math.random()*6));
+            tablero.setDado2((int)(1+Math.random()*6));
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 mover(j, posFinal);
                 mandarTablero(-1);
@@ -110,15 +113,28 @@ public class Servidor {
                 }
             }
             tablero.getCasillas().get(posFinal).alLlegar(tablero, j);
-            //MandarACarcel
-            //j.setPosicion(10);
-            //j.setCarcel(true);
-            tablero.imprimirTablero();
-            mandarTablero(siguienteJugador(jugador));
-        }
-        else if(s.tipo==2){
-            mandarTablero(siguienteJugador(-1));
-        }
+            if (tablero.getDado1() != tablero.getDado2()) {
+                mandarTablero(siguienteJugador(jugador));
+                contadorTurnos =0;
+            }
+            else 
+                {
+                    if (contadorTurnos == 3){
+                        j.setPosicion(10);
+                        j.setCarcel(true);
+                        contadorTurnos =0;
+                        mandarTablero(siguienteJugador(jugador));
+                    }
+                    else mandarTablero(jugador);
+                }
+
+
+                tablero.imprimirTablero();
+
+            }
+            else if(s.tipo==2){
+                mandarTablero(siguienteJugador(-1));
+            }
     }
     
     public int siguienteJugador(int jugadorAnterior){
