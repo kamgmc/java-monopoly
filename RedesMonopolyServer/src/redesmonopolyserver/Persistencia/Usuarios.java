@@ -5,7 +5,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
-
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
@@ -56,41 +55,49 @@ public class Usuarios {
         this.apellido = apellido;
     }
     
-    public void guardarUsuario() throws IOException{
+    public void guardarUsuario(){
+        
         JSONObject obj = new JSONObject();
-		obj.put("Nombre", "Alexander");
-                obj.put("Apellido","Garcia");
-                obj.put("Username","Alexdgn213");
-                obj.put("Clave","123456");
-                FileWriter file = new FileWriter("/Persistencia/usuario_json.txt");
-                try{
-                    file.write(obj.toJSONString());
-                    System.out.println("Succesfully Copied JSON Object to File...");
-                    System.out.println("\nJSON Object: " + obj);
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-                finally{
-                    file.flush();
-                    file.close();
-                }
-                //Si no funciona el de arriba usar el siguiente: 
-                /* 
-                try(FileWriter file = new FileWriter("/Persistencia/usuario_json.txt");
-                */
-                
+        JSONArray usuarios = obtenerTodosLosUsuarios();
+        //JSONArray usuarios = new JSONArray();
+        obj.put("Username", username);
+        obj.put("Clave",password);
+        obj.put("Nombre",nombre);
+        obj.put("Apellido",apellido);
+        usuarios.add(obj);
+        try{
+            FileWriter file = new FileWriter("src/redesmonopolyserver/Persistencia/usuario_json.json");
+            file.write(usuarios.toJSONString());
+            System.out.println("Succesfully Copied JSON Object to File...");
+            System.out.println("\nJSON Object: " + obj);
+            file.flush();
+            file.close();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        //Si no funciona el de arriba usar el siguiente: 
+        /* 
+        try(FileWriter file = new FileWriter("/Persistencia/usuario_json.txt");
+        */             
     }
-    public void leerUsuario()throws IOException {
+    public static Usuarios obtenerUsuario(String usuarioBuscado) {
     JSONParser parser = new JSONParser();
  
         try {
- 
-            Object obj = parser.parse(new FileReader(
-                    "/Persistencia/usuario_json.txt"));
- 
-            JSONObject jsonObject = (JSONObject) obj;
- 
+            JSONArray usuarios = obtenerTodosLosUsuarios();
+            for(int i = 0; i<usuarios.size();i++){
+                JSONObject obj = (JSONObject) usuarios.get(i);
+                String nombre = obj.get("Nombre").toString();
+                String apellido = obj.get("Apellido").toString();
+                String username = obj.get("Username").toString();
+                String clave = obj.get("Clave").toString();
+            
+                if(usuarioBuscado.equals(username)){
+                    return new Usuarios(username,clave,nombre,apellido);
+                }
+            }
+            /*
             String nombre = (String) jsonObject.get("Nombre");
             String apellido = (String) jsonObject.get("Apellido");
             String username = (String) jsonObject.get("Username");
@@ -100,7 +107,7 @@ public class Usuarios {
             System.out.println("Nombre: " + nombre);
             System.out.println("Apellido: " + apellido);
             System.out.println("Username: " + username);
-            System.out.println("Clave: " + clave);
+            System.out.println("Clave: " + clave);*/
            // System.out.println("\nCompany List:");
            // Iterator<String> iterator = companyList.iterator();
           //  while (iterator.hasNext()) {
@@ -110,6 +117,20 @@ public class Usuarios {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    return null;
+    }
+    
+    public static JSONArray obtenerTodosLosUsuarios(){
+        JSONParser parser = new JSONParser();
+        JSONArray usuarios = new JSONArray();
+        try {
+ 
+            usuarios = (JSONArray)parser.parse(new FileReader(
+                    "src/redesmonopolyserver/Persistencia/usuario_json.json"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usuarios;
     }
     /*
     public void leerUsuario(){
