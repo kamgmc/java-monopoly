@@ -33,7 +33,7 @@ public class Servidor {
         Generador.GenerarCasillas(tablero);
         ss = new ServerSocket(10578);
         System.out.println("\tConexion realizada");
-        while (conexiones.size()<2) {
+        while (conexiones.size()<4) {
             socket = ss.accept();
             ConexionUsuario c = new ConexionUsuario(socket);
             System.out.println("Se ha conectado un usuario: "+socket);
@@ -77,6 +77,7 @@ public class Servidor {
                     System.out.println("Es el turno de: "+tablero.getJugadores().get(cont).getNombre());
                     c.getDos().flush();
                     c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));
+                    mandarNotificacion(tablero.getJugadores().get(cont),"Turno","Es tu turno!");
                     tablero.setTurno(false);
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -115,8 +116,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            tablero.setDado1(1);
-            tablero.setDado2(0);
+            //tablero.setDado1(1);
+            //tablero.setDado2(0);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);
@@ -164,6 +165,7 @@ public class Servidor {
         while(nuevaPosicion>=tablero.getCasillas().size()){
             nuevaPosicion= nuevaPosicion-tablero.getCasillas().size();
             j.setDinero(j.getDinero()+200);
+            mandarNotificacion(j,"Salida","Pasaste por la salida, cobra: $200");
         }
         j.setPosicion(nuevaPosicion);
         return nuevaPosicion;

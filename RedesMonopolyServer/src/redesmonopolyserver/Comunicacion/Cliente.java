@@ -97,7 +97,6 @@ public class Cliente{
         if(m.tipo==1){
             //Se envio un 
             if(pantalla!=null) pantalla.mostrarNotificacion(m.titulo, m.mensaje);
-            System.out.print("El mensaje es: "+m.mensaje);
         }
     }
             

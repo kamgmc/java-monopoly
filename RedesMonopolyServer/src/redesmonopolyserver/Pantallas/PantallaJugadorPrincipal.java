@@ -40,6 +40,18 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         cliente.setPantalla(this);
         actualizarTablero(cliente.getTablero());
         setLocationRelativeTo(null);
+        notificacion.setVisible(false);
+        piezaJugador1.setVisible(false);
+        piezaJugador2.setVisible(false);
+        piezaJugador3.setVisible(false);
+        piezaJugador4.setVisible(false);
+        imagenJugador2.setVisible(false);
+        imagenJugador3.setVisible(false);
+        imagenJugador4.setVisible(false);
+        dinero.setVisible(false);
+        imagenJugador.setVisible(false);
+        casas.setVisible(false);
+        hoteles.setVisible(false);
         //cliente.solicitarTablero();
         
     }
@@ -70,6 +82,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador3 = new javax.swing.JLabel();
         piezaJugador4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        notificacion = new javax.swing.JPanel();
+        tituloNotificacion = new javax.swing.JLabel();
+        textoNotificacion = new javax.swing.JLabel();
+        textoNotificacion2 = new javax.swing.JLabel();
+        aceptarNotificacion = new javax.swing.JButton();
+        fondoNotificacion = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -208,6 +226,37 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         jLabel1.setText("No posees ninguna Propiedad");
         tableroYFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, -1, -1));
 
+        notificacion.setOpaque(false);
+        notificacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tituloNotificacion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tituloNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloNotificacion.setText("Arca Comunal");
+        notificacion.add(tituloNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
+
+        textoNotificacion.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoNotificacion.setText(".");
+        notificacion.add(textoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
+
+        textoNotificacion2.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoNotificacion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoNotificacion2.setText(".");
+        notificacion.add(textoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
+
+        aceptarNotificacion.setText("Aceptar");
+        aceptarNotificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarNotificacionActionPerformed(evt);
+            }
+        });
+        notificacion.add(aceptarNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        fondoNotificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
+        notificacion.add(fondoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        tableroYFondo.add(notificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
+
         getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Tablero.png"))); // NOI18N
@@ -221,12 +270,20 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         new Thread(new LanzadorDados(this)).start();
     }//GEN-LAST:event_botonJugarActionPerformed
 
+    private void aceptarNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacionActionPerformed
+        notificacion.setVisible(false);
+    }//GEN-LAST:event_aceptarNotificacionActionPerformed
+
     
     public void actualizarTablero(Tablero tablero){
         tablero.imprimirTablero();
         tableroYFondo.setLayout(null);
         cliente.actualizarPosicion();
         if(tablero.getJugadores().size()>=1){
+            dinero.setVisible(true);
+            imagenJugador.setVisible(true);
+            casas.setVisible(true);
+            hoteles.setVisible(true);
             dinero.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getDinero()));
             imagenJugador.setText(cliente.getNombre());
             imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(cliente.getPosJugador(),3))));
@@ -270,7 +327,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     public void mostrarOtrosJugadores(Tablero tablero){
         int jugadorActual = tablero.obtenerJugador(cliente.getNombre());
         int contador = 1;
+        
         if(tablero.getJugadores().size()>=1){
+            piezaJugador1.setVisible(true);
             piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
             piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(0,0))));
             if(jugadorActual!=0){
@@ -279,28 +338,34 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
             }
         }
         if(tablero.getJugadores().size()>=2){
+            piezaJugador2.setVisible(true);
             piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
             piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
             if(jugadorActual!=1){
                 mostrarEnJugadores(contador,1,tablero.getJugadores().get(1));
                 contador++;
             }
+            imagenJugador2.setVisible(true);
         }
         if(tablero.getJugadores().size()>=3){
+            piezaJugador3.setVisible(true);
             piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
             piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
             if(jugadorActual!=2){
                 mostrarEnJugadores(contador,2,tablero.getJugadores().get(2));
                 contador++;
             }
+            imagenJugador3.setVisible(true);
         }
         if(tablero.getJugadores().size()>=4){
+            piezaJugador4.setVisible(true);
             piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
             piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
             if(jugadorActual!=3){
-                mostrarEnJugadores(contador,0,tablero.getJugadores().get(3));
+                mostrarEnJugadores(contador,3,tablero.getJugadores().get(3));
                 contador++;
             }
+            imagenJugador4.setVisible(true);
         }
         
     } 
@@ -322,6 +387,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarNotificacion(String titulo, String mensaje){
+        notificacion.setVisible(true);
+        tituloNotificacion.setText(titulo);
+        mostrarMensajeNotificacion(mensaje);
         
     }
     
@@ -377,9 +445,22 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         return "";
     }
     
+    public void mostrarMensajeNotificacion(String mensaje){
+        textoNotificacion.setText("");
+        textoNotificacion2.setText("");
+        int size = mensaje.length();
+        if (size<=45) textoNotificacion.setText(mensaje);
+        else{
+            textoNotificacion.setText(mensaje.substring(0, 45)+"-");
+            textoNotificacion2.setText(mensaje.substring(45));
+        }
+        
+    };
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton aceptarNotificacion;
     private javax.swing.JPanel areaJugador;
     private javax.swing.JButton botonJugar;
     private javax.swing.JLabel casas;
@@ -387,17 +468,22 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel dado2;
     private javax.swing.JLabel dinero;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel fondoNotificacion;
     private javax.swing.JLabel hoteles;
     private javax.swing.JLabel imagenJugador;
     private javax.swing.JLabel imagenJugador2;
     private javax.swing.JLabel imagenJugador3;
     private javax.swing.JLabel imagenJugador4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel notificacion;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;
     private javax.swing.JLabel piezaJugador4;
     private javax.swing.JPanel tableroYFondo;
+    private javax.swing.JLabel textoNotificacion;
+    private javax.swing.JLabel textoNotificacion2;
+    private javax.swing.JLabel tituloNotificacion;
     // End of variables declaration//GEN-END:variables
 
 }
