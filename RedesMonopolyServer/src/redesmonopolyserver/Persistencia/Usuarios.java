@@ -1,5 +1,5 @@
 
-package redesmonopolyserver.Dominio;
+package redesmonopolyserver.Persistencia;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
@@ -58,7 +58,7 @@ public class Usuarios {
     
     public void guardarUsuario() throws IOException{
         JSONObject obj = new JSONObject();
-		obj.put("Name", "Alexander");
+		obj.put("Nombre", "Alexander");
                 obj.put("Apellido","Garcia");
                 obj.put("Username","Alexdgn213");
                 obj.put("Clave","123456");
@@ -81,6 +81,37 @@ public class Usuarios {
                 */
                 
     }
+    public void leerUsuario()throws IOException {
+    JSONParser parser = new JSONParser();
+ 
+        try {
+ 
+            Object obj = parser.parse(new FileReader(
+                    "/Persistencia/usuario_json.txt"));
+ 
+            JSONObject jsonObject = (JSONObject) obj;
+ 
+            String nombre = (String) jsonObject.get("Nombre");
+            String apellido = (String) jsonObject.get("Apellido");
+            String username = (String) jsonObject.get("Username");
+            String clave = (String) jsonObject.get("Clave");
+           // JSONArray companyList = (JSONArray) jsonObject.get("Company List");
+ 
+            System.out.println("Nombre: " + nombre);
+            System.out.println("Apellido: " + apellido);
+            System.out.println("Username: " + username);
+            System.out.println("Clave: " + clave);
+           // System.out.println("\nCompany List:");
+           // Iterator<String> iterator = companyList.iterator();
+          //  while (iterator.hasNext()) {
+           //     System.out.println(iterator.next());
+           // }
+ 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /*
     public void leerUsuario(){
         JSONParser parser = new JSONParser();
         try{
@@ -107,7 +138,7 @@ public class Usuarios {
         catch(ParseException e){
             e.printStackTrace();
         }
-    }
+    }*/
     
     
 }
