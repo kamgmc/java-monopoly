@@ -18,6 +18,7 @@ public class CImpuesto extends Casilla implements Serializable{
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
        jugador.setDinero(jugador.getDinero() - this.monto);
+       servidor.mandarNotificacion(jugador, "Cobro de impuestos", "Por impuestos pagas: "+this.monto);
     }
 
 
