@@ -75,6 +75,17 @@ public class Cliente{
         }
     }
     
+    public void solicitarRegistro(Usuario usuario){
+        Solicitud s = new Solicitud(usuario.toJSON(),4);
+        this.nombre=usuario.getUsername();
+        try {
+            dos.flush();
+            dos.writeObject(s);
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void solicitarMoverse(){
         Solicitud s = new Solicitud(nombre,1);
         try {
@@ -110,6 +121,18 @@ public class Cliente{
         if(m.tipo==2){
             //Se logueo exitosamente en el sistema
             if(pantalla!=null) pantalla.iniciarJuego();
+        }
+        if(m.tipo==3){
+            // Llego un error de logueo
+            if(pantalla!=null) pantalla.mostrarErrorLogin(m.mensaje);
+        }
+        if(m.tipo==4){
+            // Llego un error de registro
+            if(pantalla!=null) pantalla.mostrarErrorRegistro(m.mensaje);
+        }
+        if(m.tipo==5){
+            // Se registro un usuario
+            if(pantalla!=null) pantalla.finalizarRegistro();
         }
     }
             

@@ -24,6 +24,7 @@ public class PantallaConfiguracionCliente extends javax.swing.JFrame {
         initComponents();
         servidor.setText("127.0.0.1");
         puerto.setText(String.valueOf(10578));
+        setLocationRelativeTo(null);
     }
 
     /**
