@@ -1,14 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/redesmonopolyserver/Comunicacion/Cliente.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>79</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Solicitud.java</file>
+            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Jugador.java</file>
+            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/CImpuesto.java</file>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Servidor.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Persistencia/Usuario.java</file>
             <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/Cliente.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Pantallas/PantallaJugadorPrincipal.java</file>
-            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Pantallas/PantallaConfiguracionCliente.java</file>
+            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Comunicacion/ConexionUsuario.java</file>
+            <file>file:/C:/Users/alexd/Documents/Alexander/UCAB/Materias/7.%20Mar-Jul%202018/Redes%20de%20Computadoras%20II/Proyecto/proyectoRedes2/RedesMonopolyServer/src/redesmonopolyserver/Dominio/Tablero.java</file>
         </group>
     </open-files>
 </project-private>
