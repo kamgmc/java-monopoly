@@ -17,11 +17,7 @@ public class CImpuesto extends Casilla implements Serializable{
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-       if (jugador.getDinero() - this.monto < 0){
-            jugador.setDinero(0);
-        } else{
-        jugador.setDinero(jugador.getDinero() - this.monto);
-        }
+       jugador.setDinero(jugador.getDinero() - this.monto);
     }
 
 

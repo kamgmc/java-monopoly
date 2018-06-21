@@ -16,14 +16,10 @@ public class CartaPagarJugadores extends Carta implements Serializable{
 
     @Override
     public void Efecto(Tablero tablero, Jugador jugador) {
-        if (jugador.getDinero() - tablero.getJugadores().size() * this.monto < 0){
-            jugador.setDinero(0);
-        } else{
-            for(int i = 0; i < tablero.getJugadores().size(); i++){
-                tablero.getJugadores().get(i).setDinero(tablero.getJugadores().get(i).getDinero() + this.monto);
-            }
-            jugador.setDinero(jugador.getDinero() - tablero.getJugadores().size() * this.monto);
+        for(int i = 0; i < tablero.getJugadores().size(); i++){
+            tablero.getJugadores().get(i).setDinero(tablero.getJugadores().get(i).getDinero() + this.monto);
         }
+        jugador.setDinero(jugador.getDinero() - tablero.getJugadores().size() * this.monto);
     }
     
 }
