@@ -46,20 +46,47 @@ public class CartaAvanzar extends Carta implements Serializable{
         }
         else if(casillas.size() == 2){
             int lastPosition = jugador.getPosicion();
+            boolean salir = false;
             //Decide cual de los dos Servicios esta mas cerca
-            if(casillas.get(0) - jugador.getPosicion() < 0 && casillas.get(1) - jugador.getPosicion() < 0){
-                jugador.setPosicion(casillas.get(0));
+            while (!salir){
+                if (lastPosition == casillas.get(0)){
+                        jugador.setPosicion(casillas.get(0));
+                        salir = true;}
+                if (lastPosition == casillas.get(1)){
+                        jugador.setPosicion(casillas.get(1));
+                        salir = true;}
+                lastPosition++;
+                if (lastPosition==40){ 
+                    lastPosition = 0;
+                    jugador.setDinero(jugador.getDinero()+200);
+                } 
             }
-            else if(casillas.get(1) - jugador.getPosicion() > 0){
-                jugador.setPosicion(casillas.get(1));
+            
+        }
+        else if(casillas.size() == 4){
+            int lastPosition = jugador.getPosicion();
+            boolean salir = false;
+            //Decide cual de los dos Servicios esta mas cerca
+            while (!salir){
+                if (lastPosition == casillas.get(0)){
+                        jugador.setPosicion(casillas.get(0));
+                        salir = true;}
+                if (lastPosition == casillas.get(1)){
+                        jugador.setPosicion(casillas.get(1));
+                        salir = true;}
+                if (lastPosition == casillas.get(2)){
+                        jugador.setPosicion(casillas.get(2));
+                        salir = true;}
+                if (lastPosition == casillas.get(3)){
+                        jugador.setPosicion(casillas.get(3));
+                        salir = true;}
+                lastPosition++;
+                if (lastPosition==40){ 
+                    lastPosition = 0;
+                    jugador.setDinero(jugador.getDinero()+200);
+                } 
             }
-            else{
-                jugador.setPosicion(casillas.get(0));
-            }
-            //Verifica si pasa por Go
-            if(jugador.getPosicion() - lastPosition < 0){
-                jugador.setDinero(jugador.getDinero() + 200);
-            }
+            
         }
     }
 

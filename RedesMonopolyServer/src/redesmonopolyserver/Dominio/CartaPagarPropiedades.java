@@ -18,6 +18,11 @@ public class CartaPagarPropiedades extends Carta implements Serializable{
 
     @Override
     public void Efecto(Tablero tablero, Jugador jugador) {
+        int montoFinal = jugador.getCasas()*this.montoCasa+jugador.getHoteles()*this.montoHotel;
+        if (jugador.getDinero() - montoFinal < 0){
+            jugador.setDinero(0);
+        } else
+        jugador.setDinero(jugador.getDinero()-montoFinal);
         
     }
     

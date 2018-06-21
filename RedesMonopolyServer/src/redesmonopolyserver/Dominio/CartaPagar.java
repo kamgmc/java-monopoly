@@ -17,6 +17,9 @@ public class CartaPagar extends Carta implements Serializable{
 
     @Override
     public void Efecto(Tablero tablero, Jugador jugador) {
+        if (jugador.getDinero() - this.monto < 0){
+            jugador.setDinero(0);
+        }else 
         jugador.setDinero(jugador.getDinero() - this.monto);
     }
     
