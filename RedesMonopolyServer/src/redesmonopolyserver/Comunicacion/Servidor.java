@@ -73,33 +73,6 @@ public class Servidor {
         }
     }
     
-    public void mandarErrorIngreso(ConexionUsuario c, String mensaje){
-        try {
-            c.getDos().flush();
-            c.getDos().writeObject(new Mensaje(3,"Error",mensaje));
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void mandarErrorRegistro(ConexionUsuario c, String mensaje){
-        try {
-            c.getDos().flush();
-            c.getDos().writeObject(new Mensaje(4,"Error",mensaje));
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void mandarRegistroExitoso(ConexionUsuario c){
-        try {
-            c.getDos().flush();
-            c.getDos().writeObject(new Mensaje(5,"Registro Exitoso",""));
-        } catch (IOException ex) {
-            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
     public void mandarTablero(int jugadorTurno){
         int cont=0;
         for(ConexionUsuario c:conexiones){
@@ -132,8 +105,14 @@ public class Servidor {
         
     }
     
-    public void agregarJugador(Solicitud s, ConexionUsuario c){
-        Jugador j = new Jugador(s.getJugador(),"localhost",0);
+    public void acomodarJugadores(){
+    }
+        
+    public void procesarSolicitud(Solicitud s, ConexionUsuario c){
+        System.out.println("Solicitud: nombre - "+s.jugador+" tipo - "+s.tipo);
+        if(s.tipo==0){
+            // El jugador solicito unirse a la partida
+            Jugador j = new Jugador(s.getJugador(),"localhost",0);
             j.setCodigo(conexiones.indexOf(c));
             tablero.getJugadores().add(j);
             System.out.println("Se creo el usuario: "+j.getNombre());
@@ -145,10 +124,10 @@ public class Servidor {
                 tablero.asignarUsuarios();
                 mandarTablero(0);
             }
-    }
-    
-    public void moverJugador(Solicitud s, ConexionUsuario c){
-        System.out.println("Me solicitaron moverme");
+        }  
+        else if(s.tipo==1){
+            // El jugador solicito moverse
+            System.out.println("Me solicitaron moverme");
             int jugador = tablero.obtenerJugador(s.jugador);
             Jugador j = tablero.getJugadores().get(jugador);
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
@@ -184,53 +163,23 @@ public class Servidor {
                 }
 
 
-                tablero.imprimirTablero();  
-    }
-    
-    public void intentarLoguear(Solicitud s, ConexionUsuario c){
-        Usuario usuario = Usuario.fromJSON(s.getJugador());
-            Usuario u = Usuario.obtenerUsuario(usuario.getUsername());
-            if(u!=null){
-                if(u.getPassword().equals(usuario.getPassword()))
-                    mandarIngresoExitoso(c);
-                else mandarErrorIngreso(c,"Clave incorrecta");
-            }
-            else mandarErrorIngreso(c,"Nombre de usuario no encontrado");    
-    }
-    
-    public void intentarRegistrarse(Solicitud s, ConexionUsuario c){
-        Usuario usuario = Usuario.fromJSON(s.getJugador());
-            Usuario u = Usuario.obtenerUsuario(usuario.getUsername());
-            if(u==null){
-                usuario.guardarUsuario();
-                mandarRegistroExitoso(c);
-            }
-            else mandarErrorRegistro(c,"El nombre de usuario ya existe");    
-    }
-    
-    public void procesarSolicitud(Solicitud s, ConexionUsuario c){
-        System.out.println("Solicitud: nombre - "+s.jugador+" tipo - "+s.tipo);
-        if(s.tipo==0){
-            // El jugador solicito unirse a la partida
-            agregarJugador(s,c);
-        }  
-        else if(s.tipo==1){
-            // El jugador solicito moverse
-            moverJugador(s,c);
+                tablero.imprimirTablero();
 
             }
-        else if(s.tipo==2){
-            // EL jugador pidio el tablero
-            mandarTablero(siguienteJugador(-1));
-        }
-        else if (s.tipo==3){
-            // El jugador intento loguearse
-            intentarLoguear(s,c);
-        }
-        else if (s.tipo==4){
-            // El jugador intento registrarse
-            intentarRegistrarse(s,c);
-        }
+            else if(s.tipo==2){
+                // EL jugador pidio el tablero
+                mandarTablero(siguienteJugador(-1));
+            }
+            else if (s.tipo==3){
+                // El jugador intento loguearse
+                Usuario usuario = Usuario.fromJSON(s.getJugador());
+                Usuario u = Usuario.obtenerUsuario(usuario.getUsername());
+                if(u!=null){
+                    if(u.getPassword().equals(usuario.getPassword()))
+                        mandarIngresoExitoso(c);
+                    
+                }
+            }
     }
     
     public int siguienteJugador(int jugadorAnterior){
