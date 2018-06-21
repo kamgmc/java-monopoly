@@ -16,6 +16,7 @@ import redesmonopolyserver.Dominio.Casilla;
 import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Persistencia.Generador;
+import redesmonopolyserver.Persistencia.Usuario;
 
 /**
  *
@@ -52,6 +53,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         imagenJugador.setVisible(false);
         casas.setVisible(false);
         hoteles.setVisible(false);
+        tableroYFondo.setVisible(false);
+        panelNotificacion.setVisible(false);
+        panelRegistro.setVisible(false);
         //cliente.solicitarTablero();
         
     }
@@ -65,6 +69,37 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelLogin = new javax.swing.JPanel();
+        panelInicio = new javax.swing.JPanel();
+        tituloLogin = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jtUsuario = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        errorLogueo = new javax.swing.JLabel();
+        jtClave = new javax.swing.JPasswordField();
+        jButton3 = new javax.swing.JButton();
+        panelRegistro = new javax.swing.JPanel();
+        tituloLogin1 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jtNombre = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        errorLogueo1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jtUsuario2 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jtClave2 = new javax.swing.JPasswordField();
+        jtApellido = new javax.swing.JTextField();
+        jButton4 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        panelNotificacion = new javax.swing.JPanel();
+        notificacion = new javax.swing.JPanel();
+        tituloNotificacion = new javax.swing.JLabel();
+        textoNotificacion = new javax.swing.JLabel();
+        textoNotificacion2 = new javax.swing.JLabel();
+        aceptarNotificacion = new javax.swing.JButton();
+        fondoNotificacion = new javax.swing.JLabel();
         tableroYFondo = new javax.swing.JPanel();
         botonJugar = new javax.swing.JButton();
         dado1 = new javax.swing.JLabel();
@@ -82,12 +117,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador3 = new javax.swing.JLabel();
         piezaJugador4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        notificacion = new javax.swing.JPanel();
-        tituloNotificacion = new javax.swing.JLabel();
-        textoNotificacion = new javax.swing.JLabel();
-        textoNotificacion2 = new javax.swing.JLabel();
-        aceptarNotificacion = new javax.swing.JButton();
-        fondoNotificacion = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,6 +126,270 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1010, 710));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelLogin.setBackground(new java.awt.Color(205, 230, 208));
+        panelLogin.setMaximumSize(new java.awt.Dimension(1010, 710));
+        panelLogin.setMinimumSize(new java.awt.Dimension(1010, 710));
+        panelLogin.setName(""); // NOI18N
+        panelLogin.setOpaque(false);
+        panelLogin.setPreferredSize(new java.awt.Dimension(1010, 710));
+        panelLogin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelInicio.setOpaque(false);
+
+        tituloLogin.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        tituloLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloLogin.setText("Inicion de Sesión");
+
+        jLabel3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel3.setText("Usuario:");
+
+        jLabel4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel4.setText("Clave:");
+
+        jtUsuario.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtUsuario.setOpaque(false);
+
+        jButton1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jButton1.setText("REGISTRARSE");
+        jButton1.setOpaque(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        errorLogueo.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        errorLogueo.setForeground(new java.awt.Color(255, 51, 51));
+        errorLogueo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jtClave.setOpaque(false);
+
+        jButton3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jButton3.setText("INGRESAR");
+        jButton3.setOpaque(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelInicioLayout = new javax.swing.GroupLayout(panelInicio);
+        panelInicio.setLayout(panelInicioLayout);
+        panelInicioLayout.setHorizontalGroup(
+            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tituloLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelInicioLayout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelInicioLayout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtClave))
+                            .addGroup(panelInicioLayout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(errorLogueo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(panelInicioLayout.createSequentialGroup()
+                        .addGap(71, 71, 71)
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        panelInicioLayout.setVerticalGroup(
+            panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelInicioLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(tituloLogin)
+                .addGap(56, 56, 56)
+                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtUsuario))
+                .addGap(18, 18, 18)
+                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtClave))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLogueo, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addGroup(panelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton3))
+                .addGap(22, 22, 22))
+        );
+
+        panelLogin.add(panelInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 410, 280));
+
+        panelRegistro.setOpaque(false);
+
+        tituloLogin1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        tituloLogin1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloLogin1.setText("Registrarse");
+
+        jLabel5.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel5.setText("Nombre:");
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel6.setText("Apellido:");
+
+        jtNombre.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtNombre.setOpaque(false);
+
+        jButton2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jButton2.setText("CANCELAR");
+        jButton2.setOpaque(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        errorLogueo1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        errorLogueo1.setForeground(new java.awt.Color(255, 51, 51));
+        errorLogueo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        jLabel7.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel7.setText("Usuario:");
+
+        jtUsuario2.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtUsuario2.setOpaque(false);
+
+        jLabel8.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel8.setText("Clave:");
+
+        jtClave2.setOpaque(false);
+        jtClave2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtClave2ActionPerformed(evt);
+            }
+        });
+
+        jtApellido.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jtApellido.setOpaque(false);
+
+        jButton4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jButton4.setText("REGISTRARSE");
+        jButton4.setOpaque(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
+        panelRegistro.setLayout(panelRegistroLayout);
+        panelRegistroLayout.setHorizontalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(tituloLogin1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelRegistroLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton4)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRegistroLayout.createSequentialGroup()
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(errorLogueo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(panelRegistroLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtClave2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(45, 45, 45))
+        );
+        panelRegistroLayout.setVerticalGroup(
+            panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelRegistroLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(tituloLogin1)
+                .addGap(26, 26, 26)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtUsuario2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtClave2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(errorLogueo1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(panelRegistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton4)
+                    .addComponent(jButton2))
+                .addContainerGap())
+        );
+
+        panelLogin.add(panelRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 410, 280));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Login.png"))); // NOI18N
+        panelLogin.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        panelNotificacion.setBackground(new java.awt.Color(205, 230, 208));
+        panelNotificacion.setMaximumSize(new java.awt.Dimension(1010, 710));
+        panelNotificacion.setMinimumSize(new java.awt.Dimension(1010, 710));
+        panelNotificacion.setName(""); // NOI18N
+        panelNotificacion.setOpaque(false);
+        panelNotificacion.setPreferredSize(new java.awt.Dimension(1010, 710));
+        panelNotificacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        notificacion.setOpaque(false);
+        notificacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tituloNotificacion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tituloNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloNotificacion.setText("Arca Comunal");
+        notificacion.add(tituloNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
+
+        textoNotificacion.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoNotificacion.setText(".");
+        notificacion.add(textoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
+
+        textoNotificacion2.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoNotificacion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoNotificacion2.setText(".");
+        notificacion.add(textoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
+
+        aceptarNotificacion.setText("Aceptar");
+        aceptarNotificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarNotificacionActionPerformed(evt);
+            }
+        });
+        notificacion.add(aceptarNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
+
+        fondoNotificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
+        notificacion.add(fondoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        panelNotificacion.add(notificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
+
+        getContentPane().add(panelNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         tableroYFondo.setBackground(new java.awt.Color(205, 230, 208));
         tableroYFondo.setMaximumSize(new java.awt.Dimension(1010, 710));
@@ -226,37 +519,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         jLabel1.setText("No posees ninguna Propiedad");
         tableroYFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, -1, -1));
 
-        notificacion.setOpaque(false);
-        notificacion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        tituloNotificacion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        tituloNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloNotificacion.setText("Arca Comunal");
-        notificacion.add(tituloNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
-
-        textoNotificacion.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
-        textoNotificacion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textoNotificacion.setText(".");
-        notificacion.add(textoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
-
-        textoNotificacion2.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
-        textoNotificacion2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textoNotificacion2.setText(".");
-        notificacion.add(textoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
-
-        aceptarNotificacion.setText("Aceptar");
-        aceptarNotificacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptarNotificacionActionPerformed(evt);
-            }
-        });
-        notificacion.add(aceptarNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, -1, -1));
-
-        fondoNotificacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
-        notificacion.add(fondoNotificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        tableroYFondo.add(notificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
-
         getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Tablero.png"))); // NOI18N
@@ -271,8 +533,30 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonJugarActionPerformed
 
     private void aceptarNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacionActionPerformed
-        notificacion.setVisible(false);
+        panelNotificacion.setVisible(false);
     }//GEN-LAST:event_aceptarNotificacionActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        panelInicio.setVisible(false);
+        panelRegistro.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        panelInicio.setVisible(true);
+        panelRegistro.setVisible(false);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        cliente.solicitarIngreso(new Usuario(jtUsuario.getText(),jtClave.getText(),"",""));
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        cliente.solicitarRegistro(new Usuario(jtUsuario2.getText(),jtClave2.getText(),jtNombre.getText(),jtApellido.getText()));
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jtClave2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtClave2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtClave2ActionPerformed
 
     
     public void actualizarTablero(Tablero tablero){
@@ -387,10 +671,29 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarNotificacion(String titulo, String mensaje){
+        panelNotificacion.setVisible(true);
         notificacion.setVisible(true);
         tituloNotificacion.setText(titulo);
-        mostrarMensajeNotificacion(mensaje);
-        
+        mostrarMensajeNotificacion(mensaje);   
+    }
+    
+    public void mostrarErrorLogin(String mensaje){
+        this.errorLogueo.setText(mensaje);
+    }
+    
+    public void mostrarErrorRegistro(String mensaje){
+        this.errorLogueo1.setText(mensaje);
+    }
+    
+    public void finalizarRegistro(){
+        panelInicio.setVisible(true);
+        panelRegistro.setVisible(false);
+    }
+    
+    public void iniciarJuego(){
+        panelLogin.setVisible(false);
+        tableroYFondo.setVisible(true);
+        cliente.enviarJugador();
     }
     
     public class LanzadorDados implements Runnable{
@@ -467,6 +770,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
     private javax.swing.JLabel dinero;
+    private javax.swing.JLabel errorLogueo;
+    private javax.swing.JLabel errorLogueo1;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fondoNotificacion;
     private javax.swing.JLabel hoteles;
@@ -474,8 +779,29 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel imagenJugador2;
     private javax.swing.JLabel imagenJugador3;
     private javax.swing.JLabel imagenJugador4;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JTextField jtApellido;
+    private javax.swing.JPasswordField jtClave;
+    private javax.swing.JPasswordField jtClave2;
+    private javax.swing.JTextField jtNombre;
+    private javax.swing.JTextField jtUsuario;
+    private javax.swing.JTextField jtUsuario2;
     private javax.swing.JPanel notificacion;
+    private javax.swing.JPanel panelInicio;
+    private javax.swing.JPanel panelLogin;
+    private javax.swing.JPanel panelNotificacion;
+    private javax.swing.JPanel panelRegistro;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;
@@ -483,6 +809,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel tableroYFondo;
     private javax.swing.JLabel textoNotificacion;
     private javax.swing.JLabel textoNotificacion2;
+    private javax.swing.JLabel tituloLogin;
+    private javax.swing.JLabel tituloLogin1;
     private javax.swing.JLabel tituloNotificacion;
     // End of variables declaration//GEN-END:variables
 

@@ -6,6 +6,7 @@
 package redesmonopolyserver.Comunicacion;
 
 import java.io.Serializable;
+import redesmonopolyserver.Persistencia.Usuario;
 
 /**
  *
@@ -35,6 +36,9 @@ public class Solicitud implements Serializable{
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
+    
+    
     
     
     

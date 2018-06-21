@@ -18,11 +18,13 @@ import redesmonopolyserver.Dominio.Casilla;
 import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Persistencia.Generador;
+import redesmonopolyserver.Persistencia.Usuario;
 public class Servidor {
         ServerSocket ss;
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
         Socket socket;
+        int numJugadores = 2;
     private int contadorTurnos;
         
     public Servidor() throws IOException {
@@ -33,7 +35,7 @@ public class Servidor {
         Generador.GenerarCasillas(tablero);
         ss = new ServerSocket(10578);
         System.out.println("\tConexion realizada");
-        while (conexiones.size()<4) {
+        while (conexiones.size()<numJugadores) {
             socket = ss.accept();
             ConexionUsuario c = new ConexionUsuario(socket);
             System.out.println("Se ha conectado un usuario: "+socket);
@@ -47,13 +49,7 @@ public class Servidor {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException ex) {
                 Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        long seed = System.nanoTime();
-        Collections.shuffle(conexiones,new Random(seed));
-        Collections.shuffle(tablero.getJugadores(),new Random(seed));
-        tablero.asignarUsuarios();
-        mandarTablero(0);
-
+            }        
     }
     
     public void mandarNotificacion(Jugador j,String titulo, String mensaje){
@@ -63,6 +59,42 @@ public class Servidor {
             c.getDos().flush();
             c.getDos().writeObject(new Mensaje(1,titulo,mensaje));
             System.out.print("Se ha enviado la notificacion: "+titulo);
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mandarIngresoExitoso(ConexionUsuario c){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(2,"Ingresaste Exitosamente",""));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mandarErrorIngreso(ConexionUsuario c, String mensaje){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(3,"Error",mensaje));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mandarErrorRegistro(ConexionUsuario c, String mensaje){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(4,"Error",mensaje));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mandarRegistroExitoso(ConexionUsuario c){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(5,"Registro Exitoso",""));
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -99,16 +131,24 @@ public class Servidor {
         }
         
     }
-        
-    public void procesarSolicitud(Solicitud s){
-        if(s.tipo==0){
-            // El jugador solicito unirse a la partida
-            Jugador j = new Jugador(s.getJugador(),"localhost",0);
+    
+    public void agregarJugador(Solicitud s, ConexionUsuario c){
+        Jugador j = new Jugador(s.getJugador(),"localhost",0);
+            j.setCodigo(conexiones.indexOf(c));
             tablero.getJugadores().add(j);
             System.out.println("Se creo el usuario: "+j.getNombre());
+            if(tablero.getJugadores().size()==numJugadores){
+                long seed = System.nanoTime();
+                tablero.acomodarJugadores();
+                Collections.shuffle(conexiones,new Random(seed));
+                Collections.shuffle(tablero.getJugadores(),new Random(seed));
+                tablero.asignarUsuarios();
+                mandarTablero(0);
             }
-        else if(s.tipo==1){
-        // El jugador solicito moverse
+    }
+    
+    public void moverJugador(Solicitud s, ConexionUsuario c){
+        System.out.println("Me solicitaron moverme");
             int jugador = tablero.obtenerJugador(s.jugador);
             Jugador j = tablero.getJugadores().get(jugador);
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
@@ -116,8 +156,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            //tablero.setDado1(1);
-            //tablero.setDado2(0);
+            tablero.setDado1(1);
+            tablero.setDado2(0);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);
@@ -144,12 +184,53 @@ public class Servidor {
                 }
 
 
-                tablero.imprimirTablero();
+                tablero.imprimirTablero();  
+    }
+    
+    public void intentarLoguear(Solicitud s, ConexionUsuario c){
+        Usuario usuario = Usuario.fromJSON(s.getJugador());
+            Usuario u = Usuario.obtenerUsuario(usuario.getUsername());
+            if(u!=null){
+                if(u.getPassword().equals(usuario.getPassword()))
+                    mandarIngresoExitoso(c);
+                else mandarErrorIngreso(c,"Clave incorrecta");
+            }
+            else mandarErrorIngreso(c,"Nombre de usuario no encontrado");    
+    }
+    
+    public void intentarRegistrarse(Solicitud s, ConexionUsuario c){
+        Usuario usuario = Usuario.fromJSON(s.getJugador());
+            Usuario u = Usuario.obtenerUsuario(usuario.getUsername());
+            if(u==null){
+                usuario.guardarUsuario();
+                mandarRegistroExitoso(c);
+            }
+            else mandarErrorRegistro(c,"El nombre de usuario ya existe");    
+    }
+    
+    public void procesarSolicitud(Solicitud s, ConexionUsuario c){
+        System.out.println("Solicitud: nombre - "+s.jugador+" tipo - "+s.tipo);
+        if(s.tipo==0){
+            // El jugador solicito unirse a la partida
+            agregarJugador(s,c);
+        }  
+        else if(s.tipo==1){
+            // El jugador solicito moverse
+            moverJugador(s,c);
 
             }
-            else if(s.tipo==2){
-                mandarTablero(siguienteJugador(-1));
-            }
+        else if(s.tipo==2){
+            // EL jugador pidio el tablero
+            mandarTablero(siguienteJugador(-1));
+        }
+        else if (s.tipo==3){
+            // El jugador intento loguearse
+            intentarLoguear(s,c);
+        }
+        else if (s.tipo==4){
+            // El jugador intento registrarse
+            intentarRegistrarse(s,c);
+        }
     }
     
     public int siguienteJugador(int jugadorAnterior){
@@ -186,7 +267,7 @@ public class Servidor {
                 try {
                     System.out.println("Esperando Solicitud");
                     Solicitud sol = (Solicitud) c.getDis().readObject();
-                    s.procesarSolicitud(sol);
+                    s.procesarSolicitud(sol,this.c);
                     System.out.println("Solicitud Recibida");
                 } catch (IOException ex) {
                     Logger.getLogger(ConexionUsuario.class.getName()).log(Level.SEVERE, null, ex);
