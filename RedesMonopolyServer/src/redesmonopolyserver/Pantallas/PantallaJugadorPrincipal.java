@@ -10,6 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import redesmonopolyserver.Comunicacion.Cliente;
 import redesmonopolyserver.Dominio.CPropiedad;
 import redesmonopolyserver.Dominio.Casilla;
@@ -36,6 +37,11 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public PantallaJugadorPrincipal(Cliente cliente) {
+        try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        } 
         initComponents();
         this.cliente=cliente;
         cliente.setPantalla(this);

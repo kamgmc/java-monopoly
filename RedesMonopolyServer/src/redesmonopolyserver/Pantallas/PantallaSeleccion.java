@@ -8,6 +8,7 @@ package redesmonopolyserver.Pantallas;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.UIManager;
 import redesmonopolyserver.Comunicacion.Cliente;
 import redesmonopolyserver.Comunicacion.Servidor;
 import redesmonopolyserver.Persistencia.Usuario;
@@ -23,6 +24,11 @@ public class PantallaSeleccion extends javax.swing.JFrame {
      * Creates new form PantallaSeleccion
      */
     public PantallaSeleccion() {
+        try{
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        }catch(Exception e){
+            e.printStackTrace();
+        } 
         initComponents();
         setLocationRelativeTo(null);
         //Usuario u = new Usuario("login2","clave2","nombre2","apellido2");
@@ -39,62 +45,40 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         botonCliente = new javax.swing.JButton();
         botonServidor = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel1.setText("MONOPOLY");
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 318, -1));
 
         botonCliente.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         botonCliente.setText("Cliente");
+        botonCliente.setOpaque(false);
         botonCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonClienteActionPerformed(evt);
             }
         });
+        getContentPane().add(botonCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, 130, -1));
 
         botonServidor.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         botonServidor.setText("Servidor");
+        botonServidor.setOpaque(false);
         botonServidor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonServidorActionPerformed(evt);
             }
         });
+        getContentPane().add(botonServidor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(111, 111, 111)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(botonServidor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(botonCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(100, 100, 100)
-                        .addComponent(jLabel1)))
-                .addContainerGap(120, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(50, 50, 50)
-                .addComponent(botonCliente)
-                .addGap(32, 32, 32)
-                .addComponent(botonServidor)
-                .addGap(0, 30, Short.MAX_VALUE))
-        );
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/inicio.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
