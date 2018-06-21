@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import redesmonopolyserver.Comunicacion.Cliente;
 import redesmonopolyserver.Comunicacion.Servidor;
-import redesmonopolyserver.Persistencia.Usuario;
+import redesmonopolyserver.Persistencia.Usuarios;
 import redesmonopolyserver.RedesMonopolyServer;
 
 /**
@@ -25,8 +25,8 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     public PantallaSeleccion() {
         initComponents();
         setLocationRelativeTo(null);
-        //Usuario u = new Usuario("login2","clave2","nombre2","apellido2");
-        //u.guardarUsuario();
+        Usuarios u = new Usuarios("login2","clave2","nombre2","apellido2");
+        u.guardarUsuario();
     }
 
     /**

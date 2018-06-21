@@ -5,8 +5,6 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import redesmonopolyserver.Persistencia.Generador;
 
 public class Tablero implements Serializable{
@@ -171,14 +169,6 @@ public class Tablero implements Serializable{
             this.Jugadores.add(jClase);
             
         }
-    }
-    
-    public void acomodarJugadores(){
-        Collections.sort(Jugadores, new Comparator<Jugador>(){
-            public int compare(Jugador s1, Jugador s2) {
-                return s1.getCodigo()-s2.getCodigo();
-            }
-        });  
     }
     
 }

@@ -13,7 +13,6 @@ import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Pantallas.PantallaJugadorPrincipal;
 import redesmonopolyserver.Persistencia.Generador;
-import redesmonopolyserver.Persistencia.Usuario;
 
 public class Cliente{
     protected Socket sk;
@@ -42,6 +41,10 @@ public class Cliente{
         }  
     }
     
+    public void conectarse() {
+        System.out.println("Hola soy "+nombre);
+        enviarJugador(nombre);
+    }
     
     public void cerrarConexion(){
         try {
@@ -53,31 +56,8 @@ public class Cliente{
         }   
     }
     
-    public void enviarJugador(){
-        System.out.print("Hola soy: "+nombre);
-        Solicitud s = new Solicitud(this.nombre,0);
-        try {
-            dos.flush();
-            dos.writeObject(s);
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void solicitarIngreso(Usuario usuario){
-        Solicitud s = new Solicitud(usuario.toJSON(),3);
-        this.nombre=usuario.getUsername();
-        try {
-            dos.flush();
-            dos.writeObject(s);
-        } catch (IOException ex) {
-            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void solicitarRegistro(Usuario usuario){
-        Solicitud s = new Solicitud(usuario.toJSON(),4);
-        this.nombre=usuario.getUsername();
+    public void enviarJugador(String nombre){
+        Solicitud s = new Solicitud(nombre,0);
         try {
             dos.flush();
             dos.writeObject(s);
@@ -91,7 +71,7 @@ public class Cliente{
         try {
             dos.flush();
             dos.writeObject(s);
-            System.out.println("Has solicitado moverte");
+            System.out.println("Haz solicitado moverte");
         } catch (IOException ex) {
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -115,24 +95,8 @@ public class Cliente{
             if(pantalla!=null) pantalla.actualizarTablero(tablero);
         }
         if(m.tipo==1){
-            //Se envio una notificacion
+            //Se envio un 
             if(pantalla!=null) pantalla.mostrarNotificacion(m.titulo, m.mensaje);
-        }
-        if(m.tipo==2){
-            //Se logueo exitosamente en el sistema
-            if(pantalla!=null) pantalla.iniciarJuego();
-        }
-        if(m.tipo==3){
-            // Llego un error de logueo
-            if(pantalla!=null) pantalla.mostrarErrorLogin(m.mensaje);
-        }
-        if(m.tipo==4){
-            // Llego un error de registro
-            if(pantalla!=null) pantalla.mostrarErrorRegistro(m.mensaje);
-        }
-        if(m.tipo==5){
-            // Se registro un usuario
-            if(pantalla!=null) pantalla.finalizarRegistro();
         }
     }
             
