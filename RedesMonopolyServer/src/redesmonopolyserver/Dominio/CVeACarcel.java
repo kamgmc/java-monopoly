@@ -25,7 +25,8 @@ public class CVeACarcel extends Casilla implements Serializable{
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        
+        jugador.setCarcel(true);
+        jugador.setPosicion(10);
         
     }
 

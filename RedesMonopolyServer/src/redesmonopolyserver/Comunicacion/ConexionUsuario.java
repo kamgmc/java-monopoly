@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import redesmonopolyserver.Dominio.Jugador;
 
 /**
  *
@@ -53,6 +54,6 @@ public class ConexionUsuario {
 
     public void setDis(ObjectInputStream dis) {
         this.dis = dis;
-    }   
+    }       
     
 }

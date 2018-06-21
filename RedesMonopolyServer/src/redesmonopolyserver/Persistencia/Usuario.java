@@ -4,19 +4,23 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.Serializable;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-public class Usuarios {
+
+public class Usuario implements Serializable{
 
     private String username;
     private String password;
     private String nombre;
     private String apellido;
     
-    public Usuarios(String username, String password, String nombre, String apellido) {
+    public Usuario(String username, String password, String nombre, String apellido) {
         this.username = username;
         this.password = password;
         this.nombre = nombre;
@@ -56,7 +60,6 @@ public class Usuarios {
     }
     
     public void guardarUsuario(){
-        
         JSONObject obj = new JSONObject();
         JSONArray usuarios = obtenerTodosLosUsuarios();
         //JSONArray usuarios = new JSONArray();
@@ -75,15 +78,11 @@ public class Usuarios {
         }
         catch (IOException e){
             e.printStackTrace();
-        }
-        //Si no funciona el de arriba usar el siguiente: 
-        /* 
-        try(FileWriter file = new FileWriter("/Persistencia/usuario_json.txt");
-        */             
+        }           
     }
-    public static Usuarios obtenerUsuario(String usuarioBuscado) {
-    JSONParser parser = new JSONParser();
- 
+    
+    public static Usuario obtenerUsuario(String usuarioBuscado) {
+        JSONParser parser = new JSONParser();
         try {
             JSONArray usuarios = obtenerTodosLosUsuarios();
             for(int i = 0; i<usuarios.size();i++){
@@ -92,32 +91,14 @@ public class Usuarios {
                 String apellido = obj.get("Apellido").toString();
                 String username = obj.get("Username").toString();
                 String clave = obj.get("Clave").toString();
-            
                 if(usuarioBuscado.equals(username)){
-                    return new Usuarios(username,clave,nombre,apellido);
+                    return new Usuario(username,clave,nombre,apellido);
                 }
             }
-            /*
-            String nombre = (String) jsonObject.get("Nombre");
-            String apellido = (String) jsonObject.get("Apellido");
-            String username = (String) jsonObject.get("Username");
-            String clave = (String) jsonObject.get("Clave");
-           // JSONArray companyList = (JSONArray) jsonObject.get("Company List");
- 
-            System.out.println("Nombre: " + nombre);
-            System.out.println("Apellido: " + apellido);
-            System.out.println("Username: " + username);
-            System.out.println("Clave: " + clave);*/
-           // System.out.println("\nCompany List:");
-           // Iterator<String> iterator = companyList.iterator();
-          //  while (iterator.hasNext()) {
-           //     System.out.println(iterator.next());
-           // }
- 
         } catch (Exception e) {
             e.printStackTrace();
         }
-    return null;
+        return null;
     }
     
     public static JSONArray obtenerTodosLosUsuarios(){
@@ -132,34 +113,32 @@ public class Usuarios {
         }
         return usuarios;
     }
-    /*
-    public void leerUsuario(){
+    
+    public String toJSON(){
+        JSONObject obj = new JSONObject();
+        obj.put("Username", username);
+        obj.put("Clave",password);
+        obj.put("Nombre",nombre);
+        obj.put("Apellido",apellido);
+        return obj.toString();
+    
+    }
+    
+    public static Usuario fromJSON(String json){
         JSONParser parser = new JSONParser();
-        try{
-            Object obj = parser.parse(new FileReader("f:\\test.json"));
-            JSONObject jsonObject = (JSONObject)obj;
-            System.out.println(jsonObject);
-            String name = (String) jsonObject.get("name");
-            System.out.println(name);
-            long age = (Long) jsonObject.get("age");
-            System.out.println(age);
-            //loop array
-            JSONArray msg = (JSONArray) jsonObject.get("messages");
-            Iterator<String> iterator = msg.iterator();
-            while(iterator.hasNext()){
-                System.out.println(iterator.next());   
-            }
+        JSONObject obj = null;
+        try {
+            obj = (JSONObject) parser.parse(json);
+            String nombre = obj.get("Nombre").toString();
+            String apellido = obj.get("Apellido").toString();
+            String username = obj.get("Username").toString();
+            String clave = obj.get("Clave").toString();
+            Usuario u = new Usuario(username,clave,nombre,apellido);
+            return u;
+        } catch (ParseException ex) {
+            Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        catch(FileNotFoundException e){
-            e.printStackTrace();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
-        catch(ParseException e){
-            e.printStackTrace();
-        }
-    }*/
+        return null;
     
-    
+    }
 }

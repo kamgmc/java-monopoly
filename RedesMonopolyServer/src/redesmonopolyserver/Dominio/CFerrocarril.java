@@ -29,7 +29,35 @@ public class CFerrocarril extends Casilla implements Serializable{
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        
+        //Servicio de electricidad
+        CFerrocarril Reading = (CFerrocarril) tablero.getCasillas().get(5);
+        CFerrocarril Tren2 = (CFerrocarril) tablero.getCasillas().get(15);
+        CFerrocarril Tren3 = (CFerrocarril) tablero.getCasillas().get(25);
+        CFerrocarril Tren4 = (CFerrocarril) tablero.getCasillas().get(35);
+        //Propietario de la casilla actual
+        /*
+        Jugador dueno = tablero.getJugadores().get(this.propietario);
+        if(electricidad.getPropietario() == agua.getPropietario()){
+            if(jugador.getDinero() - 10 * montoPagar < 0){
+                dueno.setDinero(jugador.getDinero());
+                jugador.setDinero(0);
+            }
+            else{
+                jugador.setDinero(jugador.getDinero() - 10 * montoPagar);
+                dueno.setDinero(dueno.getDinero() + 10 * montoPagar);
+            }
+        }
+        else{
+            if(jugador.getDinero() - 4 * montoPagar < 0){
+                dueno.setDinero(jugador.getDinero());
+                jugador.setDinero(0);
+            }
+            else{
+                jugador.setDinero(jugador.getDinero() - 4 * montoPagar);
+                dueno.setDinero(dueno.getDinero() + 4 * montoPagar);
+            }
+        }
+*/
     }
     
 }

@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import redesmonopolyserver.Comunicacion.Cliente;
 import redesmonopolyserver.Comunicacion.Servidor;
-import redesmonopolyserver.Persistencia.Usuarios;
+import redesmonopolyserver.Persistencia.Usuario;
 import redesmonopolyserver.RedesMonopolyServer;
 
 /**
@@ -25,8 +25,8 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     public PantallaSeleccion() {
         initComponents();
         setLocationRelativeTo(null);
-        Usuarios u = new Usuarios("login2","clave2","nombre2","apellido2");
-        u.guardarUsuario();
+        //Usuario u = new Usuario("login2","clave2","nombre2","apellido2");
+        //u.guardarUsuario();
     }
 
     /**
@@ -100,7 +100,7 @@ public class PantallaSeleccion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonClienteActionPerformed
-        PantallaConfiguracionCliente pantallaNueva = new PantallaConfiguracionCliente();
+        PantallaConfiguracion pantallaNueva = new PantallaConfiguracion();
         this.dispose();
         pantallaNueva.setVisible(true);
     }//GEN-LAST:event_botonClienteActionPerformed
