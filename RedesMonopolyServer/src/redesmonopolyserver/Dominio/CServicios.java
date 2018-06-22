@@ -1,10 +1,5 @@
-
 package redesmonopolyserver.Dominio;
-
 import java.io.Serializable;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import redesmonopolyserver.Comunicacion.Servidor;
 
 public class CServicios extends Casilla implements Serializable{
@@ -20,37 +15,48 @@ public class CServicios extends Casilla implements Serializable{
     }
 
     @Override
-    public void alSalir() {
-       }
+    public void alSalir() {}
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        int montoPagar = tablero.getDado1()+tablero.getDado2();
-        //Servicio de electricidad
-        CServicios electricidad = (CServicios) tablero.getCasillas().get(12); 
-        //Servicio de agua
-        CServicios agua = (CServicios) tablero.getCasillas().get(28); 
-        //Propietario de la casilla actual
-        Jugador dueno = tablero.getJugadores().get(this.propietario);
-        
-        if(electricidad.getPropietario() == agua.getPropietario()){
-            if(jugador.getDinero() - 10 * montoPagar < 0){
-                dueno.setDinero(jugador.getDinero());
-                jugador.setDinero(0);
+        //Si el servicio ya esta comprado
+        if(this.propietario >= 0){
+            int montoBase = tablero.getDado1() + tablero.getDado2();
+            int montoFinal;
+            //Servicio de electricidad
+            CServicios electricidad = (CServicios) tablero.getCasillas().get(12); 
+            //Servicio de agua
+            CServicios agua = (CServicios) tablero.getCasillas().get(28); 
+            //Propietario de la casilla actual
+            Jugador dueno = tablero.getJugadores().get(this.propietario);
+
+            if(electricidad.getPropietario() == agua.getPropietario()){
+                if(jugador.getDinero() - 10 * montoBase < 0){
+                    montoFinal = jugador.getDinero();
+                    dueno.setDinero(dueno.getDinero() + montoFinal);
+                    jugador.setDinero(0);
+                }
+                else{
+                    montoFinal = 10 * montoBase;
+                    jugador.setDinero(jugador.getDinero() - montoFinal);
+                    dueno.setDinero(dueno.getDinero() + montoFinal);
+                }
+                servidor.mandarNotificacion(jugador, "Pagas dinero por alquiler", "Pagas " + montoFinal + "$ a " + dueno.getNombre() + " por alquiler de Servicios");
+                servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Servicios");
             }
             else{
-                jugador.setDinero(jugador.getDinero() - 10 * montoPagar);
-                dueno.setDinero(dueno.getDinero() + 10 * montoPagar);
-            }
-        }
-        else{
-            if(jugador.getDinero() - 4 * montoPagar < 0){
-                dueno.setDinero(jugador.getDinero());
-                jugador.setDinero(0);
-            }
-            else{
-                jugador.setDinero(jugador.getDinero() - 4 * montoPagar);
-                dueno.setDinero(dueno.getDinero() + 4 * montoPagar);
+                if(jugador.getDinero() - 4 * montoBase < 0){
+                    montoFinal = jugador.getDinero();
+                    dueno.setDinero(dueno.getDinero() + montoFinal);
+                    jugador.setDinero(0);
+                }
+                else{
+                    montoFinal = 4 * montoBase;
+                    jugador.setDinero(jugador.getDinero() - montoFinal);
+                    dueno.setDinero(dueno.getDinero() + montoFinal);
+                }
+                servidor.mandarNotificacion(jugador, "Pagas dinero por alquiler", "Pagas " + montoFinal + "$ a " + dueno.getNombre() + " por alquiler de Servicios");
+                servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Servicios");
             }
         }
         

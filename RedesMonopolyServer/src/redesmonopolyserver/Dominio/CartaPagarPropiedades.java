@@ -1,6 +1,7 @@
 package redesmonopolyserver.Dominio;
 
 import java.io.Serializable;
+import redesmonopolyserver.Comunicacion.Servidor;
 
 /**
  *
@@ -17,7 +18,7 @@ public class CartaPagarPropiedades extends Carta implements Serializable{
     }
 
     @Override
-    public void Efecto(Tablero tablero, Jugador jugador) {
+    public void Efecto(Tablero tablero, Jugador jugador, Servidor servidor) {
         int montoFinal = jugador.getCasas()*this.montoCasa+jugador.getHoteles()*this.montoHotel;
         if (jugador.getDinero() - montoFinal < 0){
             jugador.setDinero(0);

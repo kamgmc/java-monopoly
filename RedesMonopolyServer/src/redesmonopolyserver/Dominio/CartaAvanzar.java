@@ -1,6 +1,7 @@
 package redesmonopolyserver.Dominio;
 import java.io.Serializable;
 import java.util.ArrayList;
+import redesmonopolyserver.Comunicacion.Servidor;
 /**
  *
  * @author kamgm
@@ -29,7 +30,7 @@ public class CartaAvanzar extends Carta implements Serializable{
         casillas.add(ferrocarril4);
     }
     @Override
-    public void Efecto(Tablero tablero, Jugador jugador) {
+    public void Efecto(Tablero tablero, Jugador jugador, Servidor servidor) {
         if(casillas.size() == 1){
             //Si el numero de casillas es negativa, hay que retroceder
             if(casillas.get(0) < 0){

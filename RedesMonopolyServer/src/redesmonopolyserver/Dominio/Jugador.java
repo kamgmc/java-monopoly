@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class Jugador implements Serializable{
     private int codigo;
-    private String nombre;
     private int dinero;
     private int carcelLibre;
     private int icono;
-    private String ip;
     private int posicion;
-    private boolean carcel;
     private int casas;
     private int hoteles;
+    private boolean carcel;
+    private String ip;
+    private String nombre;
 
     public Jugador(String nombre, String ip, int posicion) {
         this.nombre = nombre;

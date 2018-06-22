@@ -19,15 +19,13 @@ public class CVeACarcel extends Casilla implements Serializable{
     }
 
     @Override
-    public void alSalir() {
-    //VACIO    
-    }
+    public void alSalir() {}
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         jugador.setCarcel(true);
         jugador.setPosicion(10);
-        
+        servidor.mandarNotificacion(jugador, "Haz caido en \"Ir a la Carcel\"", "Vas a la Carcel");
     }
 
     

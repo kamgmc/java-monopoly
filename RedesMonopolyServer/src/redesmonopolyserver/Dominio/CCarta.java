@@ -1,5 +1,4 @@
 package redesmonopolyserver.Dominio;
-
 import java.io.Serializable;
 import redesmonopolyserver.Comunicacion.Servidor;
 
@@ -11,16 +10,15 @@ public class CCarta extends Casilla implements Serializable{
         super(nombre, posJugadorX, posJUgadorY);
         this.tipo = tipo;
     }
+    
     @Override
-    public void alSalir() {
-     }
+    public void alSalir() {}
 
     @Override
-    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-                
+    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) { 
         if(this.tipo.equals("Fortuna")){
             Carta seleccionada = tablero.getFortuna().get(0);
-            seleccionada.Efecto(tablero, jugador);
+            seleccionada.Efecto(tablero, jugador, servidor);
             tablero.getFortuna().remove(0);
             tablero.getFortuna().add(seleccionada);
             servidor.mandarNotificacion(jugador, "Fortuna", seleccionada.getTexto());
@@ -28,7 +26,7 @@ public class CCarta extends Casilla implements Serializable{
         }
         else{
             Carta seleccionada = tablero.getArca().get(0);
-            seleccionada.Efecto(tablero, jugador);
+            seleccionada.Efecto(tablero, jugador, servidor);
             tablero.getArca().remove(0);
             tablero.getArca().add(seleccionada);
             servidor.mandarNotificacion(jugador, "Arca Comunal", seleccionada.getTexto());

@@ -1,6 +1,7 @@
 package redesmonopolyserver.Dominio;
 
 import java.io.Serializable;
+import redesmonopolyserver.Comunicacion.Servidor;
 
 public abstract class Carta implements Serializable{
     private String texto;
@@ -13,6 +14,6 @@ public abstract class Carta implements Serializable{
         this.texto = texto;
     }
     
-    public abstract void Efecto(Tablero tablero, Jugador jugador);
+    public abstract void Efecto(Tablero tablero, Jugador jugador, Servidor servidor);
     
 }

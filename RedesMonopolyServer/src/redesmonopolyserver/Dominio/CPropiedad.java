@@ -1,13 +1,12 @@
 package redesmonopolyserver.Dominio;
-
 import java.io.Serializable;
 import redesmonopolyserver.Comunicacion.Servidor;
-
 /**
  *
  * @author kamgm
  */
 public class CPropiedad extends Casilla implements Serializable{
+    
     private int numeroCasas;
     private int numeroHoteles;
     private int propietario;
@@ -62,19 +61,18 @@ public class CPropiedad extends Casilla implements Serializable{
     public void setPosCasasY(int posCasasY) {
         this.posCasasY = posCasasY;
     }
-    
-
-    
 
     @Override
-    public void alSalir() {
-        
-    }
+    public void alSalir() {}
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        
+        if(this.propietario < 0){
+            //Preguntar si quiere comprar la propiedad
+        }
+        else{
+            //Pagar la renta al propietario
+            servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en ... debes pagar ...$");
+        }
     }
-
-
 }
