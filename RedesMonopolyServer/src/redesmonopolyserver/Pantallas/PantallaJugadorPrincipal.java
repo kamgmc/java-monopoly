@@ -63,6 +63,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         panelNotificacion.setVisible(false);
         panelRegistro.setVisible(false);
         panelCompra.setVisible(false);
+        panelCarcel.setVisible(false);
         //cliente.solicitarTablero();
         
     }
@@ -100,6 +101,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         jtApellido = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        panelCarcel = new javax.swing.JPanel();
+        carcel = new javax.swing.JPanel();
+        tituloCompra1 = new javax.swing.JLabel();
+        textoPropiedad1 = new javax.swing.JLabel();
+        aceptarNotificacion3 = new javax.swing.JButton();
+        aceptarNotificacion4 = new javax.swing.JButton();
+        aceptarNotificacion5 = new javax.swing.JButton();
+        fondoNotificacion2 = new javax.swing.JLabel();
         panelCompra = new javax.swing.JPanel();
         compra = new javax.swing.JPanel();
         tituloCompra = new javax.swing.JLabel();
@@ -365,6 +374,59 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        panelCarcel.setBackground(new java.awt.Color(205, 230, 208));
+        panelCarcel.setMaximumSize(new java.awt.Dimension(1010, 710));
+        panelCarcel.setMinimumSize(new java.awt.Dimension(1010, 710));
+        panelCarcel.setName(""); // NOI18N
+        panelCarcel.setOpaque(false);
+        panelCarcel.setPreferredSize(new java.awt.Dimension(1010, 710));
+        panelCarcel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        carcel.setOpaque(false);
+        carcel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tituloCompra1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tituloCompra1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloCompra1.setText("Estas en la Carcel");
+        tituloCompra1.setToolTipText("");
+        carcel.add(tituloCompra1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
+
+        textoPropiedad1.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoPropiedad1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoPropiedad1.setText("Selecciona una manera de salir:");
+        carcel.add(textoPropiedad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 250, -1));
+
+        aceptarNotificacion3.setText("Dados");
+        aceptarNotificacion3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarNotificacion3ActionPerformed(evt);
+            }
+        });
+        carcel.add(aceptarNotificacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        aceptarNotificacion4.setText("Pago");
+        aceptarNotificacion4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarNotificacion4ActionPerformed(evt);
+            }
+        });
+        carcel.add(aceptarNotificacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 60, -1));
+
+        aceptarNotificacion5.setText("Carta");
+        aceptarNotificacion5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aceptarNotificacion5ActionPerformed(evt);
+            }
+        });
+        carcel.add(aceptarNotificacion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 60, -1));
+
+        fondoNotificacion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
+        carcel.add(fondoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        panelCarcel.add(carcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
+
+        getContentPane().add(panelCarcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         panelCompra.setBackground(new java.awt.Color(205, 230, 208));
         panelCompra.setMaximumSize(new java.awt.Dimension(1010, 710));
         panelCompra.setMinimumSize(new java.awt.Dimension(1010, 710));
@@ -599,6 +661,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
     private void aceptarNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacionActionPerformed
         panelNotificacion.setVisible(false);
+        if(cliente.getTablero().getJugadores().get(cliente.getPosJugador()).isCarcel()&&cliente.getTablero().isTurno()) panelCarcel.setVisible(true);
     }//GEN-LAST:event_aceptarNotificacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -634,6 +697,18 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         compra.setVisible(false);
     }//GEN-LAST:event_aceptarNotificacion2ActionPerformed
 
+    private void aceptarNotificacion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarNotificacion3ActionPerformed
+
+    private void aceptarNotificacion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarNotificacion4ActionPerformed
+
+    private void aceptarNotificacion5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_aceptarNotificacion5ActionPerformed
+
     
     public void actualizarTablero(Tablero tablero){
         tablero.imprimirTablero();
@@ -654,7 +729,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         mostrarOtrosJugadores(tablero);
         mostrarDado(dado1,tablero.getDado1());
         mostrarDado(dado2,tablero.getDado2());
-        botonJugar.setVisible(tablero.isTurno());
+        botonJugar.setVisible(tablero.isTurno()&&!tablero.getJugadores().get(cliente.getPosJugador()).isCarcel());
         
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
@@ -690,7 +765,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         
         if(tablero.getJugadores().size()>=1){
             piezaJugador1.setVisible(true);
-            piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
+            if(tablero.getJugadores().get(0).isCarcel()){
+                piezaJugador1.setLocation(47,630);
+                 
+            }
+            else{
+                piezaJugador1.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(0).getPosicion()).getPosJUgadorY());
+                 
+            }
             piezaJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(0,0))));
             if(jugadorActual!=0){
                 mostrarEnJugadores(contador,0,tablero.getJugadores().get(0));
@@ -699,8 +781,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         }
         if(tablero.getJugadores().size()>=2){
             piezaJugador2.setVisible(true);
-            piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
-            piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
+            if(tablero.getJugadores().get(1).isCarcel()){
+                piezaJugador2.setLocation(47,630);
+            } else{
+                piezaJugador2.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(1).getPosicion()).getPosJUgadorY());
+            }
+                piezaJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(1,0))));
             if(jugadorActual!=1){
                 mostrarEnJugadores(contador,1,tablero.getJugadores().get(1));
                 contador++;
@@ -709,8 +795,11 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         }
         if(tablero.getJugadores().size()>=3){
             piezaJugador3.setVisible(true);
-            piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
-            piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
+            if(tablero.getJugadores().get(2).isCarcel()){
+                piezaJugador3.setLocation(47,630);
+            } else{
+                piezaJugador3.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(2).getPosicion()).getPosJUgadorY());
+            }piezaJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(2,0))));
             if(jugadorActual!=2){
                 mostrarEnJugadores(contador,2,tablero.getJugadores().get(2));
                 contador++;
@@ -719,8 +808,11 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         }
         if(tablero.getJugadores().size()>=4){
             piezaJugador4.setVisible(true);
-            piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
-            piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
+            if(tablero.getJugadores().get(3).isCarcel()){
+                piezaJugador4.setLocation(47,630);
+            } else{
+                piezaJugador4.setLocation(tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJugadorX(),tablero.getCasillas().get(tablero.getJugadores().get(3).getPosicion()).getPosJUgadorY());
+            }piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(3,0))));
             if(jugadorActual!=3){
                 mostrarEnJugadores(contador,3,tablero.getJugadores().get(3));
                 contador++;
@@ -747,6 +839,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarNotificacion(String titulo, String mensaje){
+        panelCompra.setVisible(false);
+        compra.setVisible(false);
         panelNotificacion.setVisible(true);
         notificacion.setVisible(true);
         tituloNotificacion.setText(titulo);
@@ -754,6 +848,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarCompra(String tipo, String nombre, int precio){
+        panelNotificacion.setVisible(false);
+        notificacion.setVisible(false);
         panelCompra.setVisible(true);
         compra.setVisible(true);
         tituloCompra.setText(tipo+" Disponible");
@@ -850,8 +946,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton aceptarNotificacion;
     private javax.swing.JButton aceptarNotificacion1;
     private javax.swing.JButton aceptarNotificacion2;
+    private javax.swing.JButton aceptarNotificacion3;
+    private javax.swing.JButton aceptarNotificacion4;
+    private javax.swing.JButton aceptarNotificacion5;
     private javax.swing.JPanel areaJugador;
     private javax.swing.JButton botonJugar;
+    private javax.swing.JPanel carcel;
     private javax.swing.JLabel casas;
     private javax.swing.JPanel compra;
     private javax.swing.JLabel dado1;
@@ -862,6 +962,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel fondoNotificacion;
     private javax.swing.JLabel fondoNotificacion1;
+    private javax.swing.JLabel fondoNotificacion2;
     private javax.swing.JLabel hoteles;
     private javax.swing.JLabel imagenJugador;
     private javax.swing.JLabel imagenJugador2;
@@ -886,6 +987,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuario;
     private javax.swing.JTextField jtUsuario2;
     private javax.swing.JPanel notificacion;
+    private javax.swing.JPanel panelCarcel;
     private javax.swing.JPanel panelCompra;
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelLogin;
@@ -900,7 +1002,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel textoNotificacion2;
     private javax.swing.JLabel textoPrecio;
     private javax.swing.JLabel textoPropiedad;
+    private javax.swing.JLabel textoPropiedad1;
     private javax.swing.JLabel tituloCompra;
+    private javax.swing.JLabel tituloCompra1;
     private javax.swing.JLabel tituloLogin;
     private javax.swing.JLabel tituloLogin1;
     private javax.swing.JLabel tituloNotificacion;
