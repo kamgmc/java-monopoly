@@ -2,10 +2,7 @@ package redesmonopolyserver.Dominio;
 import java.io.Serializable;
 import java.util.ArrayList;
 import redesmonopolyserver.Comunicacion.Servidor;
-/**
- *
- * @author kamgm
- */
+
 public class CFerrocarril extends Casilla implements Serializable{
     
     private int propietario;
@@ -38,6 +35,7 @@ public class CFerrocarril extends Casilla implements Serializable{
         if(this.propietario >= 0){
             //Propietario del ferrocarril
             Jugador dueno = tablero.getJugadores().get(this.propietario);
+            
             //Trenes
             ArrayList<CFerrocarril> trenes = new ArrayList();
             trenes.add((CFerrocarril) tablero.getCasillas().get(5));
@@ -52,7 +50,9 @@ public class CFerrocarril extends Casilla implements Serializable{
                     cont++;
                 }
             }
+            
             int montoFinal = 0;
+            
             //Pago dependiendo de la cantidad de trenes
             switch (cont) {
                 case 1:

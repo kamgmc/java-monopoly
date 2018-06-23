@@ -1,15 +1,11 @@
 package redesmonopolyserver.Persistencia;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import redesmonopolyserver.Dominio.*;
 import redesmonopolyserver.Dominio.Propiedad.Color;
 
-/**
- *
- * @author kamgm
- */
 public class Generador {
+    
     public static void generarPropiedades(ArrayList<Propiedad> propiedades,ArrayList<Ferrocarril> ferrocarriles, ArrayList<Servicio> servicios){
         //PROPIEDADES
         propiedades.add(new Propiedad("Avenida Mediterraneo", Color.MARRON, 2, 60, 50, 50, 30, 10, 30, 90, 160, 250, 0, 0, 0, 0));

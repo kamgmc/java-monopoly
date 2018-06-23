@@ -15,7 +15,5 @@ public class CGo extends Casilla implements Serializable{
     public void alSalir() {}
 
     @Override
-    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        
-    }    
+    public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {}    
 }

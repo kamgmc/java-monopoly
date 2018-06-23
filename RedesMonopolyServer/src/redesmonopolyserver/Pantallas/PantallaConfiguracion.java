@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package redesmonopolyserver.Pantallas;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.logging.Level;
@@ -12,15 +6,8 @@ import java.util.logging.Logger;
 import javax.swing.UIManager;
 import redesmonopolyserver.Comunicacion.Cliente;
 
-/**
- *
- * @author alexd
- */
 public class PantallaConfiguracion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PantallaConfiguracionCliente
-     */
     public PantallaConfiguracion() {
         try{
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
