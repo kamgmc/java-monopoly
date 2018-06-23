@@ -100,6 +100,17 @@ public class Servidor {
         }
     }
     
+    public void mandarPosibleCompra(Jugador j,String tipo, String propiedad){
+        int pos = tablero.obtenerJugador(j.getNombre());
+        ConexionUsuario c = this.conexiones.get(pos);
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(6,tipo,propiedad));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void mandarTablero(int jugadorTurno){
         int cont=0;
         for(ConexionUsuario c:conexiones){

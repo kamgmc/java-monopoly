@@ -250,4 +250,25 @@ public class Tablero implements Serializable{
         });  
     }
     
+    public Propiedad buscarPropiedad(String nombre){
+        for(Propiedad p : propiedades){
+            if(p.getNombre().equals(nombre)) return p;
+        }
+        return null;
+    }
+    
+    public Ferrocarril buscarFerrocarril(String nombre){
+        for(Ferrocarril p : ferrocarriles){
+            if(p.getNombre().equals(nombre)) return p;
+        }
+        return null;
+    }
+    
+    public Servicio buscarServicio(String nombre){
+        for(Servicio p : servicios){
+            if(p.getNombre().equals(nombre)) return p;
+        }
+        return null;
+    }
+    
 }

@@ -110,7 +110,7 @@ public class CFerrocarril extends Casilla implements Serializable{
             servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Ferrocarril");
         }
         else{
-            //Comprar propiedad
+            servidor.mandarPosibleCompra(jugador, "Ferrocarril", this.getFerrocarril(tablero).getNombre());
         }
     }
 }

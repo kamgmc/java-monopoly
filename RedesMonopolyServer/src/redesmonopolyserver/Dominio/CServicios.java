@@ -71,6 +71,9 @@ public class CServicios extends Casilla implements Serializable{
                 servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Servicios");
             }
         }
+        else{
+            servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
+        }
         
     }
 
