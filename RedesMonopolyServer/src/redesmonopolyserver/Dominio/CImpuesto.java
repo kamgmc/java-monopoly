@@ -21,7 +21,7 @@ public class CImpuesto extends Casilla implements Serializable{
         }
         else{
             jugador.setDinero(jugador.getDinero() - this.monto);
-            servidor.mandarNotificacion(jugador, "Cobro de impuestos", "Por impuestos pagas: "+this.monto);
+            servidor.mandarNotificacion(jugador, "Cobro de impuestos", "Por impuestos pagas: " + this.monto);
         }
     }
 }
