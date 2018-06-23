@@ -61,6 +61,13 @@ public class CPropiedad extends Casilla implements Serializable{
     public void setPosCasasY(int posCasasY) {
         this.posCasasY = posCasasY;
     }
+    
+    public Propiedad getPropiedad(Tablero t){
+        for(Propiedad p : t.getPropiedades()){
+            if(p.getNombre().equals(this.getNombre())) return p;
+        }
+        return null;
+    }
 
     @Override
     public void alSalir() {}

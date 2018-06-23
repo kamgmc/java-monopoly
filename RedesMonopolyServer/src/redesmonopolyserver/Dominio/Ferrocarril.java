@@ -18,6 +18,7 @@ public class Ferrocarril implements Serializable{
     private int tresFerrrocarril;
     private int cuatroFerrocarril;
     private int hipoteca;
+    private int precio;
 
     public Ferrocarril(String nombre, int unFerrocarril, int dosFerrocarril, int tresFerrrocarril, int cuatroFerrocarril, int hipoteca) {
         this.nombre = nombre;
@@ -26,5 +27,64 @@ public class Ferrocarril implements Serializable{
         this.tresFerrrocarril = tresFerrrocarril;
         this.cuatroFerrocarril = cuatroFerrocarril;
         this.hipoteca = hipoteca;
+        this.precio = 200;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public int getUnFerrocarril() {
+        return unFerrocarril;
+    }
+
+    public void setUnFerrocarril(int unFerrocarril) {
+        this.unFerrocarril = unFerrocarril;
+    }
+
+    public int getDosFerrocarril() {
+        return dosFerrocarril;
+    }
+
+    public void setDosFerrocarril(int dosFerrocarril) {
+        this.dosFerrocarril = dosFerrocarril;
+    }
+
+    public int getTresFerrrocarril() {
+        return tresFerrrocarril;
+    }
+
+    public void setTresFerrrocarril(int tresFerrrocarril) {
+        this.tresFerrrocarril = tresFerrrocarril;
+    }
+
+    public int getCuatroFerrocarril() {
+        return cuatroFerrocarril;
+    }
+
+    public void setCuatroFerrocarril(int cuatroFerrocarril) {
+        this.cuatroFerrocarril = cuatroFerrocarril;
+    }
+
+    public int getHipoteca() {
+        return hipoteca;
+    }
+
+    public void setHipoteca(int hipoteca) {
+        this.hipoteca = hipoteca;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+    
+    
 }

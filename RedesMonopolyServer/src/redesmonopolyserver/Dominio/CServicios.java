@@ -14,6 +14,18 @@ public class CServicios extends Casilla implements Serializable{
         return propietario;
     }
 
+    public void setPropietario(int propietario) {
+        this.propietario = propietario;
+    }
+    
+    public Servicio getServicio(Tablero t){
+        for(Servicio s:t.getServicios()){
+                if(s.getNombre().equals(this.getNombre())) return s;
+        }
+        return null;
+    }
+
+    
     @Override
     public void alSalir() {}
 

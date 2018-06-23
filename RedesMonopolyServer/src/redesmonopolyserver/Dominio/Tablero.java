@@ -14,6 +14,9 @@ public class Tablero implements Serializable{
     private ArrayList<Jugador> Jugadores;
     private ArrayList<Carta> fortuna;
     private ArrayList<Carta> arca;
+    private ArrayList<Propiedad> propiedades;
+    private ArrayList<Ferrocarril> ferrocarriles;
+    private ArrayList<Servicio> servicios;
     private int dado1;
     private int dado2;
     private boolean turno;
@@ -24,6 +27,10 @@ public class Tablero implements Serializable{
         fortuna = new ArrayList<Carta>();
         arca = new ArrayList<Carta>();
         Generador.generarTarjetas(fortuna, arca);
+        propiedades = new ArrayList<Propiedad>();
+        ferrocarriles = new ArrayList<Ferrocarril>();
+        servicios = new ArrayList<Servicio>();
+        Generador.generarPropiedades(propiedades, ferrocarriles, servicios);
         turno = false;
         dado1 = 6;
         dado2 = 6;
@@ -60,7 +67,32 @@ public class Tablero implements Serializable{
     public void setJugadores(ArrayList<Jugador> Jugadores) {
         this.Jugadores = Jugadores;
     }
+
+    public ArrayList<Propiedad> getPropiedades() {
+        return propiedades;
+    }
+
+    public void setPropiedades(ArrayList<Propiedad> propiedades) {
+        this.propiedades = propiedades;
+    }
+
+    public ArrayList<Ferrocarril> getFerrocarriles() {
+        return ferrocarriles;
+    }
+
+    public void setFerrocarriles(ArrayList<Ferrocarril> ferrocarriles) {
+        this.ferrocarriles = ferrocarriles;
+    }
+
+    public ArrayList<Servicio> getServicios() {
+        return servicios;
+    }
+
+    public void setServicios(ArrayList<Servicio> servicios) {
+        this.servicios = servicios;
+    }
         
+    
     public int obtenerJugador(String nombre){
         int i = 0;
         for(Jugador j: Jugadores){
@@ -97,8 +129,7 @@ public class Tablero implements Serializable{
     public void imprimirTablero(){        
         System.out.println("Estado del tablero:");
         for(Jugador j:Jugadores){
-            System.out.println("\tJuagador: "+j.getNombre()+" en casilla: "+j.getPosicion());
-            
+            System.out.println("\tJuagador: "+j.getNombre()+" en casilla: "+j.getPosicion());    
         }
     }
     
@@ -145,6 +176,26 @@ public class Tablero implements Serializable{
             jugadores.add(jugadorJson);
         }
         j.add("jugadores", jugadores);
+        JsonArray casillas = new JsonArray();
+        for(Casilla casilla :this.Casillas){
+            JsonObject casillaJson = new JsonObject();
+            casillaJson.addProperty("nombre",casilla.getNombre());
+            if(casilla instanceof CCarcel && casilla instanceof CGo && casilla instanceof CCarta && casilla instanceof CVeACarcel && casilla instanceof CImpuesto && casilla instanceof CLibre)
+                casillaJson.addProperty("tipo","generico");
+            else if(casilla instanceof CFerrocarril){
+                casillaJson.addProperty("propietario",((CFerrocarril) casilla).getPropietario());
+            }
+            else if(casilla instanceof CPropiedad){
+                casillaJson.addProperty("propietario",((CPropiedad) casilla).getPropietario());
+                casillaJson.addProperty("casas",((CPropiedad) casilla).getNumeroCasas());
+                casillaJson.addProperty("hoteles",((CPropiedad) casilla).getNumeroHoteles());
+            }
+            else if(casilla instanceof CServicios){
+                casillaJson.addProperty("propietario",((CServicios) casilla).getPropietario());
+            }
+            casillas.add(casillaJson);
+        }
+        j.add("casillas", casillas);
         return j.toString();
     }
     
@@ -169,7 +220,25 @@ public class Tablero implements Serializable{
             jClase.setCasas(jObject.get("casas").getAsInt());
             jClase.setHoteles(jObject.get("hoteles").getAsInt());
             this.Jugadores.add(jClase);
-            
+        }
+        JsonArray casillas = j.getAsJsonArray("casillas");
+        int i = 0;
+        for(Casilla casilla :this.Casillas){
+            JsonObject casillaJson = casillas.get(i).getAsJsonObject();
+            i++;
+            if(casilla instanceof CCarcel && casilla instanceof CGo && casilla instanceof CCarta && casilla instanceof CVeACarcel && casilla instanceof CImpuesto && casilla instanceof CLibre)
+                ;
+            else if(casilla instanceof CFerrocarril){
+                ((CFerrocarril) casilla).setPropietario(casillaJson.get("propietario").getAsInt());
+            }
+            else if(casilla instanceof CPropiedad){
+                ((CPropiedad) casilla).setPropietario(casillaJson.get("propietario").getAsInt());
+                ((CPropiedad) casilla).setNumeroCasas(casillaJson.get("casas").getAsInt());
+                ((CPropiedad) casilla).setNumeroHoteles(casillaJson.get("hoteles").getAsInt());
+            }
+            else if(casilla instanceof CServicios){
+                ((CServicios) casilla).setPropietario(casillaJson.get("propietario").getAsInt());
+            }
         }
     }
     

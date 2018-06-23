@@ -22,6 +22,13 @@ public class CFerrocarril extends Casilla implements Serializable{
     public void setPropietario(int propietario) {
         this.propietario = propietario;
     }
+    
+    public Ferrocarril getFerrocarril(Tablero t){
+        for (Ferrocarril f : t.getFerrocarriles()){
+            if(f.getNombre().equals(this.getNombre())) return f;
+        }
+        return null;
+    }
 
     @Override
     public void alSalir() {}
