@@ -73,6 +73,7 @@ public class CServicios extends Casilla implements Serializable{
         }
         else{
             servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
+            servidor.esperar();
         }
         
     }

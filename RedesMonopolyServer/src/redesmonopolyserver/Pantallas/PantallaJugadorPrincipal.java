@@ -62,7 +62,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         tableroYFondo.setVisible(false);
         panelNotificacion.setVisible(false);
         panelRegistro.setVisible(false);
-        panelNotificacion1.setVisible(false);
+        panelCompra.setVisible(false);
         //cliente.solicitarTablero();
         
     }
@@ -100,9 +100,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         jtApellido = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        panelNotificacion1 = new javax.swing.JPanel();
-        notificacion1 = new javax.swing.JPanel();
-        tituloNotificacion1 = new javax.swing.JLabel();
+        panelCompra = new javax.swing.JPanel();
+        compra = new javax.swing.JPanel();
+        tituloCompra = new javax.swing.JLabel();
         textoPropiedad = new javax.swing.JLabel();
         textoPrecio = new javax.swing.JLabel();
         aceptarNotificacion1 = new javax.swing.JButton();
@@ -365,32 +365,32 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         getContentPane().add(panelLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        panelNotificacion1.setBackground(new java.awt.Color(205, 230, 208));
-        panelNotificacion1.setMaximumSize(new java.awt.Dimension(1010, 710));
-        panelNotificacion1.setMinimumSize(new java.awt.Dimension(1010, 710));
-        panelNotificacion1.setName(""); // NOI18N
-        panelNotificacion1.setOpaque(false);
-        panelNotificacion1.setPreferredSize(new java.awt.Dimension(1010, 710));
-        panelNotificacion1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelCompra.setBackground(new java.awt.Color(205, 230, 208));
+        panelCompra.setMaximumSize(new java.awt.Dimension(1010, 710));
+        panelCompra.setMinimumSize(new java.awt.Dimension(1010, 710));
+        panelCompra.setName(""); // NOI18N
+        panelCompra.setOpaque(false);
+        panelCompra.setPreferredSize(new java.awt.Dimension(1010, 710));
+        panelCompra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        notificacion1.setOpaque(false);
-        notificacion1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        compra.setOpaque(false);
+        compra.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tituloNotificacion1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        tituloNotificacion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloNotificacion1.setText("Casilla Disponible");
-        tituloNotificacion1.setToolTipText("");
-        notificacion1.add(tituloNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
+        tituloCompra.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tituloCompra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloCompra.setText("Casilla Disponible");
+        tituloCompra.setToolTipText("");
+        compra.add(tituloCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
 
         textoPropiedad.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
         textoPropiedad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoPropiedad.setText(".");
-        notificacion1.add(textoPropiedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
+        compra.add(textoPropiedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
 
         textoPrecio.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
         textoPrecio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoPrecio.setText(".");
-        notificacion1.add(textoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
+        compra.add(textoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
 
         aceptarNotificacion1.setText("No Gracias");
         aceptarNotificacion1.addActionListener(new java.awt.event.ActionListener() {
@@ -398,7 +398,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
                 aceptarNotificacion1ActionPerformed(evt);
             }
         });
-        notificacion1.add(aceptarNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        compra.add(aceptarNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
         aceptarNotificacion2.setText("Comprar");
         aceptarNotificacion2.addActionListener(new java.awt.event.ActionListener() {
@@ -406,14 +406,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
                 aceptarNotificacion2ActionPerformed(evt);
             }
         });
-        notificacion1.add(aceptarNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 80, -1));
+        compra.add(aceptarNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 80, -1));
 
         fondoNotificacion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
-        notificacion1.add(fondoNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        compra.add(fondoNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        panelNotificacion1.add(notificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
+        panelCompra.add(compra, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, 270, 150));
 
-        getContentPane().add(panelNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(panelCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         panelNotificacion.setBackground(new java.awt.Color(205, 230, 208));
         panelNotificacion.setMaximumSize(new java.awt.Dimension(1010, 710));
@@ -624,11 +624,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jtClave2ActionPerformed
 
     private void aceptarNotificacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion1ActionPerformed
-        // TODO add your handling code here:
+        panelCompra.setVisible(false);
+        compra.setVisible(false);
     }//GEN-LAST:event_aceptarNotificacion1ActionPerformed
 
     private void aceptarNotificacion2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion2ActionPerformed
-        // TODO add your handling code here:
+        cliente.solicitarCompra();
+        panelCompra.setVisible(false);
+        compra.setVisible(false);
     }//GEN-LAST:event_aceptarNotificacion2ActionPerformed
 
     
@@ -750,6 +753,14 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         mostrarMensajeNotificacion(mensaje);   
     }
     
+    public void mostrarCompra(String tipo, String nombre, int precio){
+        panelCompra.setVisible(true);
+        compra.setVisible(true);
+        tituloCompra.setText(tipo+" Disponible");
+        textoPropiedad.setText(nombre);
+        textoPrecio.setText("Valor: "+precio);
+    }
+    
     public void mostrarErrorLogin(String mensaje){
         this.errorLogueo.setText(mensaje);
     }
@@ -842,6 +853,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel areaJugador;
     private javax.swing.JButton botonJugar;
     private javax.swing.JLabel casas;
+    private javax.swing.JPanel compra;
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
     private javax.swing.JLabel dinero;
@@ -874,11 +886,10 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField jtUsuario;
     private javax.swing.JTextField jtUsuario2;
     private javax.swing.JPanel notificacion;
-    private javax.swing.JPanel notificacion1;
+    private javax.swing.JPanel panelCompra;
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelNotificacion;
-    private javax.swing.JPanel panelNotificacion1;
     private javax.swing.JPanel panelRegistro;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
@@ -889,10 +900,10 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel textoNotificacion2;
     private javax.swing.JLabel textoPrecio;
     private javax.swing.JLabel textoPropiedad;
+    private javax.swing.JLabel tituloCompra;
     private javax.swing.JLabel tituloLogin;
     private javax.swing.JLabel tituloLogin1;
     private javax.swing.JLabel tituloNotificacion;
-    private javax.swing.JLabel tituloNotificacion1;
     // End of variables declaration//GEN-END:variables
 
 }

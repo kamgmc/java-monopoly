@@ -15,6 +15,7 @@ import redesmonopolyserver.Persistencia.Usuario;
 public class Solicitud implements Serializable{
     String jugador;
     int tipo;
+    String nombrePropiedad;
 
     public Solicitud(String jugador, int tipo) {
         this.jugador = jugador;
@@ -36,6 +37,16 @@ public class Solicitud implements Serializable{
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
+
+    public String getNombrePropiedad() {
+        return nombrePropiedad;
+    }
+
+    public void setNombrePropiedad(String nombrePropiedad) {
+        this.nombrePropiedad = nombrePropiedad;
+    }
+    
+    
 
     
     

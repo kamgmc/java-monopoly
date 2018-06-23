@@ -13,6 +13,9 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.*;
+import redesmonopolyserver.Dominio.CFerrocarril;
+import redesmonopolyserver.Dominio.CPropiedad;
+import redesmonopolyserver.Dominio.CServicios;
 import redesmonopolyserver.Dominio.Carta;
 import redesmonopolyserver.Dominio.Casilla;
 import redesmonopolyserver.Dominio.Jugador;
@@ -25,6 +28,7 @@ public class Servidor {
         Tablero tablero;
         Socket socket;
         int numJugadores = 2;
+        boolean esperando;
     private int contadorTurnos;
         
     public Servidor() throws IOException {
@@ -167,8 +171,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            tablero.setDado1(1);
-            tablero.setDado2(0);
+            tablero.setDado1(3);
+            tablero.setDado2(2);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);
@@ -196,6 +200,30 @@ public class Servidor {
 
 
                 tablero.imprimirTablero();  
+    }
+    
+    public void comprar(Solicitud s, ConexionUsuario c){
+        int jugador = tablero.obtenerJugador(s.jugador);
+        Jugador j = tablero.getJugadores().get(jugador);
+        int pos = tablero.posPropiedad(s.nombrePropiedad);
+        Casilla casilla = tablero.getCasillas().get(pos);
+        if(casilla instanceof CPropiedad){
+            ((CPropiedad)casilla).setPropietario(jugador);
+            mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
+        }
+        if(casilla instanceof CPropiedad){
+            ((CPropiedad)casilla).setPropietario(jugador);
+            mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
+        }
+        if(casilla instanceof CFerrocarril){
+            ((CFerrocarril)casilla).setPropietario(jugador);
+            mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
+        }
+        if(casilla instanceof CServicios){
+            ((CServicios)casilla).setPropietario(jugador);
+            mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
+        }
+        
     }
     
     public void intentarLoguear(Solicitud s, ConexionUsuario c){
@@ -242,6 +270,9 @@ public class Servidor {
             // El jugador intento registrarse
             intentarRegistrarse(s,c);
         }
+        else if (s.tipo==5){
+            comprar(s,c);
+        }
     }
     
     public int siguienteJugador(int jugadorAnterior){
@@ -287,6 +318,16 @@ public class Servidor {
                 }
             }
         }
+    }
+    
+    public void esperar(){
+        try {
+                
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 }
 

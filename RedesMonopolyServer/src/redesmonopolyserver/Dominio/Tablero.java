@@ -271,4 +271,14 @@ public class Tablero implements Serializable{
         return null;
     }
     
+    public int posPropiedad(String nombre){
+        int i=0;
+        for(Casilla c: this.Casillas){
+            if(c.getNombre().equals(nombre))
+                return i;
+            i++;
+        }
+        return i;
+    }
+    
 }

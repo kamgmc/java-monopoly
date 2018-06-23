@@ -76,6 +76,7 @@ public class CPropiedad extends Casilla implements Serializable{
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         if(this.propietario < 0){
             servidor.mandarPosibleCompra(jugador, "Propiedad", this.getPropiedad(tablero).getNombre());
+            servidor.esperar();
         }
         else{
             //Pagar la renta al propietario

@@ -9,7 +9,11 @@ import java.io.*;
 import java.net.Socket;
 import java.util.*;
 import java.util.logging.*;
+import redesmonopolyserver.Dominio.Casilla;
+import redesmonopolyserver.Dominio.Ferrocarril;
 import redesmonopolyserver.Dominio.Jugador;
+import redesmonopolyserver.Dominio.Propiedad;
+import redesmonopolyserver.Dominio.Servicio;
 import redesmonopolyserver.Dominio.Tablero;
 import redesmonopolyserver.Pantallas.PantallaJugadorPrincipal;
 import redesmonopolyserver.Persistencia.Generador;
@@ -25,6 +29,8 @@ public class Cliente{
     private PantallaJugadorPrincipal pantalla;
     private Tablero tablero;
     public boolean enUso=false;
+    private String tipoCompra;
+    private String compra;
     
     public Cliente(String ip,String nombre,String server, int puerto) {
         this.ip=ip;
@@ -107,6 +113,17 @@ public class Cliente{
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
+    
+    public void solicitarCompra(){
+        Solicitud s = new Solicitud(nombre,5);
+        s.setNombrePropiedad(compra);
+        try {
+            dos.flush();
+            dos.writeObject(s);
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
        
     public void procesarRespuesta(Mensaje m){
         if(m.tipo==0){
@@ -134,7 +151,35 @@ public class Cliente{
             // Se registro un usuario
             if(pantalla!=null) pantalla.finalizarRegistro();
         }
+        if(m.tipo==6){
+            // La casilla se encuentra disponible para compra
+            habilitarCompra(m);
+        }
     }
+    
+    public void habilitarCompra(Mensaje m){
+        if(m.titulo.equals("Propiedad")){
+            Propiedad p = tablero.buscarPropiedad(m.mensaje);
+            if(pantalla!=null) pantalla.mostrarCompra("Propiedad", p.getNombre(), p.getPrecioCompra());
+            tipoCompra="Propiedad";
+            compra=p.getNombre();
+        }
+        else if(m.titulo.equals("Ferrocarril")){
+            Ferrocarril f = tablero.buscarFerrocarril(m.mensaje);
+            if(pantalla!=null) pantalla.mostrarCompra("Ferrocarril", f.getNombre(), f.getPrecio());
+            tipoCompra="Ferrocarril";
+            compra=f.getNombre();
+        }
+        else if(m.titulo.equals("Servicio")){
+            Servicio s = tablero.buscarServicio(m.mensaje);
+            if(pantalla!=null) pantalla.mostrarCompra("Servicio", s.getNombre(), s.getPrecio());
+            tipoCompra="Servicio";
+            compra=s.getNombre();
+        }
+    
+    }
+    
+    
             
     public PantallaJugadorPrincipal getPantalla() {
         return pantalla;

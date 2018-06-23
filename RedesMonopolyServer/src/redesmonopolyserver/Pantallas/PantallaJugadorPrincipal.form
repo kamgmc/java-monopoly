@@ -421,7 +421,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="panelNotificacion1">
+    <Container class="javax.swing.JPanel" name="panelCompra">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="d0" green="e6" red="cd" type="rgb"/>
@@ -448,7 +448,7 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="notificacion1">
+        <Container class="javax.swing.JPanel" name="compra">
           <Properties>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
@@ -462,7 +462,7 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="tituloNotificacion1">
+            <Component class="javax.swing.JLabel" name="tituloCompra">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Roboto" size="18" style="1"/>

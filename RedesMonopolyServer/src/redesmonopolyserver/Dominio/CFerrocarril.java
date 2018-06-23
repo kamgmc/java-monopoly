@@ -111,6 +111,7 @@ public class CFerrocarril extends Casilla implements Serializable{
         }
         else{
             servidor.mandarPosibleCompra(jugador, "Ferrocarril", this.getFerrocarril(tablero).getNombre());
+            servidor.esperar();
         }
     }
 }
