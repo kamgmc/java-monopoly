@@ -64,14 +64,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         imagenJugador4.setVisible(false);
         dinero.setVisible(false);
         imagenJugador.setVisible(false);
-        casas.setVisible(false);
-        hoteles.setVisible(false);
         tableroYFondo.setVisible(false);
         panelNotificacion.setVisible(false);
         panelRegistro.setVisible(false);
         panelCompra.setVisible(false);
         panelCarcel.setVisible(false);
         panelFin.setVisible(false);
+        panelVender.setVisible(false);
         //cliente.solicitarTablero();
         
     }
@@ -141,8 +140,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         areaJugador = new javax.swing.JPanel();
         imagenJugador = new javax.swing.JLabel();
         dinero = new javax.swing.JLabel();
-        hoteles = new javax.swing.JLabel();
-        casas = new javax.swing.JLabel();
         imagenJugador2 = new javax.swing.JLabel();
         imagenJugador3 = new javax.swing.JLabel();
         imagenJugador4 = new javax.swing.JLabel();
@@ -150,6 +147,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador2 = new javax.swing.JLabel();
         piezaJugador3 = new javax.swing.JLabel();
         piezaJugador4 = new javax.swing.JLabel();
+        panelVender = new javax.swing.JPanel();
+        tituloNotificacion1 = new javax.swing.JLabel();
+        textoNotificacion1 = new javax.swing.JLabel();
+        textoVenta = new javax.swing.JLabel();
+        vender1 = new javax.swing.JButton();
+        vender = new javax.swing.JButton();
+        fondoNotificacion3 = new javax.swing.JLabel();
         scroll = new javax.swing.JScrollPane();
         panelPropiedades = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
@@ -418,6 +422,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         textoPropiedad1.setText("Selecciona una manera de salir:");
         carcel.add(textoPropiedad1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 250, -1));
 
+        aceptarNotificacion3.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         aceptarNotificacion3.setText("Dados");
         aceptarNotificacion3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -426,14 +431,16 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         });
         carcel.add(aceptarNotificacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
-        aceptarNotificacion4.setText("Pago");
+        aceptarNotificacion4.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        aceptarNotificacion4.setText("Paga $50");
         aceptarNotificacion4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarNotificacion4ActionPerformed(evt);
             }
         });
-        carcel.add(aceptarNotificacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 60, -1));
+        carcel.add(aceptarNotificacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 80, -1));
 
+        aceptarNotificacion5.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         aceptarNotificacion5.setText("Carta");
         aceptarNotificacion5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,6 +483,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         textoPrecio.setText(".");
         compra.add(textoPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
 
+        aceptarNotificacion1.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         aceptarNotificacion1.setText("No Gracias");
         aceptarNotificacion1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -484,6 +492,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         });
         compra.add(aceptarNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
 
+        aceptarNotificacion2.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         aceptarNotificacion2.setText("Comprar");
         aceptarNotificacion2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -525,6 +534,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         textoNotificacion2.setText(".");
         notificacion.add(textoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
 
+        aceptarNotificacion.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         aceptarNotificacion.setText("Aceptar");
         aceptarNotificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,6 +558,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         tableroYFondo.setPreferredSize(new java.awt.Dimension(1010, 710));
         tableroYFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        botonJugar.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
         botonJugar.setText("Jugar");
         botonJugar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -575,12 +586,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         dinero.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         dinero.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Dinero.png"))); // NOI18N
         dinero.setText("0");
-
-        hoteles.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HotelG.png"))); // NOI18N
-        hoteles.setText("0");
-
-        casas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/CasaG.png"))); // NOI18N
-        casas.setText("0");
 
         imagenJugador2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         imagenJugador2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -610,39 +615,32 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         areaJugador.setLayout(areaJugadorLayout);
         areaJugadorLayout.setHorizontalGroup(
             areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(areaJugadorLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(imagenJugador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaJugadorLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(imagenJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(imagenJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(imagenJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(areaJugadorLayout.createSequentialGroup()
                 .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(areaJugadorLayout.createSequentialGroup()
-                        .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(casas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(hoteles, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
+                        .addComponent(imagenJugador))
                     .addGroup(areaJugadorLayout.createSequentialGroup()
-                        .addComponent(imagenJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(imagenJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(imagenJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                        .addGap(61, 61, 61)
+                        .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         areaJugadorLayout.setVerticalGroup(
             areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(areaJugadorLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(imagenJugador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(dinero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(hoteles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(casas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(dinero)
+                .addGap(16, 16, 16)
                 .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(imagenJugador2)
                     .addComponent(imagenJugador3)
@@ -663,6 +661,47 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
         piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DedalP.png"))); // NOI18N
         tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, -1));
+
+        panelVender.setOpaque(false);
+        panelVender.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        tituloNotificacion1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        tituloNotificacion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloNotificacion1.setText("Venta");
+        panelVender.add(tituloNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 250, -1));
+
+        textoNotificacion1.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoNotificacion1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoNotificacion1.setText("Deseas Vender");
+        panelVender.add(textoNotificacion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 250, -1));
+
+        textoVenta.setFont(new java.awt.Font("Roboto", 1, 11)); // NOI18N
+        textoVenta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoVenta.setText(".");
+        panelVender.add(textoVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 250, -1));
+
+        vender1.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        vender1.setText("No");
+        vender1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vender1ActionPerformed(evt);
+            }
+        });
+        panelVender.add(vender1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, -1, -1));
+
+        vender.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
+        vender.setText("Si");
+        vender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                venderActionPerformed(evt);
+            }
+        });
+        panelVender.add(vender, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, -1, -1));
+
+        fondoNotificacion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
+        panelVender.add(fondoNotificacion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        tableroYFondo.add(panelVender, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 500, 270, 150));
 
         scroll.setOpaque(false);
 
@@ -733,6 +772,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         cliente.solicitarCompra();
         panelCompra.setVisible(false);
         compra.setVisible(false);
+        cliente.solicitarTablero();
     }//GEN-LAST:event_aceptarNotificacion2ActionPerformed
 
     private void aceptarNotificacion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion3ActionPerformed
@@ -747,6 +787,20 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_aceptarNotificacion5ActionPerformed
 
+    private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
+        if(cliente.getTablero().isTurno()){
+            cliente.solicitarVender(textoVenta.getText());
+        }
+        panelVender.setVisible(false);
+        textoVenta.setText("");
+        cliente.solicitarTablero();
+    }//GEN-LAST:event_venderActionPerformed
+
+    private void vender1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vender1ActionPerformed
+        panelVender.setVisible(false);
+        textoVenta.setText("");
+    }//GEN-LAST:event_vender1ActionPerformed
+
     
     public void actualizarTablero(Tablero tablero){
         tablero.imprimirTablero();
@@ -755,13 +809,9 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         if(tablero.getJugadores().size()>=1){
             dinero.setVisible(true);
             imagenJugador.setVisible(true);
-            casas.setVisible(true);
-            hoteles.setVisible(true);
             dinero.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getDinero()));
             imagenJugador.setText(cliente.getNombre());
             imagenJugador.setIcon(new javax.swing.ImageIcon(getClass().getResource(mostrarIcono(cliente.getPosJugador(),3))));
-            casas.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getCasas()));
-            hoteles.setText(String.valueOf(tablero.getJugadores().get(cliente.getPosJugador()).getHoteles()));
         
         }
         mostrarOtrosJugadores(tablero);
@@ -997,7 +1047,11 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
             else if(casilla instanceof CServicios){
                 nuevaPropiedad.setIcon(new javax.swing.ImageIcon(getClass().getResource(((CServicios)casilla).getTarjeta())));
             }
-            
+            nuevaPropiedad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                    ofrecerVenta(casilla.getNombre());
+                }
+            });
             nuevosLabel.add(nuevaPropiedad);
         }
         for(JLabel j: nuevosLabel){
@@ -1013,6 +1067,23 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         panelPropiedades.setLayout(PanelManoLayout);
     }
     
+    
+    public void ofrecerVenta(String propiedad){
+        if(cliente.getTablero().isTurno()){
+            panelVender.setVisible(true);
+            textoVenta.setText(propiedad);
+        }
+    }
+    
+    public void cancelarVenta(){
+
+    }
+    
+    public void vender(){
+             
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton aceptarNotificacion;
@@ -1024,7 +1095,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel areaJugador;
     private javax.swing.JButton botonJugar;
     private javax.swing.JPanel carcel;
-    private javax.swing.JLabel casas;
     private javax.swing.JPanel compra;
     private javax.swing.JLabel dado1;
     private javax.swing.JLabel dado2;
@@ -1036,7 +1106,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel fondoNotificacion;
     private javax.swing.JLabel fondoNotificacion1;
     private javax.swing.JLabel fondoNotificacion2;
-    private javax.swing.JLabel hoteles;
+    private javax.swing.JLabel fondoNotificacion3;
     private javax.swing.JLabel imagenJugador;
     private javax.swing.JLabel imagenJugador2;
     private javax.swing.JLabel imagenJugador3;
@@ -1067,6 +1137,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelNotificacion;
     private javax.swing.JPanel panelPropiedades;
     private javax.swing.JPanel panelRegistro;
+    private javax.swing.JPanel panelVender;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;
@@ -1074,15 +1145,20 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane scroll;
     private javax.swing.JPanel tableroYFondo;
     private javax.swing.JLabel textoNotificacion;
+    private javax.swing.JLabel textoNotificacion1;
     private javax.swing.JLabel textoNotificacion2;
     private javax.swing.JLabel textoPrecio;
     private javax.swing.JLabel textoPropiedad;
     private javax.swing.JLabel textoPropiedad1;
+    private javax.swing.JLabel textoVenta;
     private javax.swing.JLabel tituloCompra;
     private javax.swing.JLabel tituloCompra1;
     private javax.swing.JLabel tituloLogin;
     private javax.swing.JLabel tituloLogin1;
     private javax.swing.JLabel tituloNotificacion;
+    private javax.swing.JLabel tituloNotificacion1;
+    private javax.swing.JButton vender;
+    private javax.swing.JButton vender1;
     // End of variables declaration//GEN-END:variables
 
 }
