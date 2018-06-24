@@ -185,7 +185,7 @@ public class Servidor {
             tablero.getCasillas().get(posFinal).alLlegar(tablero, j, this);
             if (tablero.getDado1() != tablero.getDado2()) {
                 mandarTablero(siguienteJugador(jugador));
-                contadorTurnos =0;
+                contadorTurnos = 0;
             }
             else 
                 {
@@ -328,6 +328,58 @@ public class Servidor {
                 Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
             }
         
+    }
+    
+    public void salirCarcelTarjeta(Tablero tablero, Jugador jugador){
+        if(!jugador.isPerdio()){
+            if(jugador.getCarcelLibre() > 0){
+                jugador.setCarcelLibre(jugador.getCarcelLibre() - 1);
+                jugador.setCarcel(false);
+                this.mandarNotificacion(jugador, "Sales Gratis de la Carcel", "Haz usado tu carta para salir de la carcel gratis.");
+            }
+            else
+                this.mandarNotificacion(jugador, "Sigues en la carcel", "No tienes cartas para salir de la carcel.");
+        }
+    }
+    
+    public void salirCarcelPagando(Tablero tablero, Jugador jugador){
+        if(!jugador.isPerdio()){
+            if(jugador.getDinero() - 50 <= 0){
+                jugador.setDinero(0);
+                jugador.setCarcel(false);
+                jugador.setPerdio(true);
+                this.mandarNotificacion(jugador, "Pago de Fianza", "No haz tenido suficiente dinero para pagar la carcel.");
+            }
+            else{
+                jugador.setDinero(jugador.getDinero() - 50);
+                jugador.setCarcel(false);
+                this.mandarNotificacion(jugador, "Pagas Fianza", "Haz salido de la carcel pagando la fianza.");
+            }
+        }
+    }
+    
+    public void salirCarcelDados(Tablero tablero, Jugador jugador){
+        if(!jugador.isPerdio()){
+            int posFinal = 0;
+            tablero.setDado1((int)(1+Math.random()*6));
+            tablero.setDado2((int)(1+Math.random()*6));
+            if(tablero.getDado1() == tablero.getDado2()){
+                jugador.setCarcel(false);
+                this.mandarNotificacion(jugador, "Sales de la Carcel", "Haz sacado doble, puedes salir de la carcel.");
+                for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
+                    posFinal = mover(jugador);
+                    mandarTablero(-1);
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(500);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                tablero.getCasillas().get(posFinal).alLlegar(tablero, jugador, this);
+            }
+            else
+                this.mandarNotificacion(jugador, "Sigues en la Carcel", "No haz sacado doble, seguiras en la carcel.");
+        }
     }
 }
 
