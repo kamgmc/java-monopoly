@@ -13,6 +13,7 @@ public class Jugador implements Serializable{
     private boolean carcel;
     private String ip;
     private String nombre;
+    private boolean perdio; 
 
     public Jugador(String nombre, String ip, int posicion) {
         this.nombre = nombre;
@@ -21,6 +22,7 @@ public class Jugador implements Serializable{
         this.ip = ip;
         this.posicion = posicion;
         this.carcel = false;
+        this.perdio = true;
         this.casas = 0;
         this.hoteles = 0;
         
@@ -109,5 +111,15 @@ public class Jugador implements Serializable{
     public void setHoteles(int hoteles) {
         this.hoteles = hoteles;
     }
+
+    public boolean isPerdio() {
+        return perdio;
+    }
+
+    public void setPerdio(boolean perdio) {
+        this.perdio = perdio;
+    }
+    
+    
   
 }

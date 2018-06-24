@@ -71,6 +71,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         panelRegistro.setVisible(false);
         panelCompra.setVisible(false);
         panelCarcel.setVisible(false);
+        panelFin.setVisible(true);
         //cliente.solicitarTablero();
         
     }
@@ -84,6 +85,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        panelFin = new javax.swing.JPanel();
+        fondoFin = new javax.swing.JLabel();
         panelLogin = new javax.swing.JPanel();
         panelInicio = new javax.swing.JPanel();
         tituloLogin = new javax.swing.JLabel();
@@ -158,6 +161,17 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(1010, 710));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        panelFin.setBackground(new java.awt.Color(205, 230, 208));
+        panelFin.setMaximumSize(new java.awt.Dimension(1010, 710));
+        panelFin.setName(""); // NOI18N
+        panelFin.setOpaque(false);
+        panelFin.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fondoFin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagenPerdiste.png"))); // NOI18N
+        panelFin.add(fondoFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(panelFin, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         panelLogin.setBackground(new java.awt.Color(205, 230, 208));
         panelLogin.setMaximumSize(new java.awt.Dimension(1010, 710));
@@ -1018,6 +1032,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel errorLogueo;
     private javax.swing.JLabel errorLogueo1;
     private javax.swing.JLabel fondo;
+    private javax.swing.JLabel fondoFin;
     private javax.swing.JLabel fondoNotificacion;
     private javax.swing.JLabel fondoNotificacion1;
     private javax.swing.JLabel fondoNotificacion2;
@@ -1046,6 +1061,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel notificacion;
     private javax.swing.JPanel panelCarcel;
     private javax.swing.JPanel panelCompra;
+    private javax.swing.JPanel panelFin;
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelNotificacion;

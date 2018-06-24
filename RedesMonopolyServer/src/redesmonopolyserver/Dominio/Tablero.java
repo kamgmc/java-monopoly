@@ -173,6 +173,7 @@ public class Tablero implements Serializable{
             jugadorJson.addProperty("carcel", jugadorClase.isCarcel());
             jugadorJson.addProperty("casas", jugadorClase.getCasas());
             jugadorJson.addProperty("hoteles", jugadorClase.getHoteles());
+            jugadorJson.addProperty("perdio", jugadorClase.isPerdio());
             jugadores.add(jugadorJson);
         }
         j.add("jugadores", jugadores);
@@ -219,6 +220,7 @@ public class Tablero implements Serializable{
             jClase.setCarcel(jObject.get("carcel").getAsBoolean());
             jClase.setCasas(jObject.get("casas").getAsInt());
             jClase.setHoteles(jObject.get("hoteles").getAsInt());
+            jClase.setPerdio(jObject.get("perdio").getAsBoolean());
             this.Jugadores.add(jClase);
         }
         JsonArray casillas = j.getAsJsonArray("casillas");
@@ -296,6 +298,24 @@ public class Tablero implements Serializable{
             
         }
         return propiedades;
+    }
+    
+    public void sacarJugador(Jugador j){
+        int jugador = Jugadores.indexOf(j);
+        j.setPerdio(true);
+        j.setDinero(0);
+        for(Casilla casilla:this.Casillas){
+            if (casilla instanceof CFerrocarril){
+                if(((CFerrocarril) casilla).getPropietario()==jugador) ((CFerrocarril) casilla).setPropietario(-1);  
+            }
+            else if(casilla instanceof CPropiedad){
+                if(((CPropiedad) casilla).getPropietario()==jugador) ((CFerrocarril) casilla).setPropietario(-1);  
+            }
+            else if(casilla instanceof CServicios){
+                if(((CServicios) casilla).getPropietario()==jugador) ((CFerrocarril) casilla).setPropietario(-1);  
+            }
+            
+        }
     }
     
 }

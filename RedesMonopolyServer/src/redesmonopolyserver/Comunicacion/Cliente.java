@@ -124,6 +124,17 @@ public class Cliente{
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void solicitarSalir(String tipo){
+        Solicitud s = new Solicitud(nombre,6);
+        s.setNombrePropiedad(tipo);
+        try {
+            dos.flush();
+            dos.writeObject(s);
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
        
     public void procesarRespuesta(Mensaje m){
         if(m.tipo==0){
