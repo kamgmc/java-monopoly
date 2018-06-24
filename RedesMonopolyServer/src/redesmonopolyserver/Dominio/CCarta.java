@@ -22,7 +22,7 @@ public class CCarta extends Casilla implements Serializable{
             tablero.getFortuna().remove(0);
             tablero.getFortuna().add(seleccionada);
             servidor.mandarNotificacion(jugador, "Fortuna", seleccionada.getTexto());
-            System.out.println("Salio la carta: "+seleccionada.getTexto());
+            System.out.println("Salio la carta: " + seleccionada.getTexto());
         }
         else{
             Carta seleccionada = tablero.getArca().get(0);
@@ -30,7 +30,7 @@ public class CCarta extends Casilla implements Serializable{
             tablero.getArca().remove(0);
             tablero.getArca().add(seleccionada);
             servidor.mandarNotificacion(jugador, "Arca Comunal", seleccionada.getTexto());
-            System.out.println("Salio la carta: "+seleccionada.getTexto());
+            System.out.println("Salio la carta: " + seleccionada.getTexto());
         }
     }
 }

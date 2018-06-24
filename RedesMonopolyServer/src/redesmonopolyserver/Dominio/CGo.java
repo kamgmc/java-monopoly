@@ -1,10 +1,7 @@
 package redesmonopolyserver.Dominio;
 import java.io.Serializable;
 import redesmonopolyserver.Comunicacion.Servidor;
-/**
- *
- * @author kamgm
- */
+
 public class CGo extends Casilla implements Serializable{
 
     public CGo(String nombre, int posJugadorX, int posJUgadorY) {

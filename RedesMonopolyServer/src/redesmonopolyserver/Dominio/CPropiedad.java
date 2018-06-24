@@ -1,10 +1,7 @@
 package redesmonopolyserver.Dominio;
 import java.io.Serializable;
 import redesmonopolyserver.Comunicacion.Servidor;
-/**
- *
- * @author kamgm
- */
+
 public class CPropiedad extends Casilla implements Serializable{
     
     private int numeroCasas;
@@ -72,8 +69,6 @@ public class CPropiedad extends Casilla implements Serializable{
         this.tarjeta = tarjeta;
     }
     
-    
-    
     public Propiedad getPropiedad(Tablero t){
         for(Propiedad p : t.getPropiedades()){
             if(p.getNombre().equals(this.getNombre())) return p;
@@ -86,94 +81,104 @@ public class CPropiedad extends Casilla implements Serializable{
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        if(this.propietario < 0){
-            servidor.mandarPosibleCompra(jugador, "Propiedad", this.getPropiedad(tablero).getNombre());
-            servidor.esperar();
-        }
-        else{
-            //Propietario de la propiedad
-            Jugador dueno = tablero.getJugadores().get(this.propietario);
-            int montoFinal = 0;
-            
-            switch (this.numeroCasas) {
-                case 0:
-                    if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getAlquiler() < 0){
-                        montoFinal = jugador.getDinero();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(0);
-                    }
-                    else{
-                        montoFinal = tablero.buscarPropiedad(this.getNombre()).getAlquiler();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(jugador.getDinero() - montoFinal);
-                    }
-                    break;
-                case 1:
-                    if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getUnaCasa() < 0){
-                        montoFinal = jugador.getDinero();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(0);
-                    }
-                    else{
-                        montoFinal = tablero.buscarPropiedad(this.getNombre()).getUnaCasa();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(jugador.getDinero() - montoFinal);
-                    }
-                    break;
-                case 2:
-                    if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getDosCasas() < 0){
-                        montoFinal = jugador.getDinero();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(0);
-                    }
-                    else{
-                        montoFinal = tablero.buscarPropiedad(this.getNombre()).getDosCasas();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(jugador.getDinero() - montoFinal);
-                    }
-                    break;
-                case 3:
-                    if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getTresCasas() < 0){
-                        montoFinal = jugador.getDinero();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(0);
-                    }
-                    else{
-                        montoFinal = tablero.buscarPropiedad(this.getNombre()).getTresCasas();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(jugador.getDinero() - montoFinal);
-                    }
-                    break;
-                case 4:
-                    if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getCuatroCasas() < 0){
-                        montoFinal = jugador.getDinero();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(0);
-                    }
-                    else{
-                        montoFinal = tablero.buscarPropiedad(this.getNombre()).getCuatroCasas();
-                        dueno.setDinero(dueno.getDinero() + montoFinal);
-                        jugador.setDinero(jugador.getDinero() - montoFinal);
-                    }
-                    break;
-                default:
-                    break;
+        
+        if(!jugador.isPerdio()){
+            if(this.propietario < 0){
+                servidor.mandarPosibleCompra(jugador, "Propiedad", this.getPropiedad(tablero).getNombre());
+                servidor.esperar();
             }
-            //En caso de que haya un hotel en la propiedad
-            if(this.numeroHoteles > 0){
-                if(jugador.getDinero() - tablero.buscarPropiedad(this.getNombre()).getConHotel() < 0){
-                    montoFinal = jugador.getDinero();
-                    dueno.setDinero(dueno.getDinero() + montoFinal);
-                    jugador.setDinero(0);
+            else{
+                //Propietario de la propiedad
+                Jugador dueno = tablero.getJugadores().get(this.propietario);
+                int montoFinal = 0;
+                Propiedad propiedad = tablero.buscarPropiedad(this.getNombre());
+
+                switch (this.numeroCasas) {
+                    case 0:
+                        if(jugador.getDinero() - propiedad.getAlquiler() <= 0){
+                            montoFinal = jugador.getDinero();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(0);
+                            jugador.setPerdio(true);
+                        }
+                        else{
+                            montoFinal = propiedad.getAlquiler();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(jugador.getDinero() - montoFinal);
+                        }
+                        break;
+                    case 1:
+                        if(jugador.getDinero() - propiedad.getUnaCasa() <= 0){
+                            montoFinal = jugador.getDinero();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(0);
+                            jugador.setPerdio(true);
+                        }
+                        else{
+                            montoFinal = propiedad.getUnaCasa();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(jugador.getDinero() - montoFinal);
+                        }
+                        break;
+                    case 2:
+                        if(jugador.getDinero() - propiedad.getDosCasas() <= 0){
+                            montoFinal = jugador.getDinero();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(0);
+                            jugador.setPerdio(true);
+                        }
+                        else{
+                            montoFinal = propiedad.getDosCasas();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(jugador.getDinero() - montoFinal);
+                        }
+                        break;
+                    case 3:
+                        if(jugador.getDinero() - propiedad.getTresCasas() <= 0){
+                            montoFinal = jugador.getDinero();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(0);
+                            jugador.setPerdio(true);
+                        }
+                        else{
+                            montoFinal = propiedad.getTresCasas();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(jugador.getDinero() - montoFinal);
+                        }
+                        break;
+                    case 4:
+                        if(jugador.getDinero() - propiedad.getCuatroCasas() <= 0){
+                            montoFinal = jugador.getDinero();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(0);
+                            jugador.setPerdio(true);
+                        }
+                        else{
+                            montoFinal = propiedad.getCuatroCasas();
+                            dueno.setDinero(dueno.getDinero() + montoFinal);
+                            jugador.setDinero(jugador.getDinero() - montoFinal);
+                        }
+                        break;
+                    default:
+                        break;
                 }
-                else{
-                    montoFinal = tablero.buscarPropiedad(this.getNombre()).getConHotel();
-                    dueno.setDinero(dueno.getDinero() + montoFinal);
-                    jugador.setDinero(jugador.getDinero() - montoFinal);
+                //En caso de que haya un hotel en la propiedad
+                if(this.numeroHoteles > 0){
+                    if(jugador.getDinero() - propiedad.getConHotel() <= 0){
+                        montoFinal = jugador.getDinero();
+                        dueno.setDinero(dueno.getDinero() + montoFinal);
+                        jugador.setDinero(0);
+                        jugador.setPerdio(true);
+                    }
+                    else{
+                        montoFinal = propiedad.getConHotel();
+                        dueno.setDinero(dueno.getDinero() + montoFinal);
+                        jugador.setDinero(jugador.getDinero() - montoFinal);
+                    }
                 }
+                servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + " debes pagar " + montoFinal + "$ a " + dueno.getNombre());
+                servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". Cobras " + montoFinal + "$");
             }
-            servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + " debes pagar " + montoFinal + "$ a " + dueno.getNombre());
-            servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". Cobras " + montoFinal + "$");
         }
     }
 }
