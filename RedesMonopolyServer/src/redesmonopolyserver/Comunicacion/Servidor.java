@@ -207,20 +207,20 @@ public class Servidor {
         Jugador j = tablero.getJugadores().get(jugador);
         int pos = tablero.posPropiedad(s.nombrePropiedad);
         Casilla casilla = tablero.getCasillas().get(pos);
+        
         if(casilla instanceof CPropiedad){
             ((CPropiedad)casilla).setPropietario(jugador);
-            mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
-        }
-        if(casilla instanceof CPropiedad){
-            ((CPropiedad)casilla).setPropietario(jugador);
+            j.setDinero(j.getDinero() - ((CPropiedad) casilla).getPropiedad(tablero).getPrecioCompra());
             mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
         }
         if(casilla instanceof CFerrocarril){
             ((CFerrocarril)casilla).setPropietario(jugador);
+            j.setDinero(j.getDinero() - ((CFerrocarril) casilla).getFerrocarril(tablero).getPrecio());
             mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
         }
         if(casilla instanceof CServicios){
             ((CServicios)casilla).setPropietario(jugador);
+            j.setDinero(j.getDinero() - ((CServicios) casilla).getServicio(tablero).getPrecio());
             mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
         }
         
