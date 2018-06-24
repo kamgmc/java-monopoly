@@ -27,7 +27,7 @@ public class Servidor {
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
         Socket socket;
-        int numJugadores = 2;
+        int numJugadores = 4;
         boolean esperando;
     private int contadorTurnos;
         
@@ -340,7 +340,9 @@ public class Servidor {
             if (s.nombrePropiedad.equals("dados")) salirCarcelDados(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
             else if(s.nombrePropiedad.equals("pago")) salirCarcelPagando(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
             else if(s.nombrePropiedad.equals("tarjeta")) salirCarcelTarjeta(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
-        
+        }
+        else if(s.tipo==7){
+            intentarVender(s,c);
         }
     }
     
@@ -371,6 +373,38 @@ public class Servidor {
     private void sacarDelJuego(int jugadorTurno, ConexionUsuario c) {
         mandarBancaRota(c);
         tablero.sacarJugador(tablero.getJugadores().get(jugadorTurno));
+    }
+
+    private void intentarVender(Solicitud s, ConexionUsuario c) {
+        Jugador j = tablero.getJugadores().get(tablero.obtenerJugador(s.jugador));
+        for(Casilla casilla: tablero.getCasillas()){
+            if(casilla.getNombre().equals(s.nombrePropiedad)){
+                if(casilla instanceof CPropiedad){
+                int precio = (int)(((CPropiedad) casilla).getPropiedad(tablero).getPrecioCompra()*0.75);
+                ((CPropiedad) casilla).setPropietario(-1);
+                j.setDinero(j.getDinero()+precio);
+                this.mandarNotificacion(j, "Propiedad Vendida", "Recibes: $"+precio);
+                this.mandarActualizacion(s, c);
+                
+            }
+            if(casilla instanceof CFerrocarril){
+                int precio = (int) (200*0.75);
+                ((CFerrocarril) casilla).setPropietario(-1);
+                j.setDinero(j.getDinero()+precio);
+                this.mandarNotificacion(j, "Propiedad Vendida", "Recibes: $"+precio);
+                this.mandarActualizacion(s, c);
+            }
+            if(casilla instanceof CServicios){
+                int precio =(int) (150*0.75);
+                ((CServicios) casilla).setPropietario(-1);
+                j.setDinero(j.getDinero()+precio);
+                this.mandarNotificacion(j, "Propiedad Vendida", "Recibes: $"+precio);
+                this.mandarActualizacion(s, c); 
+            }
+                
+            }
+            
+        }
     }
 
     
