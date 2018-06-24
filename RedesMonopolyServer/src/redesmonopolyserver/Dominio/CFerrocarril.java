@@ -6,10 +6,12 @@ import redesmonopolyserver.Comunicacion.Servidor;
 public class CFerrocarril extends Casilla implements Serializable{
     
     private int propietario;
+    String tarjeta;
 
-    public CFerrocarril(int propietario, String nombre, int posJugadorX, int posJUgadorY) {
+    public CFerrocarril(int propietario, String nombre, int posJugadorX, int posJUgadorY,String tarjeta) {
         super(nombre, posJugadorX, posJUgadorY);
         this.propietario = propietario;
+        this.tarjeta=tarjeta;
     }
 
     public int getPropietario() {
@@ -19,6 +21,16 @@ public class CFerrocarril extends Casilla implements Serializable{
     public void setPropietario(int propietario) {
         this.propietario = propietario;
     }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+    
+    
     
     public Ferrocarril getFerrocarril(Tablero t){
         for (Ferrocarril f : t.getFerrocarriles()){

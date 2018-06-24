@@ -281,4 +281,21 @@ public class Tablero implements Serializable{
         return i;
     }
     
+    public ArrayList<Casilla> obtenerPropiedades(int jugador){
+        ArrayList<Casilla> propiedades = new ArrayList<Casilla>();
+        for(Casilla casilla:this.Casillas){
+            if (casilla instanceof CFerrocarril){
+                if(((CFerrocarril) casilla).getPropietario()==jugador) propiedades.add(casilla);  
+            }
+            else if(casilla instanceof CPropiedad){
+                if(((CPropiedad) casilla).getPropietario()==jugador) propiedades.add(casilla);  
+            }
+            else if(casilla instanceof CServicios){
+                if(((CServicios) casilla).getPropietario()==jugador) propiedades.add(casilla);  
+            }
+            
+        }
+        return propiedades;
+    }
+    
 }

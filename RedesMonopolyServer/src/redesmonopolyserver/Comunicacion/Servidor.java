@@ -171,8 +171,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            tablero.setDado1(3);
-            tablero.setDado2(2);
+            tablero.setDado1(1);
+            tablero.setDado2(0);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);

@@ -12,14 +12,16 @@ public class CPropiedad extends Casilla implements Serializable{
     private int propietario;
     private int posCasasX;
     private int posCasasY;
+    String tarjeta;
 
-    public CPropiedad(int posCasasX, int posCasasY,String nombre, int posJugadorX, int posJUgadorY) {
+    public CPropiedad(int posCasasX, int posCasasY,String nombre, int posJugadorX, int posJUgadorY, String tarjeta) {
         super(nombre, posJugadorX, posJUgadorY);
         this.numeroCasas = 0;
         this.numeroHoteles = 0;
         this.propietario = -1;
         this.posCasasX = posCasasX;
         this.posCasasY = posCasasY;
+        this.tarjeta=tarjeta;
     }
 
     public int getNumeroCasas() {
@@ -61,6 +63,16 @@ public class CPropiedad extends Casilla implements Serializable{
     public void setPosCasasY(int posCasasY) {
         this.posCasasY = posCasasY;
     }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+    
+    
     
     public Propiedad getPropiedad(Tablero t){
         for(Propiedad p : t.getPropiedades()){

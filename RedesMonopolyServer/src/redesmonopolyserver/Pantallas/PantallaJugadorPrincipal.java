@@ -5,14 +5,20 @@
  */
 package redesmonopolyserver.Pantallas;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import redesmonopolyserver.Comunicacion.Cliente;
+import redesmonopolyserver.Dominio.CFerrocarril;
 import redesmonopolyserver.Dominio.CPropiedad;
+import redesmonopolyserver.Dominio.CServicios;
 import redesmonopolyserver.Dominio.Casilla;
 import redesmonopolyserver.Dominio.Jugador;
 import redesmonopolyserver.Dominio.Tablero;
@@ -43,6 +49,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
         } 
         initComponents();
+        scroll.getViewport().setBackground(new Color(205,230,208));
         this.cliente=cliente;
         cliente.setPantalla(this);
         actualizarTablero(cliente.getTablero());
@@ -140,7 +147,8 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador2 = new javax.swing.JLabel();
         piezaJugador3 = new javax.swing.JLabel();
         piezaJugador4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        scroll = new javax.swing.JScrollPane();
+        panelPropiedades = new javax.swing.JPanel();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -642,9 +650,25 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         piezaJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/DedalP.png"))); // NOI18N
         tableroYFondo.add(piezaJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 550, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jLabel1.setText("No posees ninguna Propiedad");
-        tableroYFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 400, -1, -1));
+        scroll.setOpaque(false);
+
+        panelPropiedades.setOpaque(false);
+        panelPropiedades.setPreferredSize(new java.awt.Dimension(295, 265));
+
+        javax.swing.GroupLayout panelPropiedadesLayout = new javax.swing.GroupLayout(panelPropiedades);
+        panelPropiedades.setLayout(panelPropiedadesLayout);
+        panelPropiedadesLayout.setHorizontalGroup(
+            panelPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 295, Short.MAX_VALUE)
+        );
+        panelPropiedadesLayout.setVerticalGroup(
+            panelPropiedadesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 265, Short.MAX_VALUE)
+        );
+
+        scroll.setViewportView(panelPropiedades);
+
+        tableroYFondo.add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 440, 295, 265));
 
         getContentPane().add(tableroYFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -730,7 +754,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         mostrarDado(dado1,tablero.getDado1());
         mostrarDado(dado2,tablero.getDado2());
         botonJugar.setVisible(tablero.isTurno()&&!tablero.getJugadores().get(cliente.getPosJugador()).isCarcel());
-        
+        mostrarPropiedades(tablero);
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
             JLabel casa = new JLabel("");
@@ -940,6 +964,40 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         
     };
     
+    public void mostrarPropiedades(Tablero tablero){
+        ArrayList<Casilla> propiedades = tablero.obtenerPropiedades(cliente.getPosJugador());
+        ArrayList<JLabel> nuevosLabel = new ArrayList<JLabel>();
+        panelPropiedades.removeAll();
+        javax.swing.GroupLayout PanelManoLayout = new javax.swing.GroupLayout(panelPropiedades);
+        GroupLayout.SequentialGroup sg = PanelManoLayout.createSequentialGroup();
+        GroupLayout.ParallelGroup pg = PanelManoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING);
+        panelPropiedades.setPreferredSize(new java.awt.Dimension(260, 63*propiedades.size()));
+        for(Casilla casilla: propiedades){
+            javax.swing.JLabel nuevaPropiedad = new javax.swing.JLabel();
+            if(casilla instanceof CPropiedad){
+                nuevaPropiedad.setIcon(new javax.swing.ImageIcon(getClass().getResource(((CPropiedad)casilla).getTarjeta())));
+            }
+            else if(casilla instanceof CFerrocarril){
+                nuevaPropiedad.setIcon(new javax.swing.ImageIcon(getClass().getResource(((CFerrocarril)casilla).getTarjeta())));
+            }
+            else if(casilla instanceof CServicios){
+                nuevaPropiedad.setIcon(new javax.swing.ImageIcon(getClass().getResource(((CServicios)casilla).getTarjeta())));
+            }
+            
+            nuevosLabel.add(nuevaPropiedad);
+        }
+        for(JLabel j: nuevosLabel){
+            sg.addComponent(j);
+            sg.addGap(6, 6, 6);
+        }
+        Collections.reverse(nuevosLabel);
+        for(JLabel j: nuevosLabel){
+            pg.addComponent(j, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE);
+        }
+        PanelManoLayout.setVerticalGroup(sg);
+        PanelManoLayout.setHorizontalGroup(pg);
+        panelPropiedades.setLayout(PanelManoLayout);
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -972,7 +1030,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -992,11 +1049,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelInicio;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JPanel panelNotificacion;
+    private javax.swing.JPanel panelPropiedades;
     private javax.swing.JPanel panelRegistro;
     private javax.swing.JLabel piezaJugador1;
     private javax.swing.JLabel piezaJugador2;
     private javax.swing.JLabel piezaJugador3;
     private javax.swing.JLabel piezaJugador4;
+    private javax.swing.JScrollPane scroll;
     private javax.swing.JPanel tableroYFondo;
     private javax.swing.JLabel textoNotificacion;
     private javax.swing.JLabel textoNotificacion2;

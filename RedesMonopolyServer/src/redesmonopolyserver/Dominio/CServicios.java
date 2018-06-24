@@ -4,10 +4,12 @@ import redesmonopolyserver.Comunicacion.Servidor;
 
 public class CServicios extends Casilla implements Serializable{
     private int propietario;
+    String tarjeta;
 
-    public CServicios(int propietario, String nombre, int posJugadorX, int posJUgadorY) {
+    public CServicios(int propietario, String nombre, int posJugadorX, int posJUgadorY, String tarjeta) {
         super(nombre, posJugadorX, posJUgadorY);
         this.propietario = propietario;
+        this.tarjeta=tarjeta;
     }
 
     public int getPropietario() {
@@ -17,6 +19,15 @@ public class CServicios extends Casilla implements Serializable{
     public void setPropietario(int propietario) {
         this.propietario = propietario;
     }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+    
     
     public Servicio getServicio(Tablero t){
         for(Servicio s:t.getServicios()){
