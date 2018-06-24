@@ -940,22 +940,27 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }
     
     public void mostrarNotificacion(String titulo, String mensaje){
-        panelCompra.setVisible(false);
-        compra.setVisible(false);
-        panelNotificacion.setVisible(true);
-        notificacion.setVisible(true);
-        tituloNotificacion.setText(titulo);
-        mostrarMensajeNotificacion(mensaje);   
+        if(!panelFin.isVisible()){
+            panelCompra.setVisible(false);
+            compra.setVisible(false);
+            panelNotificacion.setVisible(true);
+            notificacion.setVisible(true);
+            tituloNotificacion.setText(titulo);
+            mostrarMensajeNotificacion(mensaje);   
+        }
+        
     }
     
     public void mostrarCompra(String tipo, String nombre, int precio){
-        panelNotificacion.setVisible(false);
-        notificacion.setVisible(false);
-        panelCompra.setVisible(true);
-        compra.setVisible(true);
-        tituloCompra.setText(tipo+" Disponible");
-        textoPropiedad.setText(nombre);
-        textoPrecio.setText("Valor: "+precio);
+        if(!panelFin.isVisible()){
+            panelNotificacion.setVisible(false);
+            notificacion.setVisible(false);
+            panelCompra.setVisible(true);
+            compra.setVisible(true);
+            tituloCompra.setText(tipo+" Disponible");
+            textoPropiedad.setText(nombre);
+            textoPrecio.setText("Valor: "+precio);
+        }
     }
     
     public void mostrarErrorLogin(String mensaje){
@@ -975,6 +980,48 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         panelLogin.setVisible(false);
         tableroYFondo.setVisible(true);
         cliente.enviarJugador();
+    }
+
+    public void mostrarPerdiste() {
+        notificacion.setVisible(false);
+        piezaJugador1.setVisible(false);
+        piezaJugador2.setVisible(false);
+        piezaJugador3.setVisible(false);
+        piezaJugador4.setVisible(false);
+        imagenJugador2.setVisible(false);
+        imagenJugador3.setVisible(false);
+        imagenJugador4.setVisible(false);
+        dinero.setVisible(false);
+        imagenJugador.setVisible(false);
+        tableroYFondo.setVisible(false);
+        panelNotificacion.setVisible(false);
+        panelRegistro.setVisible(false);
+        panelCompra.setVisible(false);
+        panelCarcel.setVisible(false);
+        panelFin.setVisible(true);
+        panelVender.setVisible(false);
+        fondoFin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagenPerdiste.png")));
+    }
+    
+    public void mostrarGanaste() {
+        notificacion.setVisible(false);
+        piezaJugador1.setVisible(false);
+        piezaJugador2.setVisible(false);
+        piezaJugador3.setVisible(false);
+        piezaJugador4.setVisible(false);
+        imagenJugador2.setVisible(false);
+        imagenJugador3.setVisible(false);
+        imagenJugador4.setVisible(false);
+        dinero.setVisible(false);
+        imagenJugador.setVisible(false);
+        tableroYFondo.setVisible(false);
+        panelNotificacion.setVisible(false);
+        panelRegistro.setVisible(false);
+        panelCompra.setVisible(false);
+        panelCarcel.setVisible(false);
+        panelFin.setVisible(true);
+        panelVender.setVisible(false);
+        fondoFin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/imagenGanaste.png")));
     }
     
     public class LanzadorDados implements Runnable{

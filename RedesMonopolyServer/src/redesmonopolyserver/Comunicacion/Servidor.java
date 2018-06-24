@@ -27,7 +27,7 @@ public class Servidor {
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
         Socket socket;
-        int numJugadores = 2;
+        int numJugadores = 4;
         boolean esperando;
     private int contadorTurnos;
         
@@ -120,12 +120,18 @@ public class Servidor {
         for(ConexionUsuario c:conexiones){
             if(cont==jugadorTurno){
                 try {
-                    tablero.setTurno(true);
-                    System.out.println("Es el turno de: "+tablero.getJugadores().get(cont).getNombre());
-                    c.getDos().flush();
-                    c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));
-                    //mandarNotificacion(tablero.getJugadores().get(cont),"Turno","Es tu turno!");
-                    tablero.setTurno(false);
+                    if(tablero.getJugadores().get(jugadorTurno).getDinero()>0){
+                        tablero.setTurno(true);
+                        System.out.println("Es el turno de: "+tablero.getJugadores().get(cont).getNombre());
+                        c.getDos().flush();
+                        c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));
+                        tablero.setTurno(false);                   
+                    }
+                    else{
+                        sacarDelJuego(jugadorTurno, c);
+                        mandarTablero(siguienteJugador(jugadorTurno));
+                    }
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                     System.out.println("Hubo un error");
@@ -133,10 +139,16 @@ public class Servidor {
             }
             else{
                 try {
-                    tablero.setTurno(false);
-                    System.out.println("No es el turno de: "+tablero.getJugadores().get(cont).getNombre());
-                    c.getDos().flush();
-                    c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));
+                    if(tablero.getJugadores().get(cont).getDinero()>0){
+                        tablero.setTurno(false);
+                        System.out.println("No es el turno de: "+tablero.getJugadores().get(cont).getNombre());
+                        c.getDos().flush();
+                        c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));                   
+                    }
+                    else{
+                        sacarDelJuego(cont, c);
+                    }
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
                     System.out.println("Hubo un error");
@@ -154,7 +166,25 @@ public class Servidor {
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
     
+    public void mandarBancaRota(ConexionUsuario c){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(8,"Perdiste el juego",""));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void mandarGanador(int jugador){
+        ConexionUsuario c = this.conexiones.get(jugador);
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(9,"Ganaste",""));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public void agregarJugador(Solicitud s, ConexionUsuario c){
@@ -181,8 +211,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            tablero.setDado1(4);
-            tablero.setDado2(6);
+            //tablero.setDado1(0);
+            //tablero.setDado2(1);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);
@@ -319,6 +349,11 @@ public class Servidor {
         while(siguienteJugador>=tablero.getJugadores().size()){
             siguienteJugador= siguienteJugador-tablero.getJugadores().size();
         }
+        if(this.tablero.getJugadores().get(siguienteJugador).getDinero()>0)   return siguienteJugador;
+        else{
+            siguienteJugador = siguienteJugador(siguienteJugador);
+        }
+        if(siguienteJugador==jugadorAnterior) this.mandarGanador(jugadorAnterior);
         return siguienteJugador;
     }
     
@@ -332,6 +367,12 @@ public class Servidor {
         j.setPosicion(nuevaPosicion);
         return nuevaPosicion;
     }
+
+    private void sacarDelJuego(int jugadorTurno, ConexionUsuario c) {
+        mandarBancaRota(c);
+        tablero.sacarJugador(tablero.getJugadores().get(jugadorTurno));
+    }
+
     
     
     public class Listener implements Runnable{

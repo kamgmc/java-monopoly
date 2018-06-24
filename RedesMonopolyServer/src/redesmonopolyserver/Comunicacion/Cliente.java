@@ -149,7 +149,7 @@ public class Cliente{
        
     public void procesarRespuesta(Mensaje m){
         if(m.tipo==0){
-            //Se envio una actualizacion del tablero
+            //Se envio una actualizacion del tablero con turno
             tablero.setJson(m.tablero.toString());
             if(pantalla!=null) pantalla.actualizarTablero(tablero);
         }
@@ -178,10 +178,19 @@ public class Cliente{
             habilitarCompra(m);
         }
         if(m.tipo==7){
+            // Se va a actualizar el tablero sin turno
             boolean turno = tablero.isTurno();
             tablero.setJson(m.tablero.toString());
             tablero.setTurno(turno);
             if(pantalla!=null) pantalla.actualizarTablero(tablero);
+        }
+        if(m.tipo==8){
+            // El jugador perdio
+            if(pantalla!=null) pantalla.mostrarPerdiste();
+        }
+        if(m.tipo==9){
+            // El jugador gano
+            if(pantalla!=null) pantalla.mostrarGanaste();
         }
     }
     

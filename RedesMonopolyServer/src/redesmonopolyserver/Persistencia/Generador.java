@@ -38,8 +38,8 @@ public class Generador {
         ferrocarriles.add(new Ferrocarril("Via Rapida", 25, 50, 100, 200, 100));
         
         //SEVICIOS
-        servicios.add(new Servicio("Compania de Agua", 4, 10));
-        servicios.add(new Servicio("Compania de Electricidad", 4, 10));
+        servicios.add(new Servicio("Compañia de Agua", 4, 10));
+        servicios.add(new Servicio("Compañia de Electricidad", 4, 10));
     }
     public static void generarTarjetas(ArrayList<Carta> fortuna, ArrayList<Carta> arca){
         //Mazo de Fortuna

@@ -17,7 +17,7 @@ public class Jugador implements Serializable{
 
     public Jugador(String nombre, String ip, int posicion) {
         this.nombre = nombre;
-        this.dinero = 1500;
+        this.dinero = 50;
         this.carcelLibre = 0;
         this.ip = ip;
         this.posicion = posicion;
