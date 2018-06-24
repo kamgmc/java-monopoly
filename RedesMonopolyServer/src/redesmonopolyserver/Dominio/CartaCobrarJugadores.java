@@ -1,11 +1,7 @@
 package redesmonopolyserver.Dominio;
-
 import java.io.Serializable;
 import redesmonopolyserver.Comunicacion.Servidor;
-/**
- *
- * @author kamgm
- */
+
 public class CartaCobrarJugadores extends Carta implements Serializable{
     private int monto;
     
@@ -21,6 +17,5 @@ public class CartaCobrarJugadores extends Carta implements Serializable{
             servidor.mandarNotificacion(tablero.getJugadores().get(i), "Pagas dinero por Carta", "Pagas " + this.monto + "$ por carta de " + jugador.getNombre());
         }
         jugador.setDinero(jugador.getDinero() + tablero.getJugadores().size() * this.monto);
-    }
-    
+    }   
 }
