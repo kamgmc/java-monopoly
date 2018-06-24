@@ -215,25 +215,47 @@ public class Servidor {
     public void comprar(Solicitud s, ConexionUsuario c){
         int jugador = tablero.obtenerJugador(s.jugador);
         Jugador j = tablero.getJugadores().get(jugador);
-        int pos = tablero.posPropiedad(s.nombrePropiedad);
-        Casilla casilla = tablero.getCasillas().get(pos);
-        
-        if(casilla instanceof CPropiedad){
-            ((CPropiedad)casilla).setPropietario(jugador);
-            j.setDinero(j.getDinero() - ((CPropiedad) casilla).getPropiedad(tablero).getPrecioCompra());
-            mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
+        if(!j.isPerdio()){
+            int pos = tablero.posPropiedad(s.nombrePropiedad);
+            Casilla casilla = tablero.getCasillas().get(pos);
+
+            if(casilla instanceof CPropiedad){
+                int precio = ((CPropiedad) casilla).getPropiedad(tablero).getPrecioCompra();
+                if(j.getDinero() - precio <= 0){
+                    j.setDinero(0);
+                    j.setPerdio(true);
+                }
+                else{
+                    ((CPropiedad)casilla).setPropietario(jugador);
+                    j.setDinero(j.getDinero() - precio);
+                    mandarNotificacion(j,"Propiedad Adquirida",casilla.getNombre());
+                }
+            }
+            if(casilla instanceof CFerrocarril){
+                int precio = ((CFerrocarril) casilla).getFerrocarril(tablero).getPrecio();
+                if(j.getDinero() - precio <= 0){
+                    j.setDinero(0);
+                    j.setPerdio(true);
+                }
+                else{
+                    ((CFerrocarril)casilla).setPropietario(jugador);
+                    j.setDinero(j.getDinero() - precio);
+                    mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
+                }
+            }
+            if(casilla instanceof CServicios){
+                int precio = ((CServicios) casilla).getServicio(tablero).getPrecio();
+                if(j.getDinero() - precio <= 0){
+                    j.setDinero(0);
+                    j.setPerdio(true);
+                }
+                else{
+                    ((CServicios)casilla).setPropietario(jugador);
+                    j.setDinero(j.getDinero() - precio);
+                    mandarNotificacion(j,"Servicio Adquirido",casilla.getNombre());
+                }
+            }
         }
-        if(casilla instanceof CFerrocarril){
-            ((CFerrocarril)casilla).setPropietario(jugador);
-            j.setDinero(j.getDinero() - ((CFerrocarril) casilla).getFerrocarril(tablero).getPrecio());
-            mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
-        }
-        if(casilla instanceof CServicios){
-            ((CServicios)casilla).setPropietario(jugador);
-            j.setDinero(j.getDinero() - ((CServicios) casilla).getServicio(tablero).getPrecio());
-            mandarNotificacion(j,"Ferrocarril Adquirido",casilla.getNombre());
-        }
-        
     }
     
     public void intentarLoguear(Solicitud s, ConexionUsuario c){
