@@ -27,7 +27,7 @@ public class Servidor {
         ArrayList<ConexionUsuario> conexiones;
         Tablero tablero;
         Socket socket;
-        int numJugadores = 4;
+        int numJugadores = 2;
         boolean esperando;
     private int contadorTurnos;
         
@@ -211,7 +211,7 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            //tablero.setDado1(0);
+            //tablero.setDado1(3);
             //tablero.setDado2(1);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);

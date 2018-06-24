@@ -31,7 +31,8 @@ public class CServicios extends Casilla implements Serializable{
     
     public Servicio getServicio(Tablero t){
         for(Servicio s:t.getServicios()){
-            if(s.getNombre().equals(this.getNombre())) return s;
+            System.out.println(s.getNombre()+this.getNombre());
+            if(s.getNombre().substring(11).equals(this.getNombre().substring(11))) return s;
         }
         return null;
     }
@@ -85,6 +86,7 @@ public class CServicios extends Casilla implements Serializable{
                 }
             }
             else{
+                System.out.println(this.getNombre());
                 servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
                 servidor.esperar();
             }
