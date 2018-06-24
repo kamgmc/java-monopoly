@@ -135,6 +135,17 @@ public class Cliente{
             Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void solicitarVender(String propiedad){
+        Solicitud s = new Solicitud(nombre,7);
+        s.setNombrePropiedad(propiedad);
+        try {
+            dos.flush();
+            dos.writeObject(s);
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
        
     public void procesarRespuesta(Mensaje m){
         if(m.tipo==0){
@@ -165,6 +176,12 @@ public class Cliente{
         if(m.tipo==6){
             // La casilla se encuentra disponible para compra
             habilitarCompra(m);
+        }
+        if(m.tipo==7){
+            boolean turno = tablero.isTurno();
+            tablero.setJson(m.tablero.toString());
+            tablero.setTurno(turno);
+            if(pantalla!=null) pantalla.actualizarTablero(tablero);
         }
     }
     

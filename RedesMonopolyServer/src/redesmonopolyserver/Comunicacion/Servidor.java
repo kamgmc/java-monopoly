@@ -147,6 +147,16 @@ public class Servidor {
         
     }
     
+    public void mandarActualizacion(Solicitud s, ConexionUsuario c){
+        try {
+            c.getDos().flush();
+            c.getDos().writeObject(new Mensaje(7,"Tablero Actualizado",tablero));
+        } catch (IOException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
     public void agregarJugador(Solicitud s, ConexionUsuario c){
         Jugador j = new Jugador(s.getJugador(),"localhost",0);
             j.setCodigo(conexiones.indexOf(c));
@@ -282,7 +292,7 @@ public class Servidor {
             }
         else if(s.tipo==2){
             // EL jugador pidio el tablero
-            mandarTablero(siguienteJugador(-1));
+            mandarActualizacion(s,c);
         }
         else if (s.tipo==3){
             // El jugador intento loguearse
