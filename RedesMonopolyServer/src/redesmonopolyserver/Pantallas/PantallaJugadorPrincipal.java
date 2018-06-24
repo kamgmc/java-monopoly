@@ -71,7 +71,7 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         panelRegistro.setVisible(false);
         panelCompra.setVisible(false);
         panelCarcel.setVisible(false);
-        panelFin.setVisible(true);
+        panelFin.setVisible(false);
         //cliente.solicitarTablero();
         
     }
