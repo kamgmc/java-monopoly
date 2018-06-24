@@ -124,7 +124,7 @@ public class Servidor {
                     System.out.println("Es el turno de: "+tablero.getJugadores().get(cont).getNombre());
                     c.getDos().flush();
                     c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));
-                    mandarNotificacion(tablero.getJugadores().get(cont),"Turno","Es tu turno!");
+                    //mandarNotificacion(tablero.getJugadores().get(cont),"Turno","Es tu turno!");
                     tablero.setTurno(false);
                 } catch (IOException ex) {
                     Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
@@ -181,8 +181,8 @@ public class Servidor {
             contadorTurnos +=1;
             tablero.setDado1((int)(1+Math.random()*6));
             tablero.setDado2((int)(1+Math.random()*6));
-            tablero.setDado1(1);
-            tablero.setDado2(0);
+            tablero.setDado1(4);
+            tablero.setDado2(6);
             for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
                 posFinal = mover(j);
                 mandarTablero(-1);
@@ -283,6 +283,13 @@ public class Servidor {
         else if (s.tipo==5){
             comprar(s,c);
         }
+        
+        else if (s.tipo==6){
+            if (s.nombrePropiedad.equals("dados")) salirCarcelDados(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
+            else if(s.nombrePropiedad.equals("pago")) salirCarcelPagando(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
+            else if(s.nombrePropiedad.equals("tarjeta")) salirCarcelTarjeta(this.tablero,this.tablero.getJugadores().get(this.tablero.obtenerJugador(s.jugador)));
+        
+        }
     }
     
     public int siguienteJugador(int jugadorAnterior){
@@ -346,9 +353,12 @@ public class Servidor {
                 jugador.setCarcelLibre(jugador.getCarcelLibre() - 1);
                 jugador.setCarcel(false);
                 this.mandarNotificacion(jugador, "Sales Gratis de la Carcel", "Haz usado tu carta para salir de la carcel gratis.");
+                esperar();
+                this.mandarTablero(tablero.obtenerJugador(jugador.getNombre()));
             }
             else
                 this.mandarNotificacion(jugador, "Sigues en la carcel", "No tienes cartas para salir de la carcel.");
+                this.mandarTablero(siguienteJugador(tablero.obtenerJugador(jugador.getNombre())));
         }
     }
     
@@ -359,11 +369,14 @@ public class Servidor {
                 jugador.setCarcel(false);
                 jugador.setPerdio(true);
                 this.mandarNotificacion(jugador, "Pago de Fianza", "No haz tenido suficiente dinero para pagar la carcel.");
+                this.mandarTablero(siguienteJugador(tablero.obtenerJugador(jugador.getNombre())));
             }
             else{
                 jugador.setDinero(jugador.getDinero() - 50);
                 jugador.setCarcel(false);
                 this.mandarNotificacion(jugador, "Pagas Fianza", "Haz salido de la carcel pagando la fianza.");
+                esperar();
+                this.mandarTablero(tablero.obtenerJugador(jugador.getNombre()));
             }
         }
     }
@@ -376,18 +389,11 @@ public class Servidor {
             if(tablero.getDado1() == tablero.getDado2()){
                 jugador.setCarcel(false);
                 this.mandarNotificacion(jugador, "Sales de la Carcel", "Haz sacado doble, puedes salir de la carcel.");
-                for(int i=0;i<tablero.getDado1()+tablero.getDado2();i++){
-                    posFinal = mover(jugador);
-                    mandarTablero(-1);
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-                tablero.getCasillas().get(posFinal).alLlegar(tablero, jugador, this);
+                esperar();
+                this.mandarTablero(tablero.obtenerJugador(jugador.getNombre()));
             }
             else
+                this.mandarTablero(siguienteJugador(tablero.obtenerJugador(jugador.getNombre())));
                 this.mandarNotificacion(jugador, "Sigues en la Carcel", "No haz sacado doble, seguiras en la carcel.");
         }
     }

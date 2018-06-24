@@ -441,13 +441,13 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         carcel.add(aceptarNotificacion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 80, -1));
 
         aceptarNotificacion5.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        aceptarNotificacion5.setText("Carta");
+        aceptarNotificacion5.setText("Tarjeta");
         aceptarNotificacion5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 aceptarNotificacion5ActionPerformed(evt);
             }
         });
-        carcel.add(aceptarNotificacion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 60, -1));
+        carcel.add(aceptarNotificacion5, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 70, -1));
 
         fondoNotificacion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoNotificacion.png"))); // NOI18N
         carcel.add(fondoNotificacion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -615,23 +615,25 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         areaJugador.setLayout(areaJugadorLayout);
         areaJugadorLayout.setHorizontalGroup(
             areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, areaJugadorLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(imagenJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(imagenJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(imagenJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
             .addGroup(areaJugadorLayout.createSequentialGroup()
                 .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(areaJugadorLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(imagenJugador))
+                        .addContainerGap()
+                        .addComponent(imagenJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(imagenJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(imagenJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(areaJugadorLayout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(areaJugadorLayout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(imagenJugador))
+                            .addGroup(areaJugadorLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addComponent(dinero, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         areaJugadorLayout.setVerticalGroup(
             areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -640,12 +642,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
                 .addComponent(imagenJugador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dinero)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(areaJugadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(imagenJugador2)
                     .addComponent(imagenJugador3)
+                    .addComponent(imagenJugador2)
                     .addComponent(imagenJugador4))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         tableroYFondo.add(areaJugador, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, 280, 320));
@@ -738,7 +740,6 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
 
     private void aceptarNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacionActionPerformed
         panelNotificacion.setVisible(false);
-        if(cliente.getTablero().getJugadores().get(cliente.getPosJugador()).isCarcel()&&cliente.getTablero().isTurno()) panelCarcel.setVisible(true);
     }//GEN-LAST:event_aceptarNotificacionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -776,15 +777,21 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_aceptarNotificacion2ActionPerformed
 
     private void aceptarNotificacion3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion3ActionPerformed
-        // TODO add your handling code here:
+        panelCarcel.setVisible(false);
+        cliente.solicitarSalir("dados");
+        cliente.solicitarTablero();
     }//GEN-LAST:event_aceptarNotificacion3ActionPerformed
 
     private void aceptarNotificacion4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion4ActionPerformed
-        // TODO add your handling code here:
+        panelCarcel.setVisible(false);
+        cliente.solicitarSalir("pago");
+        cliente.solicitarTablero();
     }//GEN-LAST:event_aceptarNotificacion4ActionPerformed
 
     private void aceptarNotificacion5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarNotificacion5ActionPerformed
-        // TODO add your handling code here:
+        panelCarcel.setVisible(false);
+        cliente.solicitarSalir("tarjeta");
+        cliente.solicitarTablero();
     }//GEN-LAST:event_aceptarNotificacion5ActionPerformed
 
     private void venderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderActionPerformed
@@ -819,6 +826,12 @@ public class PantallaJugadorPrincipal extends javax.swing.JFrame {
         mostrarDado(dado2,tablero.getDado2());
         botonJugar.setVisible(tablero.isTurno()&&!tablero.getJugadores().get(cliente.getPosJugador()).isCarcel());
         mostrarPropiedades(tablero);
+        if (tablero.isTurno())mostrarNotificacion("Turno","Es tu turno!");
+        if(tablero.isTurno()&&tablero.getJugadores().get(cliente.getPosJugador()).isCarcel()) {
+            panelNotificacion.setVisible(false);
+            panelCompra.setVisible(false);
+            panelCarcel.setVisible(true);
+        }
         /*Prueba de casas
         if (tablero.getJugadores().get(0).getPosicion() instanceof CPropiedad){
             JLabel casa = new JLabel("");
