@@ -43,16 +43,20 @@ public class CServicios extends Casilla implements Serializable{
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         if(!jugador.isPerdio()){
-            //Si el servicio ya esta comprado
-            if(this.propietario >= 0){
+            //Propietario de la casilla actual
+            Jugador dueno = tablero.getJugadores().get(this.propietario);
+            if(this.propietario < 0){
+                System.out.println(this.getNombre());
+                servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
+                servidor.esperar();
+            }
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
                 int montoBase = tablero.getDado1() + tablero.getDado2();
                 int montoFinal;
                 //Servicio de electricidad
                 CServicios electricidad = (CServicios) tablero.getCasillas().get(12); 
                 //Servicio de agua
                 CServicios agua = (CServicios) tablero.getCasillas().get(28); 
-                //Propietario de la casilla actual
-                Jugador dueno = tablero.getJugadores().get(this.propietario);
 
                 if(electricidad.getPropietario() == agua.getPropietario()){
                     if(jugador.getDinero() - 10 * montoBase <= 0){
@@ -81,14 +85,9 @@ public class CServicios extends Casilla implements Serializable{
                         jugador.setDinero(jugador.getDinero() - montoFinal);
                         dueno.setDinero(dueno.getDinero() + montoFinal);
                     }
-                    servidor.mandarNotificacion(jugador, "Pagas dinero por alquiler", "Pagas " + montoFinal + "$ a " + dueno.getNombre() + " por alquiler de Servicios");
-                    servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Servicios");
+                    servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + ". \n Pagas " + montoFinal + "$ a " + dueno.getNombre());
+                    servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". \nCobras " + montoFinal + "$");
                 }
-            }
-            else{
-                System.out.println(this.getNombre());
-                servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
-                servidor.esperar();
             }
         }
     }

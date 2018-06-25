@@ -83,13 +83,13 @@ public class CPropiedad extends Casilla implements Serializable{
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         
         if(!jugador.isPerdio()){
+            //Propietario de la propiedad
+                Jugador dueno = tablero.getJugadores().get(this.propietario);
             if(this.propietario < 0){
                 servidor.mandarPosibleCompra(jugador, "Propiedad", this.getPropiedad(tablero).getNombre());
                 servidor.esperar();
             }
-            else{
-                //Propietario de la propiedad
-                Jugador dueno = tablero.getJugadores().get(this.propietario);
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
                 int montoFinal = 0;
                 Propiedad propiedad = tablero.buscarPropiedad(this.getNombre());
 
@@ -176,8 +176,8 @@ public class CPropiedad extends Casilla implements Serializable{
                         jugador.setDinero(jugador.getDinero() - montoFinal);
                     }
                 }
-                servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + " debes pagar " + montoFinal + "$ a " + dueno.getNombre());
-                servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". Cobras " + montoFinal + "$");
+                servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + ". \n Pagas " + montoFinal + "$ a " + dueno.getNombre());
+                servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". \nCobras " + montoFinal + "$");
             }
         }
     }

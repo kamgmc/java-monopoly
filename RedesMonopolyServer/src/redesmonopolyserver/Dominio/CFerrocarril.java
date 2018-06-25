@@ -44,12 +44,14 @@ public class CFerrocarril extends Casilla implements Serializable{
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         //Si aun no ha perdido
         if(!jugador.isPerdio()){
-            //Si la propiedad esta comprada
-            if(this.propietario >= 0){
-                
-                //Propietario del ferrocarril
-                Jugador dueno = tablero.getJugadores().get(this.propietario);
-
+            //Propietario del ferrocarril
+            Jugador dueno = tablero.getJugadores().get(this.propietario);
+            
+            if(this.propietario < 0){
+                servidor.mandarPosibleCompra(jugador, "Ferrocarril", this.getFerrocarril(tablero).getNombre());
+                servidor.esperar();
+            }
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
                 //Trenes
                 ArrayList<CFerrocarril> trenes = new ArrayList();
                 trenes.add((CFerrocarril) tablero.getCasillas().get(5));
@@ -124,12 +126,8 @@ public class CFerrocarril extends Casilla implements Serializable{
                     default:
                         break;
                 }
-                servidor.mandarNotificacion(jugador, "Pagas dinero por alquiler", "Pagas " + montoFinal + "$ a " + dueno.getNombre() + " por alquiler de Ferrocarril");
-                servidor.mandarNotificacion(dueno, "Recibes dinero por alquiler", "Recibes " + montoFinal + "$ de " + jugador.getNombre() + " por alquiler de Ferrocarril");
-            }
-            else{
-                servidor.mandarPosibleCompra(jugador, "Ferrocarril", this.getFerrocarril(tablero).getNombre());
-                servidor.esperar();
+                servidor.mandarNotificacion(jugador, "Pago de alquiler", "Haz caido en " + this.getNombre() + ". \n Pagas " + montoFinal + "$ a " + dueno.getNombre());
+                servidor.mandarNotificacion(dueno, "Cobro por alquiler", jugador.getNombre() + " ha caido en " + this.getNombre() + ". \nCobras " + montoFinal + "$");
             }
         }
     }
