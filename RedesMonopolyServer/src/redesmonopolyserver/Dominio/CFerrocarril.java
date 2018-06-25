@@ -45,14 +45,15 @@ public class CFerrocarril extends Casilla implements Serializable{
         //Si aun no ha perdido
         if(!jugador.isPerdio()){
             //Propietario del ferrocarril
-            Jugador dueno = tablero.getJugadores().get(this.propietario);
+            
             
             if(this.propietario < 0){
                 servidor.mandarPosibleCompra(jugador, "Ferrocarril", this.getFerrocarril(tablero).getNombre());
                 servidor.esperar();
             }
-            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !tablero.getJugadores().get(this.propietario).isCarcel()){
                 //Trenes
+                Jugador dueno = tablero.getJugadores().get(this.propietario);
                 ArrayList<CFerrocarril> trenes = new ArrayList();
                 trenes.add((CFerrocarril) tablero.getCasillas().get(5));
                 trenes.add((CFerrocarril) tablero.getCasillas().get(15));

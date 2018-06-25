@@ -44,13 +44,14 @@ public class CServicios extends Casilla implements Serializable{
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
         if(!jugador.isPerdio()){
             //Propietario de la casilla actual
-            Jugador dueno = tablero.getJugadores().get(this.propietario);
+            
             if(this.propietario < 0){
                 System.out.println(this.getNombre());
                 servidor.mandarPosibleCompra(jugador, "Servicio", this.getServicio(tablero).getNombre());
                 servidor.esperar();
             }
-            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !tablero.getJugadores().get(this.propietario).isCarcel()){
+                Jugador dueno = tablero.getJugadores().get(this.propietario);
                 int montoBase = tablero.getDado1() + tablero.getDado2();
                 int montoFinal;
                 //Servicio de electricidad

@@ -81,18 +81,17 @@ public class CPropiedad extends Casilla implements Serializable{
 
     @Override
     public void alLlegar(Tablero tablero, Jugador jugador, Servidor servidor) {
-        
         if(!jugador.isPerdio()){
             //Propietario de la propiedad
-                Jugador dueno = tablero.getJugadores().get(this.propietario);
+                
             if(this.propietario < 0){
                 servidor.mandarPosibleCompra(jugador, "Propiedad", this.getPropiedad(tablero).getNombre());
                 servidor.esperar();
             }
-            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !dueno.isCarcel()){
+            else if(tablero.getJugadores().indexOf(jugador) != this.propietario && !tablero.getJugadores().get(this.propietario).isCarcel()){
                 int montoFinal = 0;
                 Propiedad propiedad = tablero.buscarPropiedad(this.getNombre());
-
+                Jugador dueno = tablero.getJugadores().get(this.propietario);
                 switch (this.numeroCasas) {
                     case 0:
                         if(jugador.getDinero() - propiedad.getAlquiler() <= 0){

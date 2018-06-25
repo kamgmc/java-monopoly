@@ -203,7 +203,6 @@ public class Servidor {
     }
     
     public void moverJugador(Solicitud s, ConexionUsuario c){
-        System.out.println("Me solicitaron moverme");
             int jugador = tablero.obtenerJugador(s.jugador);
             Jugador j = tablero.getJugadores().get(jugador);
             System.out.println("Dados: "+tablero.getDado1()+" "+tablero.getDado2());
@@ -317,12 +316,19 @@ public class Servidor {
         }  
         else if(s.tipo==1){
             // El jugador solicito moverse
-            moverJugador(s,c);
-
+            if(tablero.getJugadores().get(tablero.obtenerJugador(s.jugador)).getDinero()>0)
+                moverJugador(s,c);
+            else
+                this.sacarDelJuego(tablero.obtenerJugador(s.jugador), c);
+                mandarTablero(siguienteJugador(tablero.obtenerJugador(s.jugador)));
             }
         else if(s.tipo==2){
             // EL jugador pidio el tablero
-            mandarActualizacion(s,c);
+            if(tablero.getJugadores().get(tablero.obtenerJugador(s.jugador)).getDinero()>0)
+                mandarActualizacion(s,c);
+            else
+                this.sacarDelJuego(tablero.obtenerJugador(s.jugador), c);
+                mandarTablero(siguienteJugador(tablero.obtenerJugador(s.jugador)));
         }
         else if (s.tipo==3){
             // El jugador intento loguearse
