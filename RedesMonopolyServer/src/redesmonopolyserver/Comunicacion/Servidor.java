@@ -46,7 +46,7 @@ public class Servidor {
             new Thread(new Listener(this,c)).start();
             conexiones.add(c);
         }
-        System.out.println("Se crearon todos los usuarios");
+        System.out.println("Se crearon todas las conexiones");
 
             try {
                 
@@ -62,7 +62,7 @@ public class Servidor {
         try {
             c.getDos().flush();
             c.getDos().writeObject(new Mensaje(1,titulo,mensaje));
-            System.out.print("Se ha enviado la notificacion: "+titulo);
+            System.out.println("Se ha enviado la notificacion: "+ titulo +" "+mensaje);
         } catch (IOException ex) {
             Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -141,7 +141,6 @@ public class Servidor {
                 try {
                     if(tablero.getJugadores().get(cont).getDinero()>0){
                         tablero.setTurno(false);
-                        System.out.println("No es el turno de: "+tablero.getJugadores().get(cont).getNombre());
                         c.getDos().flush();
                         c.getDos().writeObject(new Mensaje(0,"Tablero Actualizado",tablero));                   
                     }
@@ -191,7 +190,7 @@ public class Servidor {
         Jugador j = new Jugador(s.getJugador(),"localhost",0);
             j.setCodigo(conexiones.indexOf(c));
             tablero.getJugadores().add(j);
-            System.out.println("Se creo el usuario: "+j.getNombre());
+            System.out.println("Se agrego el jugador: "+j.getNombre());
             if(tablero.getJugadores().size()==numJugadores){
                 long seed = System.nanoTime();
                 tablero.acomodarJugadores();
@@ -309,7 +308,7 @@ public class Servidor {
     }
     
     public void procesarSolicitud(Solicitud s, ConexionUsuario c){
-        System.out.println("Solicitud: nombre - "+s.jugador+" tipo - "+s.tipo);
+        System.out.println("Nueva solicitud de: "+s.jugador+" de tipo: "+s.tipo);
         if(s.tipo==0){
             // El jugador solicito unirse a la partida
             agregarJugador(s,c);
@@ -427,10 +426,8 @@ public class Servidor {
         public void run() {
             while(true){
                 try {
-                    System.out.println("Esperando Solicitud");
                     Solicitud sol = (Solicitud) c.getDis().readObject();
                     s.procesarSolicitud(sol,this.c);
-                    System.out.println("Solicitud Recibida");
                 } catch (IOException ex) {
                     Logger.getLogger(ConexionUsuario.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (ClassNotFoundException ex) {
